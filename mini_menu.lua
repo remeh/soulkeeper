@@ -18,10 +18,13 @@ MiniBack = love.graphics.newImage("sprites/menu_background.png")
 
 function Minimenu:trap1()
 	 print("Repel")
+	 piegeManager.changePiege(piegeManager, Trappe)
 end
 
 function Minimenu:trap2()
 	 print("Totem")
+	 piegeManager.changePiege(piegeManager, Totem)
+
 end
 
 function Minimenu:trap3()

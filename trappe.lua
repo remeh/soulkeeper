@@ -1,9 +1,9 @@
 Trappe = {
     class = "trappe",
     strength = 100,
-    soulNeeded = 3,
+    soulNeeded = 2,
     absorb_Area = 4,
-    effect_Area = 1,
+    effect_Area = 3,
     couldown = 2,
     walk_on = true,
 
