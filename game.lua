@@ -7,11 +7,13 @@ require "consts"
 -- the different states.
 Game = {
     -- starting state
-    state = "main_menu",
+    state = GameState.MAIN_MENU,
     -- the level instance
     level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
     -- the menu
     menu = Menu.new(),
+    -- background music
+    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
     actorDrawables = ActorDrawables
 }
@@ -30,7 +32,7 @@ function Game:draw()
     local switch = {
         [GameState.MAIN_MENU] = function() self:menuDraw() end,
         [GameState.GAME_SCREEN] = function() self:levelDraw() end,
-        [GameState.GAME_OVER] = function() self::gameOverDraw() end
+        [GameState.GAME_OVER] = function() self:gameOverDraw() end
     }
     -- call the switch
     switch[self.state](delta)
@@ -44,7 +46,7 @@ function Game:levelDraw()
     level:draw()
 end
 
-function Game::gameOverDraw()
+function Game:gameOverDraw()
     -- TODO
 end
 

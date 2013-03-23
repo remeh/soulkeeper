@@ -7,6 +7,9 @@ game = Game.new()
 
 function love.load()
     -- Creates the main game var. Global.
+    game.backgroundMusic:setLooping(true)
+    game.backgroundMusic:setVolume(0.7)
+    game.backgroundMusic:play()
 end
 
 function love.run()
