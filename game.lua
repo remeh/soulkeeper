@@ -1,3 +1,4 @@
+require "mini_menu"
 require "actor"
 require "piege"
 require "level"
@@ -11,8 +12,9 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 40, 16, 1),
+    level = Level.new(30, 30, 16, 1),
     -- the menu
+    minimenu = Minimenu.new(),
     menu = Menu.new(),
     -- background music
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
@@ -83,6 +85,7 @@ end
 
 function Game:levelDraw()
     self.level:draw()
+    self.minimenu:draw()
 end
 
 function Game:gameOverDraw()
@@ -107,6 +110,7 @@ function Game:mousereleasedMainMenu(x, y, button)
 end
 
 function Game:mousereleasedGameScreen(x, y, button)
+	 self.minimenu:mousereleased(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
