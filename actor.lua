@@ -8,7 +8,7 @@ require "utils"
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
-    ["Soul"] = love.graphics.newImage("sprites/soul.png")
+    ["Soul"] = love.graphics.newImage("sprites/ghost.png")
 }
 
 -- ---
@@ -25,7 +25,7 @@ Actor = {
     class = "Actor",
 
     posX = 0,
-    posY = 1,
+    posY = 0,
 
     -- --------
     -- function shared with implentations
