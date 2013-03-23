@@ -10,12 +10,10 @@ end
 
 function Game:update(delta)
     local switch = {
-        ["main_menu"] = function (delta) updateMainMenu(delta) end,
-        ["game_screen"] = function (delta) updateGameScreen(delta) end,
-        ["game_over"] = function (delta) updateGameOver(delta) end
+        ["main_menu"] = function (delta) self:updateMainMenu(delta) end,
+        ["game_screen"] = function (delta) self:updateGameScreen(delta) end,
+        ["game_over"] = function (delta) self:updateGameOver(delta) end
     }
-
-    print(self.state)
 
     -- call the switch
     switch[self.state](delta)

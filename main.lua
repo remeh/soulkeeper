@@ -53,7 +53,7 @@ end
 -- The main loop update which take care of updating
 -- the entities.
 function love.update(delta)
-    -- game.update(delta)
+    game:update(delta)
 end
 
 function love.keypressed(key, unicode)
