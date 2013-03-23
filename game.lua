@@ -41,6 +41,29 @@ function Game:draw()
 end
 
 function Game:keypressed(key, unicode)
+    local switch = {
+        [GameState.MAIN_MENU] = function() self:keypressedMainMenu(key) end,
+        [GameState.GAME_SCREEN] = function() self:keypressedGameScreen(key) end,
+        [GameState.GAME_OVER] =  function() self:keypressedGameOver(key) end
+    }
+    -- call the switch
+    switch[self.state](delta)
+end
+
+function Game:keypressedMainMenu(key)
+
+end
+
+function Game:keypressedGameScreen(key)
+    print(key)
+    if key == 'a' then
+        local soul = Actor.new(Soul)
+        self.level:addPersonRandomly(soul)
+    end
+end
+
+function Game:keypressedGameOver(key)
+
 end
 
 function Game:mousereleased(x, y, button)
@@ -59,7 +82,7 @@ function Game:menuDraw()
 end
 
 function Game:levelDraw()
---    self.level:draw()
+    self.level:draw()
 end
 
 function Game:gameOverDraw()
@@ -91,7 +114,10 @@ end
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = GameState.MAIN_MENU
+    game.state = GameState.GAME_SCREEN
+
+    --
+    math.randomseed(os.time())
 
     -- Launches the music
 --    game.backgroundMusic:setLooping(true)

@@ -140,7 +140,7 @@ end
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
 	for k,person in ipairs(self.persons) do
-		love.graphics.draw(ActorDrawables[person.class],person.posx*self.sprite_size,person.posy*self.sprite_size)
+		love.graphics.draw(ActorDrawables[person.class],person.posX*self.sprite_size,person.posY*self.sprite_size)
 	end
 	
 end
@@ -185,6 +185,24 @@ end
 function Level:addPerson(person)
 	-- Add person
 	table.insert(self.persons,person)
+end
+
+function Level:addPersonRandomly(person)
+    local x = math.random(0,39)
+    local y = math.random(0,29)
+
+    print("x " .. x)
+    print("y " .. y)
+
+    if self:isBlocking(x,y) then
+        person.posX = x
+        person.posY = y
+        self:addPerson(person)
+    end
+end
+
+function Level:isBlocking(x, y)
+    return self.zone[y+1][x+1] == 1
 end
 
 function Level:newWave()
@@ -237,8 +255,8 @@ function Level.new(height,width,sprite_size,numEntrances)
 	local person
 	for k,indien in ipairs(indiens) do
 		person = Actor.new(Indian)
-		person.posx = indien[1]
-		person.posy = indien[2]
+		person.posX = indien[1]
+		person.posY = indien[2]
 		level:addPerson(person)
 	end
 	return level
