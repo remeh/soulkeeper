@@ -8,9 +8,9 @@ require "slowdown"
 --
 
 PiegeDrawables ={
-	["repulse"] = love.graphics.newImage("sprites/repulse.png")
-	["trappe"] = love.graphics.newImage("sprites/trappe.png")
-	["slowdown"] = love.graphics.newImage("sprites/slowdown.png")
+	["repulse"] = love.graphics.newImage("sprites/repulse.png"),
+	["trappe"] = love.graphics.newImage("sprites/trappe.png"),
+	["slowdown"] = love.graphics.newImage("sprites/slowdown.png"),
 	["totem"] = love.graphics.newImage("sprites/totem.png")
 }
 
