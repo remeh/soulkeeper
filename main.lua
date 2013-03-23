@@ -55,6 +55,9 @@ end
 -- the entities.
 function love.update(delta)
     game:update(delta)
+    actor = Actor
+    actor:init(Indian)
+    print(actor:touch(actor))
 end
 
 function love.keypressed(key, unicode)
