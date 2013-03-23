@@ -81,7 +81,7 @@ function Game:keypressedGameScreen(key)
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
 	elseif key == 't' then
-		piegeManager.changePiege(Totem)
+		piegeManager.changePiege(piegeManager, Totem)
     end
 end
 
