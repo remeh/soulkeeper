@@ -1,13 +1,12 @@
 Minimenu = {
-    bigFont = love.graphics.newFont(23),
-    font = love.graphics.newFont(24),
+    font = love.graphics.newFont(18),
 
 	traps = {
-		{"Repel", 550, 18, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
-		{"Totem", 543, 65, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
-		{"Smoke", 540, 115, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
-		{"Cage", 550, 164, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
-		{"    Pause", 500, 240, 615, 265, {0, 0, 0}, function(self) self:pause() end},
+		{"Repel", 545, 21, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
+		{"Totem", 545, 68, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
+		{"Smoke", 545, 118, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
+		{"Cage", 545, 168, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
+		{"    Pause", 510, 242, 615, 265, {0, 0, 0}, function(self) self:pause() end},
 	},
 }
 
@@ -41,7 +40,6 @@ function Minimenu:draw()
 	love.graphics.draw(MiniBack, 480, 0)		
 	-- Draw the menu
     love.graphics.setFont(self.font);
-    love.graphics.setFont(self.bigFont);
 	for k,item in ipairs(self.traps) do
 		love.graphics.setColor(item[6])
 		love.graphics.print(item[1], item[2], item[3])

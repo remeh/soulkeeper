@@ -1,9 +1,9 @@
 
 Level = {
-	-- Size in square
-	height = nil,
-	width = nil,
-	sprite_size = nil,
+    -- Size in square
+    height = nil,
+    width = nil,
+    sprite_size = nil,
 
 	numEntrances = nil,
 	traps = {},
@@ -255,7 +255,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    if x < 0 or x > self.width-1 or y < 0 or x > self.height-1 then
+    if x < 1 or x > self.width-1 or y < 1 or x > self.height-1 then
         return true
     end
 
@@ -286,6 +286,7 @@ end
 -- Returns which thing 
 
 function Level:touches(actor)
+    
 end
 
 -- Returns the roads position
@@ -298,6 +299,22 @@ function Level:isOutside(x, y)
 	    return true
 	 end
 	 return false
+end
+
+-- Returns what is touches this actor. 
+function Level:whatIsTouching(actor)
+    local results = {}
+    for i, value in ipairs(persons) do
+        if persons.contains(actor) then
+            table.insert(results, value)
+        end
+    end
+    for i, value in ipairs(traps) do
+        if trap.contains(actor) then
+            table.insert(results, trap)
+        end
+    end
+    return results
 end
 
 -- Constructor

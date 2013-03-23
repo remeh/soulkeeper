@@ -1,9 +1,8 @@
 Slowdown = {
     class = "slowdown",
     strength = 1,
-    soulNeeded = 2,
-    absorb_Area = 4,
-    effect_Area = 1,
+    soulNeeded = 1,
+    area = 1,
     cooldown = 1,
     walk_on = false,
 
