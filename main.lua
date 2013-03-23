@@ -66,6 +66,8 @@ function love.keypressed(key, unicode)
 			end
 			return
 		end
+	else
+		game:keypressed(key, unicode)
 	end
 end
 
