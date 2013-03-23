@@ -3,11 +3,16 @@ Minimenu = {
     font = love.graphics.newFont(24),
 
 	traps = {
-		{"Trap1", 490, 200, 630, 230, {255, 255, 255}, function(self) self:trap1() end},
-		{"Trap2", 490, 240, 630, 270, {255, 255, 255}, function(self) self:trap2() end},
-		{"Trap3", 490, 280, 630, 310, {255, 255, 255}, function(self) self:trap3() end},
+		{"Trap1", 490, 200, 630, 230, {0, 0, 0}, function(self) self:trap1() end},
+		{"Trap2", 490, 240, 630, 270, {0, 0, 0}, function(self) self:trap2() end},
+		{"Trap3", 490, 280, 630, 310, {0, 0, 0}, function(self) self:trap3() end},
 	},
 }
+
+--
+--
+
+MiniBack = love.graphics.newImage("sprites/background.png")
 
 function Minimenu:trap1()
 	 print("Trap1")
@@ -22,6 +27,8 @@ function Minimenu:trap3()
 end
 
 function Minimenu:draw()
+	-- Draw the background
+	love.graphics.draw(MiniBack, 480, 0)		
 	-- Draw the menu
     love.graphics.setFont(self.font);
     love.graphics.setFont(self.bigFont);
@@ -43,7 +50,7 @@ function Minimenu:mousereleased(x, y, button)
 			end
 		end
 	end
-end
+end	 
 
 -- Constructor
 
