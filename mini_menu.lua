@@ -46,6 +46,7 @@ function Minimenu:draw()
 		love.graphics.setColor(item[6])
 		love.graphics.print(item[1], item[2], item[3])
 	end
+	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.setColor(255,255,255)
 end
 

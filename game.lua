@@ -25,7 +25,9 @@ Game = {
     piegeDrawables = PiegeDrawables,
 	--init piegeManager
 	piegeManager = PiegeManager.new(), 
-	paused = 0
+	paused = 0,
+
+	point = 0,
 }
 
 function Game:switchPause()
@@ -45,6 +47,7 @@ function Game:update(delta)
     -- call the switch
 	if self.paused == 0 then
 		switch[self.state](delta)
+		self.point = self.point + delta
 	end
 end
 
