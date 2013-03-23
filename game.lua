@@ -30,7 +30,7 @@ function Game:draw()
     local switch = {
         [GameState.MAIN_MENU] = function() self:menuDraw() end,
         [GameState.GAME_SCREEN] = function() self:levelDraw() end,
-        [GameState.GAME_OVER] = function() self::gameOverDraw() end
+        [GameState.GAME_OVER] = function() self:gameOverDraw() end
     }
     -- call the switch
     switch[self.state](delta)
@@ -47,7 +47,7 @@ function Game:levelDraw()
     self.level:draw()
 end
 
-function Game::gameOverDraw()
+function Game:gameOverDraw()
     -- TODO
 end
 
