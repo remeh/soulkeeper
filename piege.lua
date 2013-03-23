@@ -37,10 +37,10 @@ function Piege:contains(object)
    if not object.y then 
       return false 
    end
-   if self.pos_x < object.pos_x and object.pos_x < object.pos_x + object.area then 
+   if self.pos_x < object.posX and object.posX < object.pos_x + object.area then 
       x = true 
    end
-   if self.pos_y < object.pos_y and object.pos_y < object.pos_y + object.area then 
+   if self.pos_y < object.posY and object.posY < object.pos_y + object.area then 
       y = true 
    end
    if x == true and y == true then 
