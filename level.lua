@@ -239,6 +239,10 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
+    if x < 0 or x > self.width-1 or y < 0 or x > self.height-1 then
+        return true
+    end
+
     return self.zone[y+1][x+1] == 0
 end
 
