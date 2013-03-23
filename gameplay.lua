@@ -9,7 +9,7 @@ Gameplay = {
 function Gameplay:update(delta)
     self:updateTime(delta)
     -- TODO vague must be configurable or read in the game state
-    if self.seconds > 10 then
+    if self.seconds > 3 then
         self:newWave()
         self.seconds = 0
     end
@@ -26,7 +26,8 @@ end
 
 function Gameplay:newWave()
     -- put tourists on the road
-    
+    local result = game.level:findRoad()
+    print("new tourist on : " .. result.findX .. ":" .. result.findY)
 end
 
 -- Constructor
