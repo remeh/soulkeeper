@@ -88,7 +88,7 @@ Actor = {
 
 function Actor.new(actorType)
     -- simple inheritance system
-    actor = deepcopy(Actor)
+    local actor = deepcopy(Actor)
 
     if actorType.class ~= "Actor" then
         actor.class  = deepcopy(actorType.class)
