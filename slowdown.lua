@@ -7,4 +7,7 @@ Slowdown = {
     cooldown = 1,
     walk_on = false
 
+    actorAction = function(actor)
+    	self.speed = 1
+    end
 }
