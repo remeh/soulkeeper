@@ -131,15 +131,21 @@ function Level:drawHut()
 	local y
 	local hut_sprite 
 	local huts_pos = {
-		{ 18 , 13, "sprites/hut4x4.png",4 },
-		{ 10 , 10, "sprites/hut1x1.png",1 },
+		{ 13 , 13, "sprites/hut4x4.png",4 },
+		{ 23 , 23, "sprites/hut4x4.png",4 },
+		{ 19 , 10, "sprites/hut4x4.png",4 },
+		{ 7 , 3, "sprites/hut4x4.png",4 },
+		{ 15 , 17, "sprites/hut1x1.png",1 },
+		{ 7 , 26, "sprites/hut1x1.png",1 },
+		{ 10 , 20, "sprites/hut1x1.png",1 },
+		{ 7 , 15, "sprites/hut1x1.png",1 },
 	}
 	for k,pos in ipairs(huts_pos) do
 		hut_sprite = love.graphics.newImage(pos[3])
 		love.graphics.draw(hut_sprite, pos[1]*self.sprite_size, pos[2]*self.sprite_size)
 		for x = pos[2],pos[2]+pos[4]-1 do
 			for y = pos[1],pos[1]+pos[4]-1 do
-				self.zone[x][y] = 0
+				self.zone[x+1][y+1] = 0
 			end
 		end
 
@@ -177,10 +183,13 @@ end
 
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
-	for k,person in ipairs(self.persons) do
+	for _,person in ipairs(self.persons) do
 		love.graphics.draw(ActorDrawables[person.class],person.posX*self.sprite_size,person.posY*self.sprite_size)
 	end
-	
+
+	for _,trap in ipairs(self.traps) do
+		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,pos.posY*self.sprite_size)
+	end
 end
 
 function Level:addTrap(trap)
@@ -291,7 +300,7 @@ function Level.new(height,width,sprite_size,numEntrances)
     indiansPosition = {
         { x = math.random(10,14), y = math.random(14,23) },
         { x = 04, y = 07 },
-        { x = 20, y = 11 }
+        { x = 20, y = 9 }
     }
 
 	for i,value in ipairs(indiansPosition) do
