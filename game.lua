@@ -1,6 +1,7 @@
 require "mini_menu"
 require "actor"
 require "piege"
+require "piegeManager"
 require "level"
 require "menu"
 require "consts"
@@ -21,8 +22,19 @@ Game = {
     gameplay = Gameplay.new(),
 
     actorDrawables = ActorDrawables,
-    piegeDrawables = PiegeDrawables
+    piegeDrawables = PiegeDrawables,
+	--init piegeManager
+	piegeManager = PiegeManager.new(), 
+	paused = 0
 }
+
+function Game:switchPause()
+	if self.paused == 1 then
+		self.paused = 0
+	else
+		self.paused = 1
+	end
+end
 
 function Game:update(delta)
     local switch = {
@@ -31,7 +43,9 @@ function Game:update(delta)
         [GameState.GAME_OVER] = function(delta) self:updateGameOver(delta) end
     }
     -- call the switch
-    switch[self.state](delta)
+	if self.paused == 0 then
+		switch[self.state](delta)
+	end
 end
 
 function Game:draw()
@@ -42,6 +56,7 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
+
 end
 
 function Game:keypressed(key, unicode)
@@ -62,6 +77,8 @@ function Game:keypressedGameScreen(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
+	elseif key == 't' then
+		piegeManager.changePiege(Totem)
     end
 end
 
@@ -111,7 +128,8 @@ function Game:mousereleasedMainMenu(x, y, button)
 end
 
 function Game:mousereleasedGameScreen(x, y, button)
-	 self.minimenu:mousereleased(x, y, button)
+	self.piegeManager:mousereleased(x, y, button)
+	self.minimenu:mousereleased(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)

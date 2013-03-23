@@ -29,7 +29,7 @@ Indian = {
                 dx = -1
             end
 
-            if not game.level:isBlocking(self.posX+dx, self.posY+dy) then
+            if not game.level:isBlocking(self.posX+dx, self.posY+dy) and not game.level:isOutside(self.posX + dx, self.posY + dy) then
                 self.posX = self.posX + dx
                 self.posY = self.posY + dy
             end

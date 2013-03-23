@@ -7,6 +7,7 @@ Minimenu = {
 		{"Totem", 543, 65, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
 		{"Smoke", 540, 115, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
 		{"Cage", 550, 164, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
+		{"    Pause", 500, 240, 615, 265, {0, 0, 0}, function(self) self:pause() end},
 	},
 }
 
@@ -29,6 +30,10 @@ end
 
 function Minimenu:trap4()
 	 print("Cage")
+end
+
+function Minimenu:pause()
+	game:switchPause()
 end
 
 function Minimenu:draw()

@@ -74,7 +74,6 @@ function Level:findRoad()
             x = x + delta
         end
 
-        print("test " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }
@@ -131,15 +130,21 @@ function Level:drawHut()
 	local y
 	local hut_sprite 
 	local huts_pos = {
-		{ 18 , 13, "sprites/hut4x4.png",4 },
-		{ 10 , 10, "sprites/hut1x1.png",1 },
+		{ 13 , 13, "sprites/hut4x4.png",4 },
+		{ 23 , 23, "sprites/hut4x4.png",4 },
+		{ 19 , 10, "sprites/hut4x4.png",4 },
+		{ 7 , 3, "sprites/hut4x4.png",4 },
+		{ 15 , 17, "sprites/hut1x1.png",1 },
+		{ 7 , 26, "sprites/hut1x1.png",1 },
+		{ 10 , 20, "sprites/hut1x1.png",1 },
+		{ 7 , 15, "sprites/hut1x1.png",1 },
 	}
 	for k,pos in ipairs(huts_pos) do
 		hut_sprite = love.graphics.newImage(pos[3])
 		love.graphics.draw(hut_sprite, pos[1]*self.sprite_size, pos[2]*self.sprite_size)
 		for x = pos[2],pos[2]+pos[4]-1 do
 			for y = pos[1],pos[1]+pos[4]-1 do
-				self.zone[x][y] = 0
+				self.zone[x+1][y+1] = 0
 			end
 		end
 
@@ -177,10 +182,14 @@ end
 
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
-	for k,person in ipairs(self.persons) do
+	Game.piegeManager.drawPiegeArea()
+	for _,person in ipairs(self.persons) do
 		love.graphics.draw(ActorDrawables[person.class],person.posX*self.sprite_size,person.posY*self.sprite_size)
 	end
-	
+
+	for _,trap in ipairs(self.traps) do
+		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
+	end
 end
 
 function Level:addTrap(trap)
@@ -190,21 +199,26 @@ function Level:addTrap(trap)
 	--
 	-- Search souls to pay the trap
 	local selectedPersons = {}
-	for person in self.persons do
-		if table.getn(selectedPersons) == trap.cost then
+	for _,person in ipairs(self.persons) do
+		if table.getn(selectedPersons) == trap.soulNeeded then
 			break
 		end
-		if person.isSoul() and trap.contain(person) then
+
+		if person.class=="Soul" and trap:contains(person) then
 			table.insert(selectedPersons,person)
 		end
 	end
-
-	if table.getn(selectedPersons) == trap.cost then
+	print("SP "..table.getn(selectedPersons).." SN "..trap.soulNeeded)
+	for _,person in ipairs(selectedPersons) do
+		print("selected "..person.posX.." ,"..person.posY)
+	end
+	if table.getn(selectedPersons) == trap.soulNeeded then
 		-- They have enouth person in the trap zone
-		for person in selectedPersons do
+		for _,person in ipairs(selectedPersons) do
 			-- For all personn to remove
 			for k,v in ipairs(self.persons) do
 				if v == person then
+					print("delete")
 					-- delete the selected person of the game
 					table.remove(self.persons,k)
 					break -- TODO Check if break stop only once loop
@@ -252,6 +266,10 @@ function Level:update(delta_time)
 	end
 end
 
+-- Returns case number from a pixel position
+function Level:getCase(pixel)
+	return math.floor(pixel/self.sprite_size)
+end
 
 function Level:generateBackground()
 	self.canvasBackground = love.graphics.newCanvas(1024,1024)
@@ -264,11 +282,21 @@ function Level:generateBackground()
 end
 
 -- Returns which thing 
+
 function Level:touches(actor)
 end
 
 -- Returns the roads position
 
+function Level:isOutside(x, y)
+	 if x > (self.width - 1)  or y > (self.height - 1) then
+	    return true
+	 end
+	 if x < 1 or y < 1 then
+	    return true
+	 end
+	 return false
+end
 
 -- Constructor
 
@@ -285,7 +313,7 @@ function Level.new(height,width,sprite_size,numEntrances)
     indiansPosition = {
         { x = math.random(10,14), y = math.random(14,23) },
         { x = 04, y = 07 },
-        { x = 20, y = 11 }
+        { x = 20, y = 9 }
     }
 
 	for i,value in ipairs(indiansPosition) do
@@ -297,3 +325,4 @@ function Level.new(height,width,sprite_size,numEntrances)
 
 	return level
 end
+
