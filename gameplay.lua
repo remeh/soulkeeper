@@ -9,7 +9,7 @@ Gameplay = {
 function Gameplay:update(delta)
     self:updateTime(delta)
     -- TODO vague must be configurable or read in the game state
-    if self.seconds > 3 then
+    if self.seconds > 5 then
         self:newWave()
         self.seconds = 0
     end

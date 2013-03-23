@@ -60,11 +60,9 @@ Actor = {
     end,
 
     contains = function(self, other)
-	  if math.abs(self.posX - other.posX) 
-	     < actor.area then
-	     if math.abs(self.posY - other.posY) 
-	     	< actor.area then
-		return true
+	  if math.abs(self.posX - other.posX)  < self.area then
+	     if math.abs(self.posY - other.posY) < self.area then
+            return true
 	     end
 	  end
 	return false

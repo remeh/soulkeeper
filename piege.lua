@@ -3,8 +3,6 @@ require "totem"
 require "trappe"
 require "slowdown"
 
-
---
 --
 
 PiegeDrawables ={
@@ -13,7 +11,6 @@ PiegeDrawables ={
 	["slowdown"] = love.graphics.newImage("sprites/slowdown.png"),
 	["totem"] = love.graphics.newImage("sprites/totem.png"),
 	["piege"] = love.graphics.newImage("sprites/NotHere.png")
-
 }
 
 Piege = {
@@ -22,8 +19,7 @@ Piege = {
     soulNeeded = 0,
     posX = -1,
     posY = -1,
-    absorb_Area = 0,
-    effect_Area = 0,
+    area = 0,
     cooldown = 0,
     walk_on = false,
 
@@ -35,27 +31,27 @@ Piege = {
     end,
     
     --checks if an object is in the effect area of our trap
-contains= function(self, object)
-   local x, y
-   if not object.posX then 
-      return false 
-   end
-   if not object.posY then 
-      return false 
-   end
-   if self.posX <= object.posX and object.posX <= self.posX + self.effect_Area then 
-      x = true 
-   end
-   if self.posY <= object.posY and object.posY <= self.posY + self.effect_Area then 
-      y = true 
-   end
-   if x == true and y == true then 
-      return true
-   else 
-      return false 
-   end
-end
+    contains = function(self, object)
+        local x, y
+        if not object.posX then 
+            return false 
+        end
+        if not object.posY then 
+            return false 
+        end
 
+        if self.posX <= object.posX and object.posX <= self.posX + self.area then 
+            x = true 
+        end
+        if self.posY <= object.posY and object.posY <= self.posY + self.area then 
+            y = true 
+        end
+        if x == true and y == true then 
+            return true
+        else 
+            return false 
+        end
+    end
 }
 
 
@@ -69,7 +65,7 @@ function Piege.new(trappeType)
 		trappe.strength = deepcopy(trappeType.strength)
 		trappe.soulNeeded = deepcopy(trappeType.soulNeeded)
 		trappe.absord_Area = deepcopy(trappeType.absorb_Area)
-		trappe.effect_Area = deepcopy(trappeType.effect_Area)
+		trappe.area = deepcopy(trappeType.area)
 		trappe.cooldown = deepcopy(trappeType.cooldown)
 		trappe.walk_on = deepcopy(trappeType.walk_on)
 	end

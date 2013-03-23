@@ -18,15 +18,14 @@ Indian = {
             local direction = math.random(4)
             local dx = 0
             local dy = 0
-	    local prec = 0
 
-            if direction == Direction.UP and prec ~= Direction.UP then
+            if direction == Direction.UP then
                 dy = -(math.random(100)%2)
-            elseif direction == Direction.RIGHT and prec ~= Direction.RIGHT then
+            elseif direction == Direction.RIGHT then
                 dx = (math.random(100)%2)
-            elseif direction == Direction.DOWN and prec ~= Direction.DOWN then
+            elseif direction == Direction.DOWN then
                 dy = (math.random(100)%2)
-            elseif prec ~= Direction.LEFT then 
+            else
                 dx = -(math.random(100)%2)
             end
 

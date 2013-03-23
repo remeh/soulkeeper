@@ -2,8 +2,7 @@ Totem = {
     class = "totem",
     strength = -1,
     soulNeeded = 1,
-    absorb_Area = 4,
-    effect_Area = 4,
+    area = 4,
     cooldown = 2,
     walk_on = false,
 
