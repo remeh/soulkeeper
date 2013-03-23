@@ -9,6 +9,6 @@ Totem = {
 
     actorAction = function(self, actor)
     	self.speed = 0
-	self.class = "soul"
+        self.class = "soul"
     end
 }

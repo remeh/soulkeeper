@@ -17,7 +17,7 @@ Piege = {
 }
 
 function Piege.new(trappeType)
-	trappe = deepcopy(Piege)
+	local trappe = deepcopy(Piege)
 	
 	if trappeType.class then
 		trappe.class = deepcopy(trappeType.class)
