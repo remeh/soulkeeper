@@ -20,7 +20,8 @@ Level = {
 function Level:drawForest()
 	local x = 0
 	local y = 0
-	local tree_sprite = love.graphics.newImage("sprites/tree.png")
+	--local tree_sprite = love.graphics.newImage("sprites/tree.png")
+	local tree_sprite = love.graphics.newImage("sprites/forest.png")
 --	tree_sprite = love.Sprite.new("tree.png", 20, 20, VRAM)
 	for x = 0, (self.width-1), 1 do
 		for y = 0, (self.height-1), 1 do
@@ -87,14 +88,22 @@ function Level:drawRoad()
 end
 
 function Level:drawHut()
-	local hut_sprite = love.graphics.newImage("sprites/hut.png")
+	local x
+	local y
+	local hut_sprite 
 	local huts_pos = {
-		{ 20 , 15 },
-		{ 10 , 10 },
+		{ 18 , 13, "sprites/hut4x4.png",4 },
+		{ 10 , 10, "sprites/hut1x1.png",1 },
 	}
 	for k,pos in ipairs(huts_pos) do
+		hut_sprite = love.graphics.newImage(pos[3])
 		love.graphics.draw(hut_sprite, pos[1]*self.sprite_size, pos[2]*self.sprite_size)
-		self.zone[pos[2]][pos[1]] = 0
+		for x = pos[2],pos[2]+pos[4]-1 do
+			for y = pos[1],pos[1]+pos[4]-1 do
+				self.zone[x][y] = 0
+			end
+		end
+
 	end
 end
 
@@ -129,6 +138,9 @@ end
 
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
+	for k,person in ipairs(self.persons) do
+		love.graphics.draw(ActorDrawables[person.class],person.pos_x*self.sprite_size,person.pos_y*self.sprite_size)
+	end
 end
 
 function Level:addTrap(trap)
@@ -206,12 +218,26 @@ end
 
 function Level.new(height,width,sprite_size,numEntrances)
 	--Create a new level
-	level = Level
+	local level = Level
 	level.height = height
 	level.width = width
 	level.sprite_size = sprite_size
 	level.numEntrances = numEntrances
 
 	level:generateBackground()
+
+	--Creation des indiens de base
+	local indiens = {
+		{ 20,20 },
+		{ 15,15 },
+		{ 25,25 },
+	}
+	local person
+	for k,indien in ipairs(indiens) do
+		person = Actor.new(Indian)
+		person.pos_x = indien[1]
+		person.pos_y = indien[2]
+	--	level:addPerson(person)
+	end
 	return level
 end

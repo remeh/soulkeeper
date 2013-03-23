@@ -53,10 +53,6 @@ end
 
 function love.draw()
     game:draw()
-    actor = Actor.new(Indian)
-    soul = Actor.new(Soul)
-    soul.posX = 100
-    print(actor:contains(soul))
 end
 
 -- The main loop update which take care of updating
@@ -73,6 +69,8 @@ function love.keypressed(key, unicode)
 			end
 			return
 		end
+	else
+		game:keypressed(key, unicode)
 	end
 end
 

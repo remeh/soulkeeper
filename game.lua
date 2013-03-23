@@ -38,12 +38,15 @@ function Game:draw()
     switch[self.state](delta)
 end
 
+function Game:keypressed(key, unicode)
+end
+
 function Game:menuDraw()
     menu:draw()
 end
 
 function Game:levelDraw()
-    level:draw()
+    self.level:draw()
 end
 
 function Game:gameOverDraw()
@@ -61,9 +64,10 @@ end
 function Game:updateGameOver(delta)
 end
 
+
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = "main_menu"
+    game.state = "game_screen"
     return game
 end
