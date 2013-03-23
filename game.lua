@@ -10,7 +10,7 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 40, 16, 1),
+    level = Level.new(30, 30, 16, 1),
     -- the menu
     menu = Menu.new(),
     -- background music
