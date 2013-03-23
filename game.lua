@@ -1,7 +1,10 @@
+require "actor"
+
 -- The main game method which will contains
 -- the different states.
 Game = {
-    state = "main_menu"
+    state = "main_menu",
+    actorDrawables = ActorDrawables
 }
 
 function Game:init()

@@ -1,6 +1,7 @@
 require "trap"
 require "conf"
 require "game"
+require "actor"
 
 game = Game
 
