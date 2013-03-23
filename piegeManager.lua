@@ -8,33 +8,39 @@ require "slowdown"
 PiegeManager = {
 	currentPiege = nil,
 
-	init = function()
-		currentPiege = Piege.new(Piege)
+	init = function(self)
+		--currentPiege = Piege.new(Piege)
+		self.currentPiege = nil
 	end,
-	changePiege = function(piegeType)	
-		currentPiege = Piege.new(piegeType)
+	changePiege = function(self,piegeType)	
+		self.currentPiege = Piege.new(piegeType)
 	end,
 
-	drawPiegeArea = function()
-		local mouseX, mouseY = love.mouse.getX(), love.mouse.getY()
-		love.graphics.draw(game.piegeDrawables[currentPiege.class], mouseX,mouseY )
-	end	
+	drawPiegeArea = function(self)
+		if self.currentPiege ~= nil then
+			local mouseX, mouseY = love.mouse.getX(), love.mouse.getY()
+			love.graphics.draw(game.piegeDrawables[self.currentPiege.class], mouseX,mouseY )
+		end	
+	end
 }
 
 function PiegeManager.new()
 	piegeManager = PiegeManager
-	piegeManager:init()
+	piegeManager:init(piegeManager)
 	return piegeManager
 end
 
 function PiegeManager:mousereleased(x, y, button)
     if button == 'l' then
 		local caseX, caseY = Game.level:getCase(x), Game.level:getCase(y)
-		if (Game.level.zone[caseY+1][caseX+1] == 1) then
-			currentPiege.posX=caseX
-			currentPiege.posY=caseY
-			Game.level:addTrap(currentPiege)
-			Game.level.zone[caseY+1][caseX+1] = 0
+		if (Game.level.zone[caseY+1][caseX+1] == 1 and self.currentPiege ~= nil) then
+			self.currentPiege.posX=caseX
+			self.currentPiege.posY=caseY
+			if	Game.level:addTrap(self.currentPiege) then
+				Game.level.zone[caseY+1][caseX+1] = 0
+				Game.level.zone[caseY+2][caseX+1] = 0
+				self.currentPiege = nil
+			end
 		end
     end
 end

@@ -182,7 +182,7 @@ end
 
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
-	Game.piegeManager.drawPiegeArea()
+	Game.piegeManager.drawPiegeArea(Game.piegeManager)
 	for _,person in ipairs(self.persons) do
 		love.graphics.draw(ActorDrawables[person.class],person.posX*self.sprite_size,person.posY*self.sprite_size)
 	end
