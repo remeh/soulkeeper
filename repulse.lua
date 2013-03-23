@@ -9,10 +9,11 @@ Repulse = {
     cooldown = 2,
     walk_on = true,
 
-    --On force l'acteur à se déplacer vers un point
-    actorAction = function (self, actor)
+    
+	--	we re forcing the actor to go towards a specific location
+	actorAction = function (self, actor)
 	
-	if (not self.pos_x or not self.pos_y) then
+	if (not self.posX or not self.posY) then
 		return nil
 	end
 
@@ -24,10 +25,11 @@ Repulse = {
 	local rightDoorX, rightDoory = centreX*2, centreY
 	local topDist, bottomDist, leftDist, rightDist
 
-	topDist = distanceFrom(self.pos_x, self.pos_y, topDoorX, topDoorY)	
-	bottomDist = distanceFrom(self.pos_x, self.pos_y, bottomDoorX, bottomDoorY)
-	leftDist = distanceFrom(self.pos_x, self.pos_y, leftDoorX, leftDoorY)
-	rightDist = distanceFrom(self.pos_x, self.pos_y, rightDoorX, rightDoorY)
+	--calculating the closest door/path
+	topDist = distanceFrom(self.posX, self.posY, topDoorX, topDoorY)	
+	bottomDist = distanceFrom(self.posX, self.posY, bottomDoorX, bottomDoorY)
+	leftDist = distanceFrom(self.posX, self.posY, leftDoorX, leftDoorY)
+	rightDist = distanceFrom(self.posX, self.posY, rightDoorX, rightDoorY)
 	
 	local minDist=1000000
 	for i = topDist, bottomDist, rightDist, leftDist do
@@ -51,5 +53,8 @@ Repulse = {
 		targetX=rightDoorX
 		targetY=rightDoorY
 	end
+	--force the actor to go at the closest door
+	actor.forceMoveX = targetX
+	actor.forceMoveY = targetY
 	end
 }

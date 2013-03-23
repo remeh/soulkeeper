@@ -1,4 +1,5 @@
 require "actor"
+require "piege"
 require "level"
 require "menu"
 require "consts"
@@ -7,13 +8,16 @@ require "consts"
 -- the different states.
 Game = {
     -- starting state
-    state = "main_menu",
+    state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
+    level = Level.new(30, 40, 16, 1),
     -- the menu
     menu = Menu.new(),
+    -- background music
+--    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
-    actorDrawables = ActorDrawables
+    actorDrawables = ActorDrawables,
+    piegeDrawables = PiegeDrawables
 }
 
 function Game:update(delta)
@@ -39,12 +43,23 @@ end
 function Game:keypressed(key, unicode)
 end
 
+function Game:mousereleased(x, y, button)
+	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+    local switch = {
+        [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
+        [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,
+        [GameState.GAME_OVER] = function(x,y,button) self:mousereleasedGameOver(x, y, button) end
+    }
+    -- call the switch
+    switch[self.state](x, y, button)
+end
+
 function Game:menuDraw()
-    menu:draw()
+    self.menu:draw()
 end
 
 function Game:levelDraw()
-    self.level:draw()
+--    self.level:draw()
 end
 
 function Game:gameOverDraw()
@@ -62,10 +77,26 @@ end
 function Game:updateGameOver(delta)
 end
 
+function Game:mousereleasedMainMenu(x, y, button)
+	self.menu:mousereleased(x,y,button)
+end
+
+function Game:mousereleasedGameScreen(x, y, button)
+end
+
+function Game:mousereleasedGameOver(x, y, button)
+end
+
 
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = "game_screen"
+    game.state = GameState.MAIN_MENU
+
+    -- Launches the music
+--    game.backgroundMusic:setLooping(true)
+--    game.backgroundMusic:setVolume(0.7)
+--    game.backgroundMusic:play()
+
     return game
 end
