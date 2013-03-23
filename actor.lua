@@ -1,6 +1,7 @@
 require "indian"
 require "soul"
 require "tourist"
+require "utils"
 
 --
 --
@@ -87,11 +88,11 @@ Actor = {
 
 function Actor.new(actorType)
     -- simple inheritance system
-    actor = Actor
+    actor = deepcopy(Actor)
 
     if actorType.class ~= "Actor" then
-        actor.class  = actorType.class
-        actor.update = actorType.update
+        actor.class  = deepcopy(actorType.class)
+        actor.update = deepcopy(actorType.update)
     end
 
     return actor
