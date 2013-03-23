@@ -93,7 +93,7 @@ function Level:drawHut()
 	local hut_sprite 
 	local huts_pos = {
 		{ 18 , 13, "sprites/hut4x4.png",4 },
-		{ 10 , 10, "sprites/hut.png",1 },
+		{ 10 , 10, "sprites/hut1x1.png",1 },
 	}
 	for k,pos in ipairs(huts_pos) do
 		hut_sprite = love.graphics.newImage(pos[3])
