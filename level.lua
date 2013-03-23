@@ -26,9 +26,20 @@ end
 function Level:drawBase()
 	--Init matrice
 	zone = {}
-	--Def zone Camp in matrice
+	for i = 1, self.height do
+		zone[i] = {}
+		for j = 1, self.width do
+			zone[i][j] = 1
+		end
+	end
+	-- Draw Forest
+	self.drawForest()
+	-- Draw Camp
+	self.drawCamp()
 	--Def zone road in matrice
+	self.drawRoad()
 	--Def zone hut
+	self.drawHut()
 end
 
 function Level:draw()
