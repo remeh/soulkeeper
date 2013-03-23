@@ -183,6 +183,10 @@ function Level:generateBackground()
 	love.graphics.setCanvas()
 end
 
+-- Returns which thing 
+function Level:touches(actor)
+end
+
 -- Constructor
 
 function Level.new(height,width,sprite_size,numEntrances)
