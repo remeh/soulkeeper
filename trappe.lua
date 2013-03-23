@@ -2,7 +2,7 @@ Trappe = {
     class = "trappe",
     strength = 100,
     soulNeeded = 2,
-    effect = 2,
+    area = 2,
     couldown = 2,
     walk_on = true,
 

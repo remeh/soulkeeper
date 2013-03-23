@@ -13,7 +13,6 @@ Tourist = {
 		end
 
         touchingObjects = game.level:whatIsTouching(self)
-        print(touchingObjects[1].class)
     end,
 
     move = function(self, delta)
@@ -34,7 +33,6 @@ Tourist = {
             dx = -1
         end
 
-        --print(self.posX+dx .. " " .. self.posY+dy)
         if not game.level:isBlocking(self.posX+dx, self.posY+dy) then
             self.posX = self.posX + dx
             self.posY = self.posY + dy

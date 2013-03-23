@@ -1,12 +1,13 @@
 Minimenu = {
+	ghostImage = love.graphics.newImage("sprites/ghost.png"),
     font = love.graphics.newFont(18),
 
 	traps = {
-		{"Repel", 545, 21, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
-		{"Totem", 545, 68, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
-		{"Smoke", 545, 118, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
-		{"Cage", 545, 168, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
-		{"    Pause", 510, 242, 615, 265, {0, 0, 0}, function(self) self:pause() end},
+		{"Repel", 545, 21, 630, 50, {0, 0, 0}, function(self) self:trap1() end,1},
+		{"Totem", 545, 68, 630, 90, {0, 0, 0}, function(self) self:trap2() end,1},
+		{"Smoke", 545, 118, 630, 150, {0, 0, 0}, function(self) self:trap3() end,1},
+		{"Cage", 545, 168, 630, 210, {0, 0, 0}, function(self) self:trap4() end,1},
+		{"    Pause", 510, 300, 615, 265, {0, 0, 0}, function(self) self:pause() end},
 	},
 }
 
@@ -46,9 +47,13 @@ function Minimenu:draw()
 	for k,item in ipairs(self.traps) do
 		love.graphics.setColor(item[6])
 		love.graphics.print(item[1], item[2], item[3])
+		if item[8] then
+			love.graphics.print(item[8], item[2]+80, item[3])
+		end	
 	end
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.setColor(255,255,255)
+	love.graphics.draw(self.ghostImage,623,5)
 end
 
 function Minimenu:update(delta)
