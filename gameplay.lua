@@ -26,7 +26,8 @@ end
 
 function Gameplay:newWave()
     -- put tourists on the road
-    
+    local result = game.level:findRoad()
+    print("new tourist on : " .. result.findX .. ":" .. result.findY)
 end
 
 -- Constructor

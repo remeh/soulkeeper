@@ -55,11 +55,12 @@ function Level:findRoad()
         if y == 2 then
             y = self.height-1
         end
-        if level:isBlocking(x,y) then
-             
-        do
-    end
 
+        if not self:isBlocking(x,y) then
+            find = true
+            return { findX = x, findY = y }
+        end
+    end
 end
 
 function Level:drawRoad()
@@ -206,12 +207,12 @@ function Level:addPerson(person)
 end
 
 function Level:addPersonRandomly(person)
-    local x = math.random(0,39)
-    local y = math.random(0,29)
+    local x = math.random(0,self.width-1)
+    local y = math.random(0,self.height-1)
 
     print("x " .. x .. " y " .. y)
 
-    if self:isBlocking(x,y) then
+    if not self:isBlocking(x,y) then
         person.posX = x
         person.posY = y
         self:addPerson(person)
@@ -219,7 +220,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    return self.zone[y+1][x+1] == 1
+    return self.zone[y+1][x+1] == 0
 end
 
 function Level:update(delta_time)
