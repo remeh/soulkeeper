@@ -6,7 +6,7 @@ Indian = {
     class = "Indian",
     
     -- consts
-    CHANCE_TO_WALK = 10,
+    CHANCE_TO_WALK = 4,
 
     die = function(self, delta)
         -- TODO
@@ -41,7 +41,7 @@ Indian = {
         -- move in level
         self:move(delta)
         -- 
---        self:forceTrapMovement()
+        self:forceTrapMovement()
         -- 
         entityTouching = game.level.touches(self)
     end

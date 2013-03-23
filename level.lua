@@ -282,7 +282,6 @@ function Level.new(height,width,sprite_size,numEntrances)
     }
 
 	for i,value in ipairs(indiansPosition) do
-        print(":)")
         indian = Actor.new(Indian)
         indian.posX = value.x
         indian.posY = value.y
