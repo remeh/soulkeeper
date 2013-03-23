@@ -243,6 +243,9 @@ function Level:isBlocking(x, y)
 end
 
 function Level:update(delta_time)
+	for k,person in ipairs(self.persons) do
+		person:update(delta_time)
+	end
 end
 
 

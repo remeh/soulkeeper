@@ -24,6 +24,11 @@ Actor = {
     forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
+	lastUpdate = 0, -- time spend this the last update
+	timeToUpdate = 1, -- time to wait between an update (different for each type of Actors)
+
+	tourist_terror = 0, -- 	Know if the tourist is in terror
+
     posX = 0,
     posY = 0,
 
