@@ -68,6 +68,12 @@ end
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = "game_screen"
+    game.state = GameState.MAIN_MENU
+
+    -- Launches the music
+    game.backgroundMusic:setLooping(true)
+    game.backgroundMusic:setVolume(0.7)
+    game.backgroundMusic:play()
+
     return game
 end
