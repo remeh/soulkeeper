@@ -1,12 +1,12 @@
 Minimenu = {
-    bigFont = love.graphics.newFont(25),
+    bigFont = love.graphics.newFont(23),
     font = love.graphics.newFont(24),
 
 	traps = {
-		{"Trap1", 550, 20, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
-		{"Trap2", 550, 65, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
-		{"Trap3", 550, 115, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
-		{"Trap4", 550, 165, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
+		{"Repel", 550, 18, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
+		{"Totem", 543, 65, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
+		{"Smoke", 540, 115, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
+		{"Cage", 550, 164, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
 	},
 }
 
@@ -16,19 +16,19 @@ Minimenu = {
 MiniBack = love.graphics.newImage("sprites/menu_background.png")
 
 function Minimenu:trap1()
-	 print("Trap1")
+	 print("Repel")
 end
 
 function Minimenu:trap2()
-	 print("Trap2")
+	 print("Totem")
 end
 
 function Minimenu:trap3()
-	 print("Trap3")
+	 print("Smoke")
 end
 
 function Minimenu:trap4()
-	 print("Trap4")
+	 print("Cage")
 end
 
 function Minimenu:draw()
