@@ -7,7 +7,7 @@ require "consts"
 -- the different states.
 Game = {
     -- starting state
-    state = "main_menu",
+    state = GameState.MAIN_MENU,
     -- the level instance
     level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
     -- the menu
@@ -39,12 +39,23 @@ end
 function Game:keypressed(key, unicode)
 end
 
+function Game:mousereleased(x, y, button)
+	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+    local switch = {
+        [GameState.MAIN_MENU] = function() self:mousereleased(x, y, button) end,
+        [GameState.GAME_SCREEN] = function() self:mousereleased(x, y, button) end,
+        [GameState.GAME_OVER] = function() self:mousereleased(x, y, button) end
+    }
+    -- call the switch
+    switch[self.state](delta)
+end
+
 function Game:menuDraw()
     menu:draw()
 end
 
 function Game:levelDraw()
-    self.level:draw()
+--    self.level:draw()
 end
 
 function Game:gameOverDraw()
@@ -66,6 +77,6 @@ end
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = "game_screen"
+    game.state = GameState.MAIN_MENU
     return game
 end

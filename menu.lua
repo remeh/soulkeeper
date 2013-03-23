@@ -16,7 +16,12 @@ function Menu:draw()
     love.graphics.print("Quit", 250, 280);
 end
 
-function Level:update(delta)
+function Menu:update(delta)
+end
+
+function Menu:mousereleased(x, y, button)
+	if button == 'l' then
+	end
 end
 
 -- Constructor
