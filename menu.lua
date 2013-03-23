@@ -4,6 +4,9 @@ Menu = {
 }
 
 function Menu:draw()
+    -- Draw a background
+    game.level.draw()
+
 	-- Draw the menu
     love.graphics.setFont(self.font);
     love.graphics.print("Soul Keeper", 220, 10);

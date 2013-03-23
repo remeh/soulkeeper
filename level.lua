@@ -87,6 +87,15 @@ function Level:drawRoad()
 end
 
 function Level:drawHut()
+	local hut_sprite = love.graphics.newImage("sprites/hut.png")
+	local huts_pos = {
+		{ 20 , 15 },
+		{ 10 , 10 },
+	}
+	for k,pos in ipairs(huts_pos) do
+		love.graphics.draw(hut_sprite, pos[1]*self.sprite_size, pos[2]*self.sprite_size)
+		self.zone[pos[2]][pos[1]] = 0
+	end
 end
 
 function Level:drawBase()

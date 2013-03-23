@@ -5,9 +5,9 @@ Trappe = {
     absorb_Area = 4,
     effect_Area = 1,
     couldown = 2,
-    walk_on = true
+    walk_on = true,
 
-    actorAktion = function(actor)
+    actorAction = function(self, actor)
     	self.health = self.health - 100
     end
 }
