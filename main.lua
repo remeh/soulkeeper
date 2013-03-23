@@ -1,4 +1,4 @@
-require "trap"
+require "piege"
 require "conf"
 require "game"
 require "actor"
