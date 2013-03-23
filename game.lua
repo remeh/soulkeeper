@@ -1,5 +1,6 @@
 require "actor"
 require "piege"
+require "piegeManager"
 require "level"
 require "menu"
 require "consts"
@@ -17,7 +18,9 @@ Game = {
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
     actorDrawables = ActorDrawables,
-    piegeDrawables = PiegeDrawables
+    piegeDrawables = PiegeDrawables,
+	--init piegeManager
+	piegeManager = PiegeManager.new() 
 }
 
 function Game:update(delta)
@@ -38,6 +41,7 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
+
 end
 
 function Game:keypressed(key, unicode)

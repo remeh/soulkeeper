@@ -1,7 +1,7 @@
 require "utils"
 
 Repulse = {
-    class = "repulse"
+    class = "repulse",
     strength = 4,
     soulNeeded = 3,
     absorb_Area = 3,
@@ -32,7 +32,7 @@ Repulse = {
 	rightDist = distanceFrom(self.posX, self.posY, rightDoorX, rightDoorY)
 	
 	local minDist=1000000
-	for i = topDist, bottomDist, rightDist, leftDist do
+	for i in topDist, bottomDist, rightDist, leftDist do
 		if i < minDist then
 			minDist = i
 		end
