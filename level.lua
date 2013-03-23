@@ -165,7 +165,9 @@ function Level:newWave()
 	end
 end
 
-function Level.init(height,width,sprite_size,numEntrances)
+-- Constructor
+
+function Level.new(height,width,sprint_size,numEntrances)
 	--Create a new level
 	level = Level
 	level.height = height
