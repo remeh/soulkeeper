@@ -93,6 +93,7 @@ function Game:gameOverDraw()
 end
 
 function Game:updateMainMenu(delta)
+	self.menu:update(delta)
 end
 
 function Game:updateGameScreen(delta)

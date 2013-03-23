@@ -38,6 +38,15 @@ function Menu:draw()
 end
 
 function Menu:update(delta)
+	local x = love.mouse.getX()
+	local y = love.mouse.getY()
+	for k,item in ipairs(self.items) do
+		if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
+			self.items[k][6] = {0,0,0}
+		else
+			self.items[k][6] = {255,255,255}
+		end
+	end
 end
 
 function Menu:mousereleased(x, y, button)
