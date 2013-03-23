@@ -49,7 +49,7 @@ function love.run()
 end
 
 function love.draw()
-	love.graphics.print("Soul Keeper", 290, 10)
+    game:draw()
 end
 
 -- The main loop update which take care of updating

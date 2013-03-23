@@ -1,3 +1,5 @@
+require "utils"
+
 Piege = {
     class = "piege",
     strength = 0,
@@ -11,18 +13,19 @@ Piege = {
 
 }
 
-function Piege:new(trappeType)
-	trappe = Piege
+function Piege.new(trappeType)
+	trappe = deepcopy(Piege)
 	
 	if trappeType.class then
-		trappe.class = trappeType.class
-		trappe.strength = trappeType.strength
-		trappe.soulNeeded = trappeType.soulNeeded
-		trappe.absord_Area = trappeType.absorb_Area
-		trappe.effect_Area = trappeType.effect_Area
-		trappe.cooldown = trappeType.cooldown
-		trappe.walk_on = trappeType.walk_on
+		trappe.class = deepcopy(trappeType.class)
+		trappe.strength = deepcopy(trappeType.strength)
+		trappe.soulNeeded = deepcopy(trappeType.soulNeeded)
+		trappe.absord_Area = deepcopy(trappeType.absorb_Area)
+		trappe.effect_Area = deepcopy(trappeType.effect_Area)
+		trappe.cooldown = deepcopy(trappeType.cooldown)
+		trappe.walk_on = deepcopy(trappeType.walk_on)
 	end
+
 	return trappe
 end
 

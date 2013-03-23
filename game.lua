@@ -1,5 +1,6 @@
 require "actor"
 require "level"
+require "menu"
 
 -- The main game method which will contains
 -- the different states.
@@ -8,6 +9,8 @@ Game = {
     state = "main_menu",
     -- the level instance
     level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
+    -- the menu
+    menu = Menu.new(),
 
     actorDrawables = ActorDrawables
 }
@@ -23,7 +26,7 @@ function Game:update(delta)
 end
 
 function Game:updateMainMenu(delta)
-
+    menu:draw()
 end
 
 function Game:updateGameScreen(delta)
@@ -37,7 +40,7 @@ end
 
 -- Constructor
 function Game.new()
-    game = Game
+    local game = Game
     game.state = "main_menu"
     return game
 end
