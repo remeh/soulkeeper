@@ -16,7 +16,7 @@ Game = {
     -- background music
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
-    actorDrawables = ActorDrawables
+    actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables
 }
 
