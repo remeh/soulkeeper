@@ -24,6 +24,8 @@ Actor = {
     forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
+	lastUpdate = 0, -- time spend this the last update
+
     posX = 0,
     posY = 0,
 
