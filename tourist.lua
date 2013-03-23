@@ -1,6 +1,8 @@
 Tourist = {
     class = "Tourist",
 
+    afraid = false,
+
     update = function(self, delta)
 		self.lastUpdate = self.lastUpdate + delta
 		if self.lastUpdate >= self.timeToUpdate then
