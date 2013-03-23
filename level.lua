@@ -260,11 +260,21 @@ function Level:generateBackground()
 end
 
 -- Returns which thing 
+
 function Level:touches(actor)
 end
 
 -- Returns the roads position
 
+function Level:isOutside(x, y)
+	 if x > (self.width - 1)  or y > (self.height - 1) then
+	    return true
+	 end
+	 if x < 1 or y < 1 then
+	    return true
+	 end
+	 return false
+end
 
 -- Constructor
 
