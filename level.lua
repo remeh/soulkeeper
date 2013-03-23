@@ -2,30 +2,83 @@ Level = {
 	-- Size in square
 	height = nil,
 	width = nil,
+	sprite_size = nil,
 
 	numEntrances = nil,
 	traps = {},
 	persons = {},
+
+	forestSize = 3,
+	roadSize = 5,
 
 	-- Walkable/buildable zone
 	zone = nil
 }
 
 function Level:drawForest()
-	 local x = 0
-	 local y = 0
-	 tree_sprite = Sprite.new("tree.png", 20, 20, VRAM)
-	 for x = 0, self.width, 1 do
-	     for y = 0, self.height, 1 do
-	             tree_sprite:drawFrame(ecran, 0+x, 0+y, 1)
-	     end
-         end
+	local x = 0
+	local y = 0
+	local tree_sprite = love.graphics.newImage("sprites/tree.png")
+--	tree_sprite = love.Sprite.new("tree.png", 20, 20, VRAM)
+	for x = 0, (self.width-1), 1 do
+		for y = 0, (self.height-1), 1 do
+			love.graphics.draw(tree_sprite, x*self.sprite_size, y*self.sprite_size)
+--			tree_sprite:drawFrame(ecran, 0+x, 0+y, 1)
+		end
+	end
 end
 
 function Level:drawCamp()
+	local x = 0
+	local y = 0
+	local ground_sprite = love.graphics.newImage("sprites/ground.png")
+	for x = self.forestSize, (self.width-1-self.forestSize), 1 do
+		for y = self.forestSize, (self.height-1-self.forestSize), 1 do
+			-- TODO DEBUG self.zone[x][y] = 1
+			love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+		end
+	end
 end
 
 function Level:drawRoad()
+	local x = 0
+	local y = 0
+	local ground_sprite = love.graphics.newImage("sprites/ground.png")
+	--Road 1
+	for x = 0,self.forestSize,1 do
+		local tmp_size = math.floor((self.height-self.roadSize)/2)
+		for y = tmp_size, tmp_size+self.roadSize,1 do
+			love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+		end
+	end
+	--Road 2
+	if self.numEntrances >= 2 then
+		for x = (self.width-1-self.forestSize), (self.width-1), 1 do
+			local tmp_size = math.floor((self.height-self.roadSize)/2)
+			for y = tmp_size, tmp_size+self.roadSize,1 do
+				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+			end
+		end
+	end
+	--Road 3
+	if self.numEntrances >= 3 then
+		local tmp_size = math.floor((self.width-self.roadSize)/2)
+		for x = tmp_size, tmp_size+self.roadSize,1 do
+			for y = 0,self.forestSize,1 do
+				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+			end
+		end
+	end
+	--Road 4
+	if self.numEntrances >= 4 then
+		local tmp_size = math.floor((self.width-self.roadSize)/2)
+		for x = tmp_size, tmp_size+self.roadSize,1 do
+			for y = (self.height-1-self.forestSize),(self.height-1),1 do
+				print("X : " .. x .. " Y : " .. y)
+				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+			end
+		end
+	end
 end
 
 function Level:drawHut()
@@ -34,18 +87,29 @@ end
 function Level:drawBase()
 	--Init matrice
 	zone = {}
-	--Def zone Camp in matrice
+	for i = 1, self.height do
+		zone[i] = {}
+		for j = 1, self.width do
+			zone[i][j] = 0
+		end
+	end
+	-- Draw Forest
+	self:drawForest()
+	-- Draw Camp
+	self:drawCamp()
 	--Def zone road in matrice
+	self:drawRoad()
 	--Def zone hut
+	self:drawHut()
 end
 
 function Level:draw()
 	-- Draw Base
-	self.drawBase()
+	self:drawBase()
 	-- Draw Trap
-	self.drawTraps()
+	self:drawTraps()
 	-- Draw People
-	self.drawPersons()
+	self:drawPersons()
 end
 
 function Level:addTrap(trap)
@@ -103,11 +167,12 @@ end
 
 -- Constructor
 
-function Level.new(height,width,numEntrance)
+function Level.new(height,width,sprint_size,numEntrances)
 	--Create a new level
 	level = Level
 	level.height = height
 	level.width = width
-	level.numEntrance = numEntrance
+	level.sprite_size = sprite_size
+	level.numEntrances = numEntrances
 	return level
 end
