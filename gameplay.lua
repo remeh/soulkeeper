@@ -18,9 +18,6 @@ function Gameplay:update(delta)
 	for k,person in ipairs(game.level.persons) do
         person:update(delta)
 	end
-
-    -- check whether actors are touching totems and other traps
-
 end
 
 function Gameplay:updateTime(delta)

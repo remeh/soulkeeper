@@ -304,14 +304,14 @@ end
 -- Returns what is touches this actor. 
 function Level:whatIsTouching(actor)
     local results = {}
-    for i, value in ipairs(persons) do
-        if persons.contains(actor) then
+    for i, value in ipairs(self.persons) do
+        if value:contains(actor) then
             table.insert(results, value)
         end
     end
-    for i, value in ipairs(traps) do
-        if trap.contains(actor) then
-            table.insert(results, trap)
+    for i, value in ipairs(self.traps) do
+        if value:contains(actor) then
+            table.insert(results, value)
         end
     end
     return results

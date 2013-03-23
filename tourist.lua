@@ -11,6 +11,9 @@ Tourist = {
             self:move(delta)
             self.lastUpdate = self.lastUpdate - self.timeToUpdate
 		end
+
+        touchingObjects = game.level:whatIsTouching(self)
+        print(touchingObjects[1].class)
     end,
 
     move = function(self, delta)
