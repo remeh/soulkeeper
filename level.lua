@@ -44,6 +44,24 @@ function Level:drawCamp()
 	end
 end
 
+function Level:findRoad()
+    local find = false
+    while find == false do
+        local x = math.random(1,2)
+        if x == 2 then
+            x = self.width-1
+        end
+        local y = math.random(1,2)
+        if y == 2 then
+            y = self.height-1
+        end
+        if level:isBlocking(x,y) then
+             
+        do
+    end
+
+end
+
 function Level:drawRoad()
 	local x = 0
 	local y = 0
@@ -191,8 +209,7 @@ function Level:addPersonRandomly(person)
     local x = math.random(0,39)
     local y = math.random(0,29)
 
-    print("x " .. x)
-    print("y " .. y)
+    print("x " .. x .. " y " .. y)
 
     if self:isBlocking(x,y) then
         person.posX = x
@@ -205,20 +222,9 @@ function Level:isBlocking(x, y)
     return self.zone[y+1][x+1] == 1
 end
 
-function Level:newWave()
-	-- Launch a new wave of tourist
-	local person = nil
-	local num_tourist = 99
-	-- Create "num_tourist" tourist
-	for i=1,num_tourist,1 do
-		person = Person.init('tourist') --TODO Check when the Person will be created
-		self.addPerson(person)
-	end
+function Level:update(delta_time)
 end
 
-function Level:update(delta_time)
---	self:draw()
-end
 
 function Level:generateBackground()
 	self.canvasBackground = love.graphics.newCanvas(1024,1024)
@@ -234,6 +240,9 @@ end
 function Level:touches(actor)
 end
 
+-- Returns the roads position
+
+
 -- Constructor
 
 function Level.new(height,width,sprite_size,numEntrances)
@@ -246,18 +255,5 @@ function Level.new(height,width,sprite_size,numEntrances)
 
 	level:generateBackground()
 
-	--Creation des indiens de base
-	local indiens = {
-		{ 20,20 },
-		{ 15,15 },
-		{ 25,25 },
-	}
-	local person
-	for k,indien in ipairs(indiens) do
-		person = Actor.new(Indian)
-		person.posX = indien[1]
-		person.posY = indien[2]
-		level:addPerson(person)
-	end
 	return level
 end

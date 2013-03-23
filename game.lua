@@ -3,6 +3,7 @@ require "piege"
 require "level"
 require "menu"
 require "consts"
+require "gameplay"
 
 -- The main game method which will contains
 -- the different states.
@@ -15,6 +16,7 @@ Game = {
     menu = Menu.new(),
     -- background music
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+    gameplay = Gameplay.new(),
 
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables
@@ -55,7 +57,6 @@ function Game:keypressedMainMenu(key)
 end
 
 function Game:keypressedGameScreen(key)
-    print(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
@@ -63,7 +64,6 @@ function Game:keypressedGameScreen(key)
 end
 
 function Game:keypressedGameOver(key)
-
 end
 
 function Game:mousereleased(x, y, button)
@@ -93,6 +93,8 @@ function Game:updateMainMenu(delta)
 end
 
 function Game:updateGameScreen(delta)
+    -- update the gameplay
+    self.gameplay:update(delta)
     -- update the level
     self.level:update(delta)
 end
@@ -109,7 +111,6 @@ end
 
 function Game:mousereleasedGameOver(x, y, button)
 end
-
 
 -- Constructor
 function Game.new()
