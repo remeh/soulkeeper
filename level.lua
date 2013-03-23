@@ -12,6 +12,14 @@ Level {
 }
 
 function Level:drawForest()
+	 local x = 0
+	 local y = 0
+	 tree_sprite = Sprite.new("tree.png", 20, 20, VRAM)
+	 for x = 0, self.width, 1 do
+	     for y = 0, self.height, 1 do
+	             tree_sprite:drawFrame(ecran, 0+x, 0+y, 1)
+	     end
+         end
 end
 
 function Level:drawCamp()
