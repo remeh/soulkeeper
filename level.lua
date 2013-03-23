@@ -134,10 +134,10 @@ function Level:drawHut()
 		{ 23 , 23, "sprites/hut4x4.png",4 },
 		{ 19 , 10, "sprites/hut4x4.png",4 },
 		{ 7 , 3, "sprites/hut4x4.png",4 },
-		{ 15 , 17, "sprites/hut1x1.png",1 },
-		{ 7 , 26, "sprites/hut1x1.png",1 },
-		{ 10 , 20, "sprites/hut1x1.png",1 },
-		{ 7 , 15, "sprites/hut1x1.png",1 },
+		{ 15 , 17, "sprites/fire1x1.png",1 },
+		{ 7 , 26, "sprites/fire1x1.png",1 },
+		{ 10 , 20, "sprites/fire1x1.png",1 },
+		{ 7 , 15, "sprites/fire1x1.png",1 },
 	}
 	for k,pos in ipairs(huts_pos) do
 		hut_sprite = love.graphics.newImage(pos[3])
@@ -171,12 +171,14 @@ function Level:drawBase()
 	--Def zone hut
 	self:drawHut()
 
+	--[[
 	for x = 1, self.height do
 		for y = 1, self.width do
 			io.write(self.zone[x][y] .. " ")
 		end
 		print("")
 	end
+	]]--
 
 end
 
