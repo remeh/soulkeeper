@@ -25,8 +25,24 @@ function Game:update(delta)
     switch[self.state](delta)
 end
 
-function Game:updateMainMenu(delta)
+function Game:draw()
+    local switch = {
+        ["main_menu"] = function () self:menuDraw() end,
+        ["game_screen"] = function () self:levelDraw() end,
+    }
+    -- call the switch
+    switch[self.state](delta)
+end
+
+function Game:menuDraw()
     menu:draw()
+end
+
+function Game:leveldraw()
+    level:draw()
+end
+
+function Game:updateMainMenu(delta)
 end
 
 function Game:updateGameScreen(delta)
