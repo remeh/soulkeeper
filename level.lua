@@ -188,7 +188,7 @@ function Level:draw()
 	end
 
 	for _,trap in ipairs(self.traps) do
-		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,pos.posY*self.sprite_size)
+		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
 	end
 end
 
