@@ -13,7 +13,7 @@ Game = {
     -- the menu
     menu = Menu.new(),
     -- background music
-    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+--    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
     actorDrawables = ActorDrawables
 }
@@ -71,9 +71,9 @@ function Game.new()
     game.state = GameState.MAIN_MENU
 
     -- Launches the music
-    game.backgroundMusic:setLooping(true)
-    game.backgroundMusic:setVolume(0.7)
-    game.backgroundMusic:play()
+--    game.backgroundMusic:setLooping(true)
+--    game.backgroundMusic:setVolume(0.7)
+--    game.backgroundMusic:play()
 
     return game
 end
