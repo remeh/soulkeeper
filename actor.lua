@@ -77,6 +77,7 @@ Actor = {
 
     -- function to implements
     update = nil,
+    move = nil,
     die = nil,
 }
 
@@ -93,6 +94,7 @@ function Actor.new(actorType)
     if actorType.class ~= "Actor" then
         actor.class  = deepcopy(actorType.class)
         actor.update = deepcopy(actorType.update)
+        actor.move = deepcopy(actorType.move)
     end
 
     return actor
