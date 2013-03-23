@@ -7,7 +7,7 @@ Totem = {
     cooldown = 2,
     walk_on = false
 
-    actorAction = (actor)
+    actorAction = function(actor)
     	self.speed = 0
 	self.type = "soul"
     end
