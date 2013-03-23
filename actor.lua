@@ -60,23 +60,21 @@ Actor = {
     end,
 
     contains = function(self, other)
-	  if math.abs(self.posX - other.posX)  < self.area then
-	     if math.abs(self.posY - other.posY) < self.area then
-            return true
-	     end
-	  end
-	return false
+        if math.abs(self.posX - other.posX)  < self.area then
+            if math.abs(self.posY - other.posY) < self.area then
+                return true
+            end
+        end
+        return false
     end,
 
     touch = function(self, other)
-    	  if math.abs(actor.posX - other.posX)
-	     < 1 then
-	     if math.abs(actor.posY - other.posY)
-	       	< 1 then
-	  	return true
-	     end
-	  end
-	return false
+        if math.abs(actor.posX - other.posX) < 1 then
+            if math.abs(actor.posY - other.posY) < 1 then
+                return true
+            end
+        end
+        return false
     end,
 
     -- function to implements

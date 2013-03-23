@@ -1,13 +1,26 @@
+require "actor"
+require "soul"
+
 Totem = {
     class = "totem",
     strength = -1,
     soulNeeded = 1,
-    area = 4,
+    area = 2,
     cooldown = 2,
     walk_on = false,
 
-    actorAction = function(self, actor)
-    	self.speed = 0
-        self.class = "soul"
+    action = function(self, actor)
+        -- TODO transofmer en âme
+        -- creates the soul
+        local soul = Actor.new(Soul)
+        soul.posX = actor.posX
+        soul.posY = actor.posY
+        -- adds it in the levle
+        game.level:addPerson(soul)
+
+        game.point = game.point + 20
+
+        -- removes the tourist
+        game.level:removePerson(actor)
     end
 }

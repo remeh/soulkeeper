@@ -13,6 +13,11 @@ Tourist = {
 		end
 
         touchingObjects = game.level:whatIsTouching(self)
+        for i, value in ipairs(touchingObjects) do
+            if value.action ~= nil then
+                value:action(self)
+            end 
+        end
     end,
 
     move = function(self, delta)
