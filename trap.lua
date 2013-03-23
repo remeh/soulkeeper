@@ -1,5 +1,5 @@
 Piege = {
-    class = "piege"
+    class = "piege",
     strength = 0,
     soulNeeded = 0,
     pos_x = -1,
@@ -11,7 +11,7 @@ Piege = {
 
 }
 
-function Trappe:new(trappeType)
+function Piege:new(trappeType)
 	trappe = Piege
 	
 	if trappeType.class then
@@ -26,7 +26,7 @@ function Trappe:new(trappeType)
 	return trappe
 end
 
-function Trappe:contains(object)
+function Piege:contains(object)
    local x, y
    if not object.x then 
       return false 
