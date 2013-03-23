@@ -11,7 +11,9 @@ PiegeDrawables ={
 	["repulse"] = love.graphics.newImage("sprites/repulse.png"),
 	["trappe"] = love.graphics.newImage("sprites/trappe.png"),
 	["slowdown"] = love.graphics.newImage("sprites/slowdown.png"),
-	["totem"] = love.graphics.newImage("sprites/totem.png")
+	["totem"] = love.graphics.newImage("sprites/totem.png"),
+	["piege"] = love.graphics.newImage("sprites/NotHere.png")
+
 }
 
 Piege = {
@@ -35,16 +37,16 @@ Piege = {
     --checks if an object is in the effect area of our trap
 contains= function(self, object)
    local x, y
-   if not object.x then 
+   if not object.posX then 
       return false 
    end
-   if not object.y then 
+   if not object.posY then 
       return false 
    end
-   if self.posX < object.posX and object.posX < object.posX + object.area then 
+   if self.posX <= object.posX and object.posX <= self.posX + self.effect_Area then 
       x = true 
    end
-   if self.posY < object.posY and object.posY < object.posY + object.area then 
+   if self.posY <= object.posY and object.posY <= self.posY + self.effect_Area then 
       y = true 
    end
    if x == true and y == true then 

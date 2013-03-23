@@ -74,7 +74,6 @@ function Level:findRoad()
             x = x + delta
         end
 
-        print("test " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }
@@ -177,6 +176,7 @@ end
 
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
+	Game.piegeManager.drawPiegeArea()
 	for k,person in ipairs(self.persons) do
 		love.graphics.draw(ActorDrawables[person.class],person.posX*self.sprite_size,person.posY*self.sprite_size)
 	end
@@ -190,21 +190,26 @@ function Level:addTrap(trap)
 	--
 	-- Search souls to pay the trap
 	local selectedPersons = {}
-	for person in self.persons do
-		if table.getn(selectedPersons) == trap.cost then
+	for _,person in ipairs(self.persons) do
+		if table.getn(selectedPersons) == trap.soulNeeded then
 			break
 		end
-		if person.isSoul() and trap.contain(person) then
+
+		if person.class=="Soul" and trap:contains(person) then
 			table.insert(selectedPersons,person)
 		end
 	end
-
-	if table.getn(selectedPersons) == trap.cost then
+	print("SP "..table.getn(selectedPersons).." SN "..trap.soulNeeded)
+	for _,person in ipairs(selectedPersons) do
+		print("selected "..person.posX.." ,"..person.posY)
+	end
+	if table.getn(selectedPersons) == trap.soulNeeded then
 		-- They have enouth person in the trap zone
-		for person in selectedPersons do
+		for _,person in ipairs(selectedPersons) do
 			-- For all personn to remove
 			for k,v in ipairs(self.persons) do
 				if v == person then
+					print("delete")
 					-- delete the selected person of the game
 					table.remove(self.persons,k)
 					break -- TODO Check if break stop only once loop
@@ -248,6 +253,10 @@ function Level:update(delta_time)
 	end
 end
 
+-- Returns case number from a pixel position
+function Level:getCase(pixel)
+	return math.floor(pixel/self.sprite_size)
+end
 
 function Level:generateBackground()
 	self.canvasBackground = love.graphics.newCanvas(1024,1024)
@@ -303,3 +312,4 @@ function Level.new(height,width,sprite_size,numEntrances)
 
 	return level
 end
+
