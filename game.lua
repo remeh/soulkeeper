@@ -66,6 +66,8 @@ function Game:keypressedGameScreen(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
+	elseif key == 't' then
+		piegeManager.changePiege(Totem)
     end
 end
 
@@ -115,7 +117,8 @@ function Game:mousereleasedMainMenu(x, y, button)
 end
 
 function Game:mousereleasedGameScreen(x, y, button)
-	 self.minimenu:mousereleased(x, y, button)
+	self.piegeManager:mousereleased(x, y, button)
+	self.minimenu:mousereleased(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
