@@ -24,7 +24,7 @@ Game = {
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables,
 	--init piegeManager
-	piegeManager = PiegeManager.new() 
+	piegeManager = PiegeManager.new(), 
 	paused = 0
 }
 
