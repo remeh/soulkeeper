@@ -19,13 +19,37 @@ Actor = {
     visible = true,
     health = 1,
     area = 1,
+    forceMoveX = 0, -- modified by a trap when the actor MUST move
+    forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
     posX = 0,
     posY = 1,
+
+    -- --------
     -- function shared with implentations
+    -- --------
     draw = function(self)
         love.graphics.draw(game.actorDrawables[self.class], self.posX, self.posY)
+    end,
+
+    -- force the movement if a trap have ordered to
+    forceTrapMovement = function(self)
+        local dx = 0
+        local dy = 0
+        if forceMoveX ~= 0 then
+            dx = forceMoveX/forceMoveX
+        end
+        if not game.level.isBlocking(posX+dx, posY) then
+            posX = posX + dx 
+        end
+
+        if forceMoveY ~= 0 then
+            dy = forceMoveY/forceMoveY
+        end
+        if not game.level.isBlocking(posX, posY+dy) then
+            posY = posY + dy
+        end
     end,
 
     contains = function(self, other)

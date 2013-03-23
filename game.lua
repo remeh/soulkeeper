@@ -7,7 +7,7 @@ Game = {
     -- starting state
     state = "main_menu",
     -- the level instance
-    level = Level.new(40, 30, 3), -- TODO see for the number entrance
+    level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
 
     actorDrawables = ActorDrawables
 }
@@ -28,7 +28,7 @@ end
 
 function Game:updateGameScreen(delta)
     -- update the level
-    self.level.update(delta)
+    self.level:update(delta)
 end
 
 function Game:updateGameOver(delta)
