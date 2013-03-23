@@ -8,16 +8,6 @@ Indian = {
     -- consts
     CHANCE_TO_WALK = 10,
 
-    -- implementation of Actor
-    update = function(self, delta)
-        -- move in level
-        self:move(delta)
-        -- 
-        self:forceTrapMovement()
-        -- 
-        entityTouching = game.level.touches(self)
-    end,
-
     die = function(self, delta)
         -- TODO
     end,
@@ -39,11 +29,21 @@ Indian = {
                 dx = -1
             end
 
-            if not game.level.isBlocking(self.posX+dx, self.posY+dy) then
+            if not game.level:isBlocking(self.posX+dx, self.posY+dy) then
                 self.posX = self.posX + dx
                 self.posY = self.posY + dy
             end
         end
+    end,
+
+    -- implementation of Actor
+    update = function(self, delta)
+        -- move in level
+        self:move(delta)
+        -- 
+--        self:forceTrapMovement()
+        -- 
+        entityTouching = game.level.touches(self)
     end
 }
 
