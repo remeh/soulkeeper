@@ -1,4 +1,5 @@
 require "actor"
+require "piege"
 require "level"
 require "menu"
 require "consts"
@@ -16,6 +17,7 @@ Game = {
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
     actorDrawables = ActorDrawables
+    piegeDrawables = PiegeDrawables
 }
 
 function Game:update(delta)
