@@ -1,8 +1,12 @@
+-- -------
+-- Soul class definition.
+-- -------
+
 Soul = {
     class = "Soul",
 
     update = function(self, delta)
-        -- TODO
+        -- FIXME
     end,
 
     die = function(self, delta)

@@ -1,4 +1,4 @@
-Level {
+Level = {
 	-- Size in square
 	height = nil,
 	width = nil,
@@ -101,7 +101,9 @@ function Level:newWave()
 	end
 end
 
-function Level.init(height,width,numEntrance)
+-- Constructor
+
+function Level.new(height,width,numEntrance)
 	--Create a new level
 	level = Level
 	level.height = height
