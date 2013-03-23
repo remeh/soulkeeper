@@ -1,6 +1,7 @@
 require "actor"
 require "level"
 require "menu"
+require "consts"
 
 -- The main game method which will contains
 -- the different states.
@@ -17,9 +18,9 @@ Game = {
 
 function Game:update(delta)
     local switch = {
-        ["main_menu"] = function (delta) self:updateMainMenu(delta) end,
-        ["game_screen"] = function (delta) self:updateGameScreen(delta) end,
-        ["game_over"] = function (delta) self:updateGameOver(delta) end
+        [GameState.MAIN_MENU] = function(delta) self:updateMainMenu(delta) end,
+        [GameState.GAME_SCREEN] = function(delta) self:updateGameScreen(delta) end,
+        [GameState.GAME_OVER] = function(delta) self:updateGameOver(delta) end
     }
     -- call the switch
     switch[self.state](delta)
@@ -27,8 +28,9 @@ end
 
 function Game:draw()
     local switch = {
-        ["main_menu"] = function () self:menuDraw() end,
-        ["game_screen"] = function () self:levelDraw() end,
+        [GameState.MAIN_MENU] = function() self:menuDraw() end,
+        [GameState.GAME_SCREEN] = function() self:levelDraw() end,
+        [GameState.GAME_OVER] = function() self::gameOverDraw() end
     }
     -- call the switch
     switch[self.state](delta)
@@ -38,8 +40,12 @@ function Game:menuDraw()
     menu:draw()
 end
 
-function Game:leveldraw()
+function Game:levelDraw()
     level:draw()
+end
+
+function Game::gameOverDraw()
+    -- TODO
 end
 
 function Game:updateMainMenu(delta)
@@ -51,7 +57,6 @@ function Game:updateGameScreen(delta)
 end
 
 function Game:updateGameOver(delta)
-    
 end
 
 -- Constructor

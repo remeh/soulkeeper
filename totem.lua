@@ -5,10 +5,10 @@ Totem = {
     absorb_Area = 4,
     effect_Area = 4,
     cooldown = 2,
-    walk_on = false
+    walk_on = false,
 
-    actorAction = (actor)
+    actorAction = function(self, actor)
     	self.speed = 0
-	self.type = "soul"
+        self.class = "soul"
     end
 }
