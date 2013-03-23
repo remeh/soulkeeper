@@ -1,6 +1,7 @@
 require "mini_menu"
 require "actor"
 require "piege"
+require "piegeManager"
 require "level"
 require "menu"
 require "consts"
@@ -22,6 +23,8 @@ Game = {
 
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables,
+	--init piegeManager
+	piegeManager = PiegeManager.new(), 
 	paused = 0
 }
 
@@ -53,6 +56,7 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
+
 end
 
 function Game:keypressed(key, unicode)
@@ -73,6 +77,8 @@ function Game:keypressedGameScreen(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
+	elseif key == 't' then
+		piegeManager.changePiege(Totem)
     end
 end
 
@@ -122,7 +128,8 @@ function Game:mousereleasedMainMenu(x, y, button)
 end
 
 function Game:mousereleasedGameScreen(x, y, button)
-	 self.minimenu:mousereleased(x, y, button)
+	self.piegeManager:mousereleased(x, y, button)
+	self.minimenu:mousereleased(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
