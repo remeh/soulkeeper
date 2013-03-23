@@ -16,22 +16,22 @@ ActorDrawables = {
 
 Actor = {
     -- class members
-    posX = 0,
-    posY = 1,
     visible = true,
     health = 1,
     area = 1,
     class = "Actor",
 
+    posX = 0,
+    posY = 1,
     -- function shared with implentations
     draw = function(self)
         love.graphics.draw(game.actorDrawables[self.class], self.posX, self.posY)
     end,
 
     contains = function(self, other)
-    	  if math.abs(actor.posX - other.posX) 
+	  if math.abs(self.posX - other.posX) 
 	     < actor.area then
-	     if math.abs(actor.posY - other.posY) 
+	     if math.abs(self.posY - other.posY) 
 	     	< actor.area then
 		return true
 	     end
@@ -53,10 +53,6 @@ Actor = {
     -- function to implements
     update = nil,
     die = nil,
-}
-
-Touch = {
-      
 }
 
 -- ---
