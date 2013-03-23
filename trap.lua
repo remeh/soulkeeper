@@ -46,7 +46,24 @@ Repulse = {
     walk_on = true
 }
 
-function Trappe:trigger(actor)
-   love.graphics.setBackgroundcolor(255, 255, 255)
-   love.graphics.setcolor(255, 0, 0)
+function Trappe:contains(object)
+   local x, y
+   if not object.x then 
+      return false 
+   end
+   if not object.y then 
+      return false 
+   end
+   if self.pos_x < object.pos_x and object.pos_x < object.pos_x + object.area then 
+      x = true 
+   end
+   if self.pos_y < object.pos_y and object.pos_y < object.pos_y + object.area then 
+      y = true 
+   end
+   if x == true and y == true then 
+      return true
+   else 
+      return false 
+   end
 end
+
