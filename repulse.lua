@@ -7,10 +7,10 @@ Repulse = {
     absorb_Area = 3,
     effect_Area = 2,
     cooldown = 2,
-    walk_on = true
+    walk_on = true,
 
     --On force l'acteur à se déplacer vers un point
-    actorAction = function (actor, self)
+    actorAction = function (self, actor)
 	
 	if (not self.pos_x or not self.pos_y) then
 		return nil
