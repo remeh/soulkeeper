@@ -3,7 +3,7 @@ require "conf"
 require "game"
 require "actor"
 
-game = Game
+game = Game.new()
 
 function love.load()
     -- Creates the main game var. Global.
@@ -41,7 +41,8 @@ function love.run()
             love.graphics.clear()
             if love.draw then love.draw() end
         end
-
+        
+        -- don't consume 100% of cpu, sleep!
         if love.timer then love.timer.sleep(0.001) end
         if love.graphics then love.graphics.present() end
     end

@@ -4,7 +4,6 @@ require "tourist"
 
 --
 --
---
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
@@ -53,14 +52,16 @@ Touch = {
 -- Methods
 -- ---
 
--- Init an actor to a type.
-function Actor:init(actorType)
-    
-    -- simple inheritance system
+-- Constructor
 
-    if actorType ~= Actor then
-        self.class = actorType.class
-        self.update = actorType.update
+function Actor.new(actorType)
+    -- simple inheritance system
+    actor = Actor
+
+    if actorType.class ~= "Actor" then
+        actor.class  = actorType.class
+        actor.update = actorType.update
     end
 
+    return actor
 end
