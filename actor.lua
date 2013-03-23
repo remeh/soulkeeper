@@ -8,7 +8,8 @@ require "utils"
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
-    ["Soul"] = love.graphics.newImage("sprites/ghost.png")
+    ["Soul"] = love.graphics.newImage("sprites/ghost.png"),
+    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png")
 }
 
 -- ---
@@ -100,6 +101,10 @@ function Actor.new(actorType)
         actor.class  = deepcopy(actorType.class)
         actor.update = deepcopy(actorType.update)
         actor.move = deepcopy(actorType.move)
+        -- special case for Tourists
+        if actorType.class == "Tourist" then
+            actor.afraid = deepcopy(actorType.afraid)
+        end
     end
 
     return actor
