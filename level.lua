@@ -11,6 +11,8 @@ Level = {
 	forestSize = 3,
 	roadSize = 5,
 
+	canvas_Background = nil,
+
 	-- Walkable/buildable zone
 	zone = nil
 }
@@ -74,7 +76,6 @@ function Level:drawRoad()
 		local tmp_size = math.floor((self.width-self.roadSize)/2)
 		for x = tmp_size, tmp_size+self.roadSize,1 do
 			for y = (self.height-1-self.forestSize),(self.height-1),1 do
-				print("X : " .. x .. " Y : " .. y)
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
 			end
 		end
@@ -165,14 +166,37 @@ function Level:newWave()
 	end
 end
 
+function Level:update(delta_time)
+	love.graphics.draw(self.canvasBackground)
+end
+
+function Level:generateBackground()
+	self.canvasBackground = love.graphics.newCanvas(1024,1024)
+	--Replace the current canvas to the background
+	love.graphics.setCanvas(self.canvasBackground)
+	--Draw background part
+	self:drawForest()
+	self:drawCamp()
+	self:drawRoad()
+	self:drawHut()
+	--Restore the default canvas
+	love.graphics.setCanvas()
+end
+
+-- Returns which thing 
+function Level:touches(actor)
+end
+
 -- Constructor
 
-function Level.new(height,width,sprint_size,numEntrances)
+function Level.new(height,width,sprite_size,numEntrances)
 	--Create a new level
 	level = Level
 	level.height = height
 	level.width = width
 	level.sprite_size = sprite_size
 	level.numEntrances = numEntrances
+
+	level:generateBackground()
 	return level
 end

@@ -12,6 +12,10 @@ Indian = {
     update = function(self, delta)
         -- move in level
         self:move(delta)
+        -- 
+        self:forceTrapMovement()
+        -- 
+        entityTouching = game.level.touches(self)
     end,
 
     die = function(self, delta)
@@ -21,9 +25,23 @@ Indian = {
     -- specifity of Indian
     move = function(self, delta)
         if math.random(100) > (100-Indian.CHANCE_TO_WALK) then
+            local direction = math.random(4)
+            local dx = 0
+            local dy = 0
 
-            if game.level.isBlocking() then
-                print("Indian is moving")
+            if direction == Direction.UP then
+                dy = -1    
+            elseif direction == Direction.RIGHT then
+                dx = 1 
+            elseif direction == Direction.DOWN then
+                dy = 1
+            else 
+                dx = -1
+            end
+
+            if not game.level.isBlocking(self.posX+dx, self.posY+dy) then
+                self.posX = self.posX + dx
+                self.posY = self.posY + dy
             end
         end
     end
