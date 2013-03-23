@@ -25,7 +25,16 @@ Game = {
     piegeDrawables = PiegeDrawables,
 	--init piegeManager
 	piegeManager = PiegeManager.new() 
+	paused = 0
 }
+
+function Game:switchPause()
+	if self.paused == 1 then
+		self.paused = 0
+	else
+		self.paused = 1
+	end
+end
 
 function Game:update(delta)
     local switch = {
@@ -34,7 +43,9 @@ function Game:update(delta)
         [GameState.GAME_OVER] = function(delta) self:updateGameOver(delta) end
     }
     -- call the switch
-    switch[self.state](delta)
+	if self.paused == 0 then
+		switch[self.state](delta)
+	end
 end
 
 function Game:draw()

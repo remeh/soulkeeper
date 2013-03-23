@@ -1,27 +1,44 @@
 Minimenu = {
-    bigFont = love.graphics.newFont(36),
+    bigFont = love.graphics.newFont(23),
     font = love.graphics.newFont(24),
 
 	traps = {
-		{"Trap1", 490, 200, 630, 230, {255, 255, 255}, function(self) self:trap1() end},
-		{"Trap2", 490, 240, 630, 270, {255, 255, 255}, function(self) self:trap2() end},
-		{"Trap3", 490, 280, 630, 310, {255, 255, 255}, function(self) self:trap3() end},
+		{"Repel", 550, 18, 630, 50, {0, 0, 0}, function(self) self:trap1() end},
+		{"Totem", 543, 65, 630, 90, {0, 0, 0}, function(self) self:trap2() end},
+		{"Smoke", 540, 115, 630, 150, {0, 0, 0}, function(self) self:trap3() end},
+		{"Cage", 550, 164, 630, 210, {0, 0, 0}, function(self) self:trap4() end},
+		{"    Pause", 500, 240, 615, 265, {0, 0, 0}, function(self) self:pause() end},
 	},
 }
 
+--
+--
+
+MiniBack = love.graphics.newImage("sprites/menu_background.png")
+
 function Minimenu:trap1()
-	 print("Trap1")
+	 print("Repel")
 end
 
 function Minimenu:trap2()
-	 print("Trap2")
+	 print("Totem")
 end
 
 function Minimenu:trap3()
-	 print("Trap3")
+	 print("Smoke")
+end
+
+function Minimenu:trap4()
+	 print("Cage")
+end
+
+function Minimenu:pause()
+	game:switchPause()
 end
 
 function Minimenu:draw()
+	-- Draw the background
+	love.graphics.draw(MiniBack, 480, 0)		
 	-- Draw the menu
     love.graphics.setFont(self.font);
     love.graphics.setFont(self.bigFont);
@@ -43,7 +60,7 @@ function Minimenu:mousereleased(x, y, button)
 			end
 		end
 	end
-end
+end	 
 
 -- Constructor
 

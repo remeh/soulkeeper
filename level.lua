@@ -248,6 +248,9 @@ function Level:isBlocking(x, y)
 end
 
 function Level:update(delta_time)
+	for k,person in ipairs(self.persons) do
+		person:update(delta_time)
+	end
 end
 
 -- Returns case number from a pixel position
@@ -266,11 +269,21 @@ function Level:generateBackground()
 end
 
 -- Returns which thing 
+
 function Level:touches(actor)
 end
 
 -- Returns the roads position
 
+function Level:isOutside(x, y)
+	 if x > (self.width - 1)  or y > (self.height - 1) then
+	    return true
+	 end
+	 if x < 1 or y < 1 then
+	    return true
+	 end
+	 return false
+end
 
 -- Constructor
 
@@ -283,6 +296,19 @@ function Level.new(height,width,sprite_size,numEntrances)
 	level.numEntrances = numEntrances
 
 	level:generateBackground()
+
+    indiansPosition = {
+        { x = math.random(10,14), y = math.random(14,23) },
+        { x = 04, y = 07 },
+        { x = 20, y = 11 }
+    }
+
+	for i,value in ipairs(indiansPosition) do
+        indian = Actor.new(Indian)
+        indian.posX = value.x
+        indian.posY = value.y
+        level:addPerson(indian)
+	end
 
 	return level
 end

@@ -8,7 +8,8 @@ require "utils"
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
-    ["Soul"] = love.graphics.newImage("sprites/ghost.png")
+    ["Soul"] = love.graphics.newImage("sprites/ghost.png"),
+    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png")
 }
 
 -- ---
@@ -24,6 +25,11 @@ Actor = {
     forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
+	lastUpdate = 0, -- time spend this the last update
+	timeToUpdate = 1, -- time to wait between an update (different for each type of Actors)
+
+	tourist_terror = 0, -- 	Know if the tourist is in terror
+
     posX = 0,
     posY = 0,
 
@@ -38,18 +44,18 @@ Actor = {
     forceTrapMovement = function(self)
         local dx = 0
         local dy = 0
-        if forceMoveX ~= 0 then
-            dx = forceMoveX/forceMoveX
+        if self.forceMoveX ~= 0 then
+            dx = self.forceMoveX/self.forceMoveX
         end
-        if not game.level.isBlocking(posX+dx, posY) then
-            posX = posX + dx 
+        if not game.level:isBlocking(self.posX+dx, self.posY) then
+            self.posX = self.posX + dx 
         end
 
-        if forceMoveY ~= 0 then
-            dy = forceMoveY/forceMoveY
+        if self.forceMoveY ~= 0 then
+            dy = self.forceMoveY/self.forceMoveY
         end
-        if not game.level.isBlocking(posX, posY+dy) then
-            posY = posY + dy
+        if not game.level:isBlocking(self.posX, self.posY+dy) then
+            self.posY = self.posY + dy
         end
     end,
 
@@ -77,6 +83,7 @@ Actor = {
 
     -- function to implements
     update = nil,
+    move = nil,
     die = nil,
 }
 
@@ -93,6 +100,11 @@ function Actor.new(actorType)
     if actorType.class ~= "Actor" then
         actor.class  = deepcopy(actorType.class)
         actor.update = deepcopy(actorType.update)
+        actor.move = deepcopy(actorType.move)
+        -- special case for Tourists
+        if actorType.class == "Tourist" then
+            actor.afraid = deepcopy(actorType.afraid)
+        end
     end
 
     return actor
