@@ -5,7 +5,7 @@ Menu = {
 
 function Menu:draw()
     -- Draw a background
-    game.level.draw()
+    game.level:draw()
 
 	-- Draw the menu
     love.graphics.setFont(self.font);

@@ -12,6 +12,8 @@ Game = {
     level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
     -- the menu
     menu = Menu.new(),
+    -- background music
+    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
     actorDrawables = ActorDrawables
 }
@@ -78,5 +80,11 @@ end
 function Game.new()
     local game = Game
     game.state = GameState.MAIN_MENU
+
+    -- Launches the music
+    game.backgroundMusic:setLooping(true)
+    game.backgroundMusic:setVolume(0.7)
+    game.backgroundMusic:play()
+
     return game
 end
