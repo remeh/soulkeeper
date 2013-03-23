@@ -9,7 +9,7 @@ Level = {
 	persons = {},
 
 	forestSize = 3,
-	roadSize = 5,
+	roadSize = 4,
 
 	canvas_Background = nil,
 
@@ -34,9 +34,9 @@ function Level:drawCamp()
 	local x = 0
 	local y = 0
 	local ground_sprite = love.graphics.newImage("sprites/ground.png")
-	for x = self.forestSize, (self.width-1-self.forestSize), 1 do
-		for y = self.forestSize, (self.height-1-self.forestSize), 1 do
-			-- TODO DEBUG self.zone[x][y] = 1
+	for x = self.forestSize, (self.width-(1+self.forestSize)), 1 do
+		for y = self.forestSize, (self.height-(1+self.forestSize)), 1 do
+			self.zone[y+1][x+1] = 1
 			love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
 		end
 	end
@@ -51,6 +51,7 @@ function Level:drawRoad()
 		local tmp_size = math.floor((self.height-self.roadSize)/2)
 		for y = tmp_size, tmp_size+self.roadSize,1 do
 			love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+			self.zone[y+1][x+1] = 1
 		end
 	end
 	--Road 2
@@ -59,6 +60,7 @@ function Level:drawRoad()
 			local tmp_size = math.floor((self.height-self.roadSize)/2)
 			for y = tmp_size, tmp_size+self.roadSize,1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+				self.zone[y+1][x+1] = 1
 			end
 		end
 	end
@@ -68,6 +70,7 @@ function Level:drawRoad()
 		for x = tmp_size, tmp_size+self.roadSize,1 do
 			for y = 0,self.forestSize,1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+				self.zone[y+1][x+1] = 1
 			end
 		end
 	end
@@ -77,6 +80,7 @@ function Level:drawRoad()
 		for x = tmp_size, tmp_size+self.roadSize,1 do
 			for y = (self.height-1-self.forestSize),(self.height-1),1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
+				self.zone[y+1][x+1] = 1
 			end
 		end
 	end
@@ -86,12 +90,14 @@ function Level:drawHut()
 end
 
 function Level:drawBase()
+	local x
+	local y
 	--Init matrice
-	zone = {}
-	for i = 1, self.height do
-		zone[i] = {}
-		for j = 1, self.width do
-			zone[i][j] = 0
+	self.zone = {}
+	for x = 1, self.height do
+		self.zone[x] = {}
+		for y = 1, self.width do
+			self.zone[x][y] = 0
 		end
 	end
 	-- Draw Forest
@@ -102,15 +108,18 @@ function Level:drawBase()
 	self:drawRoad()
 	--Def zone hut
 	self:drawHut()
+
+	for x = 1, self.height do
+		for y = 1, self.width do
+			io.write(self.zone[x][y] .. " ")
+		end
+		print("")
+	end
+
 end
 
 function Level:draw()
-	-- Draw Base
-	self:drawBase()
-	-- Draw Trap
-	self:drawTraps()
-	-- Draw People
-	self:drawPersons()
+	love.graphics.draw(self.canvasBackground)
 end
 
 function Level:addTrap(trap)
@@ -167,7 +176,7 @@ function Level:newWave()
 end
 
 function Level:update(delta_time)
-	love.graphics.draw(self.canvasBackground)
+	self:draw()
 end
 
 function Level:generateBackground()
@@ -175,10 +184,7 @@ function Level:generateBackground()
 	--Replace the current canvas to the background
 	love.graphics.setCanvas(self.canvasBackground)
 	--Draw background part
-	self:drawForest()
-	self:drawCamp()
-	self:drawRoad()
-	self:drawHut()
+	self:drawBase()
 	--Restore the default canvas
 	love.graphics.setCanvas()
 end
