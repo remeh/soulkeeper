@@ -1,4 +1,5 @@
 require "actor"
+require "piege"
 require "level"
 require "menu"
 require "consts"
@@ -9,13 +10,14 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
+    level = Level.new(30, 40, 16, 1),
     -- the menu
     menu = Menu.new(),
     -- background music
-    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+--    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
 
-    actorDrawables = ActorDrawables
+    actorDrawables = ActorDrawables,
+    piegeDrawables = PiegeDrawables
 }
 
 function Game:update(delta)
@@ -92,9 +94,9 @@ function Game.new()
     game.state = GameState.MAIN_MENU
 
     -- Launches the music
-    game.backgroundMusic:setLooping(true)
-    game.backgroundMusic:setVolume(0.7)
-    game.backgroundMusic:play()
+--    game.backgroundMusic:setLooping(true)
+--    game.backgroundMusic:setVolume(0.7)
+--    game.backgroundMusic:play()
 
     return game
 end

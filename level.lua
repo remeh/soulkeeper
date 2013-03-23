@@ -1,3 +1,4 @@
+
 Level = {
 	-- Size in square
 	height = nil,
@@ -141,6 +142,7 @@ function Level:draw()
 	for k,person in ipairs(self.persons) do
 		love.graphics.draw(ActorDrawables[person.class],person.posx*self.sprite_size,person.posy*self.sprite_size)
 	end
+	
 end
 
 function Level:addTrap(trap)

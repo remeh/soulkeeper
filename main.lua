@@ -11,7 +11,7 @@ end
 
 function love.run()
     -- The main function
-    while true do
+    while game.state ~= GameState.QUITTING do
         -- Process events.
         if love.event then
             love.event.pump()
@@ -59,13 +59,9 @@ function love.update(delta)
 end
 
 function love.keypressed(key, unicode)
+    -- quit on escape
 	if key == 'escape' then
-		if not love.quit or not love.quit() then
-			if love.audio then
-				love.audio.stop()
-			end
-			return
-		end
+        love.event.quit()
 	else
 		game:keypressed(key, unicode)
 	end
