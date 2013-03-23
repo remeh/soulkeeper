@@ -22,6 +22,7 @@ Piege = {
     area = 0,
     cooldown = 0,
     walk_on = false,
+    action = nil,
 
     -- --------
     -- function shared with implentations
@@ -32,7 +33,6 @@ Piege = {
     
     --checks if an object is in the effect area of our trap
     contains = function(self, object)
-        local x, y
         if not object.posX then 
             return false 
         end
@@ -40,17 +40,12 @@ Piege = {
             return false 
         end
 
-        if self.posX <= object.posX and object.posX <= self.posX + self.area then 
-            x = true 
+        if math.abs(self.posX - object.posX)  < self.area then
+            if math.abs(self.posY - object.posY) < self.area then
+                return true
+            end
         end
-        if self.posY <= object.posY and object.posY <= self.posY + self.area then 
-            y = true 
-        end
-        if x == true and y == true then 
-            return true
-        else 
-            return false 
-        end
+        return false
     end
 }
 
@@ -64,10 +59,10 @@ function Piege.new(trappeType)
 		trappe.class = deepcopy(trappeType.class)
 		trappe.strength = deepcopy(trappeType.strength)
 		trappe.soulNeeded = deepcopy(trappeType.soulNeeded)
-		trappe.absord_Area = deepcopy(trappeType.absorb_Area)
 		trappe.area = deepcopy(trappeType.area)
 		trappe.cooldown = deepcopy(trappeType.cooldown)
 		trappe.walk_on = deepcopy(trappeType.walk_on)
+        trappe.action = deepcopy(trappeType.action)
 	end
 
 	return trappe

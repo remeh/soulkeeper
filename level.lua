@@ -236,6 +236,15 @@ function Level:addTrap(trap)
 	end
 end
 
+function Level:removePerson(person)
+    for i, value in ipairs(self.persons) do
+        if value == person then
+            table.remove(self.persons, i) 
+            break
+        end
+    end
+end
+
 function Level:addPerson(person)
 	-- Add person
 	table.insert(self.persons,person)
@@ -304,16 +313,23 @@ end
 -- Returns what is touches this actor. 
 function Level:whatIsTouching(actor)
     local results = {}
+
+    -- contacts between actors
     for i, value in ipairs(self.persons) do
-        if value:contains(actor) then
-            table.insert(results, value)
+        if value ~= actor and value.class ~= actor.class then
+            if value:contains(actor) then
+                table.insert(results, value)
+            end
         end
     end
+
+    -- contacts between actors and traps
     for i, value in ipairs(self.traps) do
-        if value:contains(actor) then
+        if value:contains(actor) and value.class ~= actor.class  then
             table.insert(results, value)
         end
     end
+
     return results
 end
 
