@@ -47,24 +47,32 @@ end
 function Level:findRoad()
     local find = false
     while find == false do
-        local side = math.random(1,2)
+        local side = math.random(0,1)
         local x = self.width/2
         local y = self.height/2
 
-        if side == 1 then
-            -- test on x  
-            x = math.random(1,2)
-            if x == 2 then
-                x = self.width-1
-            end
-        else
-            -- test on y
-            y = math.random(1,2)
-            if y == 2 then
-                y = self.height-1
-            end
+        local delta = math.random(0,1)
+        if delta == 1 then
+            delta = -1
         end
 
+        if side == 1 then
+            -- test on x  
+            x = math.random(0,1)
+            if x == 1 then
+                x = self.width-1
+            end
+
+            y = y + delta
+        else
+            -- test on y
+            y = math.random(0,1)
+            if y == 1 then
+                y = self.height-1
+            end
+
+            x = x + delta
+        end
 
         print("test " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
@@ -235,6 +243,9 @@ function Level:isBlocking(x, y)
 end
 
 function Level:update(delta_time)
+	for k,person in ipairs(self.persons) do
+		person:update(delta_time)
+	end
 end
 
 
@@ -266,6 +277,19 @@ function Level.new(height,width,sprite_size,numEntrances)
 	level.numEntrances = numEntrances
 
 	level:generateBackground()
+
+    indiansPosition = {
+        { x = math.random(10,14), y = math.random(14,23) },
+        { x = 04, y = 07 },
+        { x = 20, y = 11 }
+    }
+
+	for i,value in ipairs(indiansPosition) do
+        indian = Actor.new(Indian)
+        indian.posX = value.x
+        indian.posY = value.y
+        level:addPerson(indian)
+	end
 
 	return level
 end
