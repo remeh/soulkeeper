@@ -1,9 +1,11 @@
+require "mini_menu"
 require "actor"
 require "piege"
 require "piegeManager"
 require "level"
 require "menu"
 require "consts"
+require "gameplay"
 
 -- The main game method which will contains
 -- the different states.
@@ -11,11 +13,13 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 30, 16, 1),
+    level = Level.new(30, 30, 16, 3),
     -- the menu
+    minimenu = Minimenu.new(),
     menu = Menu.new(),
     -- background music
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+    gameplay = Gameplay.new(),
 
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables,
@@ -59,7 +63,6 @@ function Game:keypressedMainMenu(key)
 end
 
 function Game:keypressedGameScreen(key)
-    print(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
@@ -67,7 +70,6 @@ function Game:keypressedGameScreen(key)
 end
 
 function Game:keypressedGameOver(key)
-
 end
 
 function Game:mousereleased(x, y, button)
@@ -87,6 +89,7 @@ end
 
 function Game:levelDraw()
     self.level:draw()
+    self.minimenu:draw()
 end
 
 function Game:gameOverDraw()
@@ -94,9 +97,12 @@ function Game:gameOverDraw()
 end
 
 function Game:updateMainMenu(delta)
+	self.menu:update(delta)
 end
 
 function Game:updateGameScreen(delta)
+    -- update the gameplay
+    self.gameplay:update(delta)
     -- update the level
     self.level:update(delta)
 end
@@ -109,11 +115,11 @@ function Game:mousereleasedMainMenu(x, y, button)
 end
 
 function Game:mousereleasedGameScreen(x, y, button)
+	 self.minimenu:mousereleased(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
 end
-
 
 -- Constructor
 function Game.new()

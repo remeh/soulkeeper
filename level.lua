@@ -44,6 +44,44 @@ function Level:drawCamp()
 	end
 end
 
+function Level:findRoad()
+    local find = false
+    while find == false do
+        local side = math.random(0,1)
+        local x = self.width/2
+        local y = self.height/2
+
+        local delta = math.random(0,1)
+        if delta == 1 then
+            delta = -1
+        end
+
+        if side == 1 then
+            -- test on x  
+            x = math.random(0,1)
+            if x == 1 then
+                x = self.width-1
+            end
+
+            y = y + delta
+        else
+            -- test on y
+            y = math.random(0,1)
+            if y == 1 then
+                y = self.height-1
+            end
+
+            x = x + delta
+        end
+
+        print("test " .. x .. ":" .. y)
+        if not self:isBlocking(x,y) then
+            find = true
+            return { findX = x, findY = y }
+        end
+    end
+end
+
 function Level:drawRoad()
 	local x = 0
 	local y = 0
@@ -189,13 +227,12 @@ function Level:addPerson(person)
 end
 
 function Level:addPersonRandomly(person)
-    local x = math.random(0,39)
-    local y = math.random(0,29)
+    local x = math.random(0,self.width-1)
+    local y = math.random(0,self.height-1)
 
-    print("x " .. x)
-    print("y " .. y)
+    print("x " .. x .. " y " .. y)
 
-    if self:isBlocking(x,y) then
+    if not self:isBlocking(x,y) then
         person.posX = x
         person.posY = y
         self:addPerson(person)
@@ -203,23 +240,12 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    return self.zone[y+1][x+1] == 1
-end
-
-function Level:newWave()
-	-- Launch a new wave of tourist
-	local person = nil
-	local num_tourist = 99
-	-- Create "num_tourist" tourist
-	for i=1,num_tourist,1 do
-		person = Person.init('tourist') --TODO Check when the Person will be created
-		self.addPerson(person)
-	end
+    return self.zone[y+1][x+1] == 0
 end
 
 function Level:update(delta_time)
---	self:draw()
 end
+
 
 function Level:generateBackground()
 	self.canvasBackground = love.graphics.newCanvas(1024,1024)
@@ -235,6 +261,9 @@ end
 function Level:touches(actor)
 end
 
+-- Returns the roads position
+
+
 -- Constructor
 
 function Level.new(height,width,sprite_size,numEntrances)
@@ -247,18 +276,5 @@ function Level.new(height,width,sprite_size,numEntrances)
 
 	level:generateBackground()
 
-	--Creation des indiens de base
-	local indiens = {
-		{ 20,20 },
-		{ 15,15 },
-		{ 25,25 },
-	}
-	local person
-	for k,indien in ipairs(indiens) do
-		person = Actor.new(Indian)
-		person.posX = indien[1]
-		person.posY = indien[2]
-		level:addPerson(person)
-	end
 	return level
 end
