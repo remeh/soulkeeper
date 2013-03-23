@@ -21,6 +21,8 @@ Actor = {
     visible = true,
     health = 1,
     area = 1,
+    forceMoveX = 0, -- modified by a trap when the actor MUST move
+    forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
     -- function shared with implentations
@@ -37,6 +39,27 @@ Actor = {
 	     end
 	  end
 	return false
+    end,
+
+    --
+    -- Force the movement if a trap have ordered to
+    --
+    forceTrapMovement = function(self)
+        local dx = 0
+        local dy = 0
+        if forceMoveX ~= 0 then
+            dx = forceMoveX/forceMoveX
+        end
+        if not game.level.isBlocking(posX+dx, posY) then
+            posX = posX + dx 
+        end
+
+        if forceMoveY ~= 0 then
+            dy = forceMoveY/forceMoveY
+        end
+        if not game.level.isBlocking(posX, posY+dy) then
+            posY = posY + dy
+        end
     end,
 
     -- function to implements

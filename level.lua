@@ -165,6 +165,11 @@ function Level:newWave()
 	end
 end
 
+-- Returns which thing 
+function Level:touches(actor)
+
+end
+
 -- Constructor
 
 function Level.new(height,width,sprint_size,numEntrances)
