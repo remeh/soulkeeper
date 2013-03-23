@@ -13,6 +13,11 @@ function Gameplay:update(delta)
         self:newWave()
         self.seconds = 0
     end
+
+    -- update every actors
+	for k,person in ipairs(game.level.persons) do
+        person:update(delta)
+	end
 end
 
 function Gameplay:updateTime(delta)

@@ -243,6 +243,9 @@ function Level:isBlocking(x, y)
 end
 
 function Level:update(delta_time)
+	for k,person in ipairs(self.persons) do
+		person:update(delta_time)
+	end
 end
 
 
@@ -274,6 +277,20 @@ function Level.new(height,width,sprite_size,numEntrances)
 	level.numEntrances = numEntrances
 
 	level:generateBackground()
+
+    indiansPosition = {
+        { x = math.random(10,14), y = math.random(14,23) },
+        { x = 04, y = 07 },
+        { x = 20, y = 11 }
+    }
+
+	for i,value in ipairs(indiansPosition) do
+        print(":)")
+        indian = Actor.new(Indian)
+        indian.posX = value.x
+        indian.posY = value.y
+        level:addPerson(indian)
+	end
 
 	return level
 end
