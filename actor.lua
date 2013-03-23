@@ -25,25 +25,14 @@ Actor = {
     forceMoveY = 0, -- modified by a trap when the actor MUST move
     class = "Actor",
 
+    -- --------
     -- function shared with implentations
+    -- --------
     draw = function(self)
         love.graphics.draw(game.actorDrawables[self.class], self.posX, self.posY)
     end,
 
-    touch = function(self, other)
-    	  if math.abs(actor.posX - other.posX) 
-	     < actor.area then
-	     if math.abs(actor.posY - other.posY) 
-	     	< actor.area then
-		return true
-	     end
-	  end
-	return false
-    end,
-
-    --
-    -- Force the movement if a trap have ordered to
-    --
+    -- force the movement if a trap have ordered to
     forceTrapMovement = function(self)
         local dx = 0
         local dy = 0
@@ -60,6 +49,28 @@ Actor = {
         if not game.level.isBlocking(posX, posY+dy) then
             posY = posY + dy
         end
+    end,
+
+    contains = function(self, other)
+    	  if math.abs(actor.posX - other.posX) 
+	     < actor.area then
+	     if math.abs(actor.posY - other.posY) 
+	     	< actor.area then
+		return true
+	     end
+	  end
+	return false
+    end,
+
+    touch = function(self, other)
+    	  if math.abs(actor.posX - other.posX)
+	     < 1 then
+	     if math.abs(actor.posY - other.posY)
+	       	< 1 then
+	  	return true
+	     end
+	  end
+	return false
     end,
 
     -- function to implements
