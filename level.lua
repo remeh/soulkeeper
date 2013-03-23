@@ -47,15 +47,26 @@ end
 function Level:findRoad()
     local find = false
     while find == false do
-        local x = math.random(1,2)
-        if x == 2 then
-            x = self.width-1
-        end
-        local y = math.random(1,2)
-        if y == 2 then
-            y = self.height-1
+        local side = math.random(1,2)
+        local x = self.width/2
+        local y = self.height/2
+
+        if side == 1 then
+            -- test on x  
+            x = math.random(1,2)
+            if x == 2 then
+                x = self.width-1
+            end
+        else
+            -- test on y
+            y = math.random(1,2)
+            if y == 2 then
+                y = self.height-1
+            end
         end
 
+
+        print("test " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }
