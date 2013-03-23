@@ -9,7 +9,7 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 40, 16, 1), -- TODO see for the number entrance
+    level = Level.new(30, 40, 16, 1),
     -- the menu
     menu = Menu.new(),
     -- background music
