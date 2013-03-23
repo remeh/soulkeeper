@@ -1,4 +1,7 @@
 require "utils"
+require "totem"
+require "trappe"
+require "slowdown"
 
 Piege = {
     class = "piege",
