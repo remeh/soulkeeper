@@ -28,12 +28,23 @@ Actor = {
         love.graphics.draw(game.actorDrawables[self.class], self.posX, self.posY)
     end,
 
-    touch = function(self, other)
+    contains = function(self, other)
     	  if math.abs(actor.posX - other.posX) 
 	     < actor.area then
 	     if math.abs(actor.posY - other.posY) 
 	     	< actor.area then
 		return true
+	     end
+	  end
+	return false
+    end,
+
+    touch = function(self, other)
+    	  if math.abs(actor.posX - other.posX)
+	     < 1 then
+	     if math.abs(actor.posY - other.posY)
+	       	< 1 then
+	  	return true
 	     end
 	  end
 	return false
