@@ -139,7 +139,7 @@ end
 function Level:draw()
 	love.graphics.draw(self.canvasBackground)
 	for k,person in ipairs(self.persons) do
-		love.graphics.draw(ActorDrawables[person.class],person.pos_x*self.sprite_size,person.pos_y*self.sprite_size)
+		love.graphics.draw(ActorDrawables[person.class],person.posx*self.sprite_size,person.posy*self.sprite_size)
 	end
 end
 
@@ -197,7 +197,7 @@ function Level:newWave()
 end
 
 function Level:update(delta_time)
-	self:draw()
+--	self:draw()
 end
 
 function Level:generateBackground()
@@ -235,9 +235,9 @@ function Level.new(height,width,sprite_size,numEntrances)
 	local person
 	for k,indien in ipairs(indiens) do
 		person = Actor.new(Indian)
-		person.pos_x = indien[1]
-		person.pos_y = indien[2]
-	--	level:addPerson(person)
+		person.posx = indien[1]
+		person.posy = indien[2]
+		level:addPerson(person)
 	end
 	return level
 end

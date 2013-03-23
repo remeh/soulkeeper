@@ -71,3 +71,7 @@ function love.keypressed(key, unicode)
 	end
 end
 
+function love.mousereleased(x, y, button)
+	game:mousereleased(x, y, button)
+end
+

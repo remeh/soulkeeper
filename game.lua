@@ -44,16 +44,16 @@ end
 function Game:mousereleased(x, y, button)
 	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
     local switch = {
-        [GameState.MAIN_MENU] = function() self:mousereleased(x, y, button) end,
-        [GameState.GAME_SCREEN] = function() self:mousereleased(x, y, button) end,
-        [GameState.GAME_OVER] = function() self:mousereleased(x, y, button) end
+        [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
+        [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,
+        [GameState.GAME_OVER] = function(x,y,button) self:mousereleasedGameOver(x, y, button) end
     }
     -- call the switch
-    switch[self.state](delta)
+    switch[self.state](x, y, button)
 end
 
 function Game:menuDraw()
-    menu:draw()
+    self.menu:draw()
 end
 
 function Game:levelDraw()
@@ -73,6 +73,16 @@ function Game:updateGameScreen(delta)
 end
 
 function Game:updateGameOver(delta)
+end
+
+function Game:mousereleasedMainMenu(x, y, button)
+	self.menu:mousereleased(x,y,button)
+end
+
+function Game:mousereleasedGameScreen(x, y, button)
+end
+
+function Game:mousereleasedGameOver(x, y, button)
 end
 
 
