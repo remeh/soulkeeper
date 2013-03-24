@@ -18,26 +18,18 @@ PiegeManager = {
 
 	drawPiegeArea = function(self)
 		if self.currentPiege ~= nil then
-			local mouseX, mouseY, sp = love.mouse.getX(), love.mouse.getY(),game.level.sprite_size
-			for i = (mouseX - self.currentPiege.area*sp + sp), (mouseX +self.currentPiege.area*sp -sp),sp do
-				for j = (mouseY - self.currentPiege.area*sp + sp), (mouseY +self.currentPiege.area*sp -sp),sp do
-					if (i == mouseX and j == mouseY) then
-						love.graphics.draw(game.piegeDrawables[self.currentPiege.class], i,j)
-					else
-						love.graphics.draw(game.piegeDrawables["zonepiege"], i,j)
-					end
-				end
-			end
+			local mouseX, mouseY = love.mouse.getX(), love.mouse.getY()
+			self:drawArea(self.currentPiege, mouseX, mouseY)
 		end	
 	end
 }
-
+--Constructor
 function PiegeManager.new()
 	piegeManager = PiegeManager
 	piegeManager:init(piegeManager)
 	return piegeManager
 end
-
+-- click event for traps
 function PiegeManager:mousereleased(x, y, button)
     if button == 'l' then
 		local caseX, caseY = Game.level:getCase(x), Game.level:getCase(y)
@@ -54,4 +46,17 @@ function PiegeManager:mousereleased(x, y, button)
         end
     end
 end
+-- Draws a trap and its area
+function PiegeManager:drawArea(piege, x, y)
+			local  sp = game.level.sprite_size
+			for i = (x - piege.area*sp + sp), (x +piege.area*sp -sp),sp do
+				for j = (y - piege.area*sp + sp), (y +piege.area*sp -sp),sp do
+					if (i == x and j == y) then
+						love.graphics.draw(game.piegeDrawables[piege.class], i,j)
+					else
+						love.graphics.draw(game.piegeDrawables["zonepiege"], i,j)
+					end
+				end
+			end
+end	
 

@@ -33,6 +33,16 @@ function Level:drawForest()
 	end
 end
 
+function Level:getNumTypePerson(typeName)
+	local num = 0
+    for i, person in ipairs(self.persons) do
+		if person.class == typeName then
+			num = num + 1
+		end
+    end
+	return num
+end
+
 function Level:drawCamp()
 	local x = 0
 	local y = 0
@@ -196,12 +206,12 @@ function Level:draw()
 	end
 
 	for _,trap in ipairs(self.traps) do
-		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
+--		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
+		Game.piegeManager:drawArea(trap, trap.posX*self.sprite_size, trap.posY*self.sprite_size)
 	end
 end
 
 function Level:addTrap(trap)
-	-- TODO Verifier que le piege est dans la zone constructible
 	--
 	--
 	--

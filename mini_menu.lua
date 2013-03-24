@@ -31,10 +31,12 @@ end
 
 function Minimenu:trap3()
 	 print("Smoke")
+	 piegeManager.changePiege(piegeManager, Slowdown)
 end
 
 function Minimenu:trap4()
 	 print("Cage")
+	 piegeManager.changePiege(piegeManager, Cage)
 end
 
 function Minimenu:trap5()
@@ -58,7 +60,7 @@ function Minimenu:draw()
 		end
 	end
 	love.graphics.print("Nxt wave: " .. game.gameplay:timeToNextWave(), 506, 243)
-	love.graphics.print(game.wave, 592, 272)
+	love.graphics.print(game.level:getNumTypePerson("Tourist"), 583, 272)
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.print("Souls: " ..game.soulCollected, 510, 300)
     
