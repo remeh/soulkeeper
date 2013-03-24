@@ -101,7 +101,7 @@ function Level:drawRoad()
 	end
 	--Road 2
 	if self.numEntrances >= 2 then
-		for x = (self.width-1-self.forestSize), (self.width-1), 1 do
+		for x = (self.width-1-self.forestSize), (self.size_w/self.sprite_size-1), 1 do
 			local tmp_size = math.floor((self.height-self.roadSize)/2)
 			for y = tmp_size, tmp_size+self.roadSize,1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
