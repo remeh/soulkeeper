@@ -1,16 +1,24 @@
 MenuGameOver = {
+	background = love.graphics.newImage("sprites/GameOver.png"),
 	fonts = {
-		love.graphics.newFont(36),
-		love.graphics.newFont(24),
+		love.graphics.newFont("AtariSmall.ttf", 36),
+		love.graphics.newFont("AtariSmall.ttf", 24),
+		love.graphics.newFont("AtariSmall.ttf", 64),
 	},
 
-	items = {
-		{"New game", 200, 140, 390, 269, 1, { 255, 255, 255}, function(self) end },
-		{"Easy", 240, 180, 300, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
-		{"Medium", 240, 210, 340, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
-		{"Hard", 240, 240, 300, 269, 2, { 255, 255, 255}, function(self) self:newGame(4) end },
-		{"About", 200, 270, 310, 309, 1, {255, 255, 255}, function(self) self:about() end },
-		{"Quit", 200, 310, 280, 349, 1, {255, 255, 255}, function(self) self:quit() end},
+
+	menu_items = {
+		{"Easy", 490, 180, 550, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
+		{"Medium", 490, 210, 590, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
+		{"Hard", 490, 240, 550, 269, 2, { 255, 255, 255}, function(self) self:newGame(4) end },
+		{"About", 450, 270, 560, 309, 1, {255, 255, 255}, function(self) self:about() end },
+		{"Quit", 450, 310, 530, 349, 1, {255, 255, 255}, function(self) self:quit() end},
+	},
+	static_items = {
+		{"Soul Keeper", 63, 185, 3, { 0, 0, 0}},
+		{"New game", 450, 140, 1, { 255, 255, 255}},
+		{"Game Over", 200, 310, 1, {255, 255, 255}},
+		{"You have lost your soul", 200, 310, 1, {255, 255, 255}},
 	},
 }
 
@@ -33,32 +41,39 @@ function MenuGameOver:draw()
 	-- Draw a background
 	game.level:draw()
 
+--	love.graphics.draw(self.background)
+
 	-- Draw the MenuGameOver
-	love.graphics.setFont(self.fonts[2]);
-	love.graphics.print("Soul Keeper", 220, 10);
-	for k,item in ipairs(self.items) do
+	for k,item in ipairs(self.menu_items) do
 		love.graphics.setFont(self.fonts[item[6]])
 		love.graphics.setColor(item[7])
 		love.graphics.print(item[1], item[2], item[3])
 	end
+
+	for k,item in ipairs(self.static_items) do
+		love.graphics.setFont(self.fonts[item[4]])
+		love.graphics.setColor(item[5])
+		love.graphics.print(item[1], item[2], item[3])
+	end
+
 	love.graphics.setColor(255,255,255)
 end
 
 function MenuGameOver:update(delta)
 	local x = love.mouse.getX()
 	local y = love.mouse.getY()
-	for k,item in ipairs(self.items) do
+	for k,item in ipairs(self.menu_items) do
 		if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
-			self.items[k][7] = {0,0,0}
+			self.menu_items[k][7] = {0,0,0}
 		else
-			self.items[k][7] = {255,255,255}
+			self.menu_items[k][7] = {255,255,255}
 		end
 	end
 end
 
 function MenuGameOver:mousereleased(x, y, button)
 	if button == 'l' then
-		for k,item in ipairs(self.items) do
+		for k,item in ipairs(self.menu_items) do
 			if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
 				item[8](self)
 			end
