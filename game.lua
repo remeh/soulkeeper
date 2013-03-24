@@ -37,7 +37,7 @@ Game = {
 
 function Game:createdLevel(difficult)
 	self.level.persons = {}
-	self.level.trap = {}
+	self.level.traps = {}
 	self.point = 0
 	self.level = Level.new(30,30,16,difficult)
 end

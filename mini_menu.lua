@@ -1,15 +1,16 @@
 Minimenu = {
 	ghostImage = love.graphics.newImage("sprites/ghost.png"),
-	font = love.graphics.newFont("AtariSmall.ttf", 15),
+	touristImage = love.graphics.newImage("sprites/tourist.png"),
+	font = love.graphics.newFont("AtariSmall.ttf", 14),
 
 	traps = {
-		{"Repel", 544, 22, 630, 50, {230, 230, 230}, function(self) self:trap1() end,1},
-		{"Totem", 545, 60, 630, 80, {230, 230, 230}, function(self) self:trap2() end,1},
-		{"Smoke", 544, 99, 630, 130, {230, 230, 230}, function(self) self:trap3() end,1},
-		{"Cage", 544, 137, 630, 160, {230, 230, 230}, function(self) self:trap4() end,1},
-		{"Kill", 544, 176, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
-		--{"    Pause", 509, 299, 615, 320, {230, 230, 230}, function(self) self:pause() end},
-		{"Tourists: ", 505, 274, 615, 280, {230, 230, 230}}
+		{"Trap", 544, 22, 630, 50, {230, 230, 230}, function(self) self:trap1() end,3},
+		{"Totem", 545, 60, 630, 80, {230, 230, 230}, function(self) self:trap2() end,5},
+		{"Smoke", 544, 99, 630, 130, {230, 230, 230}, function(self) self:trap3() end,4},
+		{"Cage", 544, 137, 630, 160, {230, 230, 230}, function(self) self:trap4() end,5},
+		--{"Kill", 544, 176, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
+		--{"    Pause", 510, 300, 615, 320, {230, 230, 230}, function(self) self:pause() end},
+		{"Tourists ", 525, 274, 615, 280, {230, 230, 230}}
 	},
 }
 
@@ -19,7 +20,7 @@ Minimenu = {
 MiniBack = love.graphics.newImage("sprites/menu_background.png")
 
 function Minimenu:trap1()
-	 print("Repel")
+	 print("Trappe")
 	 piegeManager.changePiege(piegeManager, Trappe)
 end
 
@@ -40,7 +41,7 @@ function Minimenu:trap4()
 end
 
 function Minimenu:trap5()
-	 print("Kill")
+	 --print("Kill")
 end
 
 function Minimenu:pause()
@@ -56,16 +57,21 @@ function Minimenu:draw()
 		love.graphics.setColor(item[6])
 		love.graphics.print(item[1], item[2], item[3])
 		if item[8] then
-			love.graphics.print(item[8], item[2]+80, item[3])
+			love.graphics.print(item[8], item[2]+55, item[3])
 		end
 	end
-	love.graphics.print("Nxt wave: " .. game.gameplay:timeToNextWave(), 505, 244)
-	love.graphics.print(game.level:getNumTypePerson("Tourist"), 581, 274)
-	love.graphics.print("Score: " .. math.floor(game.point), 505, 331)
-	love.graphics.print("Souls: " ..game.soulCollected, 505, 304)
+	love.graphics.print("Nxt wave " .. game.gameplay:timeToNextWave(), 506, 245)
+	love.graphics.print(game.level:getNumTypePerson("Tourist"), 591, 274)
+	love.graphics.print("Score: " .. math.floor(game.point), 505, 333)
+	love.graphics.print("Souls " ..game.soulCollected, 525, 304)
     
 	love.graphics.setColor(255,255,255)
-	love.graphics.draw(self.ghostImage,623,5)
+	love.graphics.draw(self.ghostImage,610,23)
+	love.graphics.draw(self.ghostImage,610,60)
+	love.graphics.draw(self.ghostImage,610,100)
+	love.graphics.draw(self.ghostImage,610,137)
+	love.graphics.draw(self.ghostImage,508,304)
+	love.graphics.draw(self.touristImage,508,272)
 end
 
 function Minimenu:update(delta)

@@ -8,7 +8,6 @@ Repulse = {
     cooldown = 2,
     walk_on = true,
 
-    
 	--	we re forcing the actor to go towards a specific location
 	action = function (self, actor)
         if (not self.posX or not self.posY) then
@@ -54,8 +53,7 @@ Repulse = {
 
         -- TODO checks that it will not be propulsed to far
         -- applies this force to the actor
-
-        actor.forceMoveX = targetX
-        actor.forceMoveY = targetY
+        actor.forceMoveX = targetX-actor.posX
+        actor.forceMoveY = targetY-actor.posY
 	end
 }

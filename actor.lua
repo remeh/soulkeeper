@@ -4,7 +4,6 @@ require "tourist"
 require "utils"
 
 --
---
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
@@ -49,6 +48,7 @@ Actor = {
         local dy = 0
         if self.forceMoveX ~= 0 then
             dx = self.forceMoveX/self.forceMoveX
+            self.forceMoveX = self.forceMoveX - dx
         end
         if not game.level:isBlocking(self.posX+dx, self.posY) then
             self.posX = self.posX + dx 
@@ -56,6 +56,7 @@ Actor = {
 
         if self.forceMoveY ~= 0 then
             dy = self.forceMoveY/self.forceMoveY
+            self.forceMoveY = self.forceMoveY - dy
         end
         if not game.level:isBlocking(self.posX, self.posY+dy) then
             self.posY = self.posY + dy
