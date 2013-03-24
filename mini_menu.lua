@@ -8,9 +8,16 @@ Minimenu = {
 		{"Totem", 545, 60, 630, 80, {230, 230, 230}, function(self) self:trap2() end,5},
 		{"Smoke", 544, 99, 630, 130, {230, 230, 230}, function(self) self:trap3() end,4},
 		{"Cage", 544, 137, 630, 160, {230, 230, 230}, function(self) self:trap4() end,5},
+
+        -- icons
+		{"", 495, 16, 527, 47, {230, 230, 230}, function(self) self:trap1() end,3},
+		{"", 495, 54, 527, 83, {230, 230, 230}, function(self) self:trap2() end,5},
+		{"", 495, 92, 527, 122, {230, 230, 230}, function(self) self:trap3() end,4},
+		{"", 495, 131, 527, 162, {230, 230, 230}, function(self) self:trap4() end,5},
+
 		--{"Kill", 544, 176, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
 		--{"    Pause", 510, 300, 615, 320, {230, 230, 230}, function(self) self:pause() end},
-		{"Tourists ", 525, 274, 615, 280, {230, 230, 230}}
+		{"Tourists ", 525, 275, 615, 280, {230, 230, 230}}
 	},
 }
 

@@ -107,7 +107,7 @@ function Game:keypressedGameOver(key)
 end
 
 function Game:mousereleased(x, y, button)
-	--print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
     local switch = {
         [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
         [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,
