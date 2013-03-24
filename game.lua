@@ -22,7 +22,7 @@ Game = {
     backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
     gameplay = Gameplay.new(),
     -- amount of souls collected to create a totem.
-    soulCollected = 5,
+    soulCollected = 20,
 
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables,
