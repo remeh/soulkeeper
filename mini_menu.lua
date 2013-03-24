@@ -44,13 +44,13 @@ function Minimenu:draw()
 	-- Draw the background
 	love.graphics.draw(MiniBack, 480, 0)		
 	-- Draw the menu
-    love.graphics.setFont(self.font);
+	love.graphics.setFont(self.font);
 	for k,item in ipairs(self.traps) do
 		love.graphics.setColor(item[6])
 		love.graphics.print(item[1], item[2], item[3])
 		if item[8] then
 			love.graphics.print(item[8], item[2]+80, item[3])
-		end	
+		end
 	end
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.setColor(255,255,255)
