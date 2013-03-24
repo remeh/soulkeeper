@@ -10,7 +10,6 @@ Totem = {
     walk_on = false,
 
     action = function(self, actor)
-        -- TODO transofmer en âme
         -- creates the soul
         local soul = Actor.new(Soul)
         soul.posX = actor.posX
@@ -22,5 +21,6 @@ Totem = {
 
         -- removes the tourist
         game.level:removePerson(actor)
+	game.wave = game.wave - 1
     end
 }
