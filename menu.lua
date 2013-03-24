@@ -2,9 +2,11 @@ Menu = {
 	fonts = {
 		love.graphics.newFont("AtariSmall.ttf", 36),
 		love.graphics.newFont("AtariSmall.ttf", 24),
+		love.graphics.newFont("AtariSmall.ttf", 64),
 	},
 
 	items = {
+		{"Soul Keeper", 63, 185, 60, 185, 3, { 0, 0, 0}},
 		{"New game", 450, 140, 640, 269, 1, { 255, 255, 255}, function(self) end },
 		{"Easy", 490, 180, 550, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
 		{"Medium", 490, 210, 590, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
@@ -35,7 +37,7 @@ function Menu:draw()
 
 	-- Draw the menu
 	love.graphics.setFont(self.fonts[1]);
-	love.graphics.print("Soul Keeper", 220, 140);
+--	love.graphics.print("Soul Keeper", 220, 140);
 	for k,item in ipairs(self.items) do
 		love.graphics.setFont(self.fonts[item[6]])
 		love.graphics.setColor(item[7])
