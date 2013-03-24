@@ -1,6 +1,6 @@
 Minimenu = {
 	ghostImage = love.graphics.newImage("sprites/ghost.png"),
-    font = love.graphics.newFont(18),
+	font = love.graphics.newFont("AtariSmall.ttf", 20),
 
 	traps = {
 		{"Repel", 545, 21, 630, 50, {230, 230, 230}, function(self) self:trap1() end,1},
@@ -58,7 +58,7 @@ function Minimenu:draw()
 		end
 	end
 	love.graphics.print("Nxt wave: " .. game.gameplay:timeToNextWave(), 506, 243)
-	love.graphics.print(game.wave, 583, 272)
+	love.graphics.print(game.wave, 592, 272)
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.print("Souls: " ..game.soulCollected, 510, 300)
     
