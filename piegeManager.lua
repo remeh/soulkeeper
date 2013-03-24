@@ -52,6 +52,7 @@ function PiegeManager:drawArea(piege, x, y)
 			for i = (x - piege.area*sp + sp), (x +piege.area*sp -sp),sp do
 				for j = (y - piege.area*sp + sp), (y +piege.area*sp -sp),sp do
 					if (i == x and j == y) then
+						love.graphics.draw(game.piegeDrawables["zonepiege"], i,j)
 						love.graphics.draw(game.piegeDrawables[piege.class], i,j)
 					else
 						love.graphics.draw(game.piegeDrawables["zonepiege"], i,j)
