@@ -37,8 +37,7 @@ function PiegeManager:mousereleased(x, y, button)
 			self.currentPiege.posX=caseX
 			self.currentPiege.posY=caseY
 			if	Game.level:addTrap(self.currentPiege) then
-				Game.level.zone[caseY+1][caseX+1] = 0
-				Game.level.zone[caseY+2][caseX+1] = 0
+				Game.level.zone[caseY+1][caseX+1] = 2
 				self.currentPiege = nil
 			end
 		end
