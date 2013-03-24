@@ -357,7 +357,7 @@ function Level.new(height,width,sprite_size,numEntrances)
         indian = Actor.new(Indian)
         indian.posX = value.x
         indian.posY = value.y
- --       level:addPerson(indian)
+        level:addPerson(indian)
 	end
 
 	return level
