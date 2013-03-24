@@ -61,9 +61,7 @@ end
 
 function love.keypressed(key, unicode)
     -- quit on escape
-	if key == 'escape' then
-        love.event.quit()
-    elseif key == 'f' then
+    if key == 'f' then
         -- FIXME Causes problem with the background
         -- love.graphics.toggleFullscreen()
 	else
