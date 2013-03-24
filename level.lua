@@ -348,9 +348,11 @@ function Level.new(height,width,sprite_size,numEntrances)
 	level:generateBackground()
 
     indiansPosition = {
-        { x = math.random(10,14), y = math.random(14,23) },
+        { x = 04, y = 20 },
         { x = 04, y = 07 },
-        { x = 20, y = 9 }
+        { x = 20, y = 09 },
+        { x = 24, y = 14 },
+        { x = 15, y = 09 },
     }
 
 	for i,value in ipairs(indiansPosition) do
