@@ -8,10 +8,9 @@ Level = {
 	numEntrances = nil,
 	traps = {},
 	persons = {},
-	wave = 1,
 	forestSize = 3,
 	roadSize = 4,
-
+	wave = 1,
 	canvas_Background = nil,
 
 	-- Walkable/buildable zone

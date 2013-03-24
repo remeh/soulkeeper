@@ -3,11 +3,12 @@ Minimenu = {
     font = love.graphics.newFont(18),
 
 	traps = {
-		{"Repel", 545, 21, 630, 50, {0, 0, 0}, function(self) self:trap1() end,1},
-		{"Totem", 545, 68, 630, 90, {0, 0, 0}, function(self) self:trap2() end,1},
-		{"Smoke", 545, 118, 630, 150, {0, 0, 0}, function(self) self:trap3() end,1},
-		{"Cage", 545, 168, 630, 210, {0, 0, 0}, function(self) self:trap4() end,1},
-		{"    Pause", 510, 300, 615, 320, {0, 0, 0}, function(self) self:pause() end},
+		{"Repel", 545, 21, 630, 50, {230, 230, 230}, function(self) self:trap1() end,1},
+		{"Totem", 545, 68, 630, 90, {230, 230, 230}, function(self) self:trap2() end,1},
+		{"Smoke", 545, 118, 630, 150, {230, 230, 230}, function(self) self:trap3() end,1},
+		{"Cage", 545, 168, 630, 210, {230, 230, 230}, function(self) self:trap4() end,1},
+		{"    Pause", 510, 300, 615, 320, {230, 230, 230}, function(self) self:pause() end},
+		{"    Wave", 510, 270, 615, 280, {230, 230, 230}}
 	},
 }
 

@@ -36,7 +36,6 @@ function Gameplay:newWave()
     tourist = Actor.new(Tourist)
     tourist.posX = result.findX
     tourist.posY = result.findY
-    wave = wave + 1
     print("x" .. tourist.posX .. " y " .. tourist.posY)
     game.level:addPerson(tourist)      
 end
