@@ -8,10 +8,9 @@ Level = {
 	numEntrances = nil,
 	traps = {},
 	persons = {},
-
 	forestSize = 3,
 	roadSize = 4,
-
+	wave = 1,
 	canvas_Background = nil,
 
 	-- Walkable/buildable zone
@@ -264,7 +263,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    if x < 1 or x > self.width-1 or y < 1 or x > self.height-1 then
+    if x < 1 or x > self.width-1 or y < 1 or y > self.height-1 then
         return true
     end
 
