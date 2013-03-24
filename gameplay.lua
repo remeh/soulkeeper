@@ -1,6 +1,7 @@
 Gameplay = {
     seconds = 0,
-    lastTime = 0
+    lastTime = 0,
+	timeToWave = 5,
 }
 
 --
@@ -9,7 +10,7 @@ Gameplay = {
 function Gameplay:update(delta)
     self:updateTime(delta)
     -- TODO vague must be configurable or read in the game state
-    if self.seconds > 5 then
+    if self:timeToNextWave() <= 0 then
         self:newWave()
         self.seconds = 0
     end
@@ -18,6 +19,10 @@ function Gameplay:update(delta)
 	for k,person in ipairs(game.level.persons) do
         person:update(delta)
 	end
+end
+
+function Gameplay:timeToNextWave()
+	return math.ceil(self.timeToWave - self.seconds)
 end
 
 function Gameplay:updateTime(delta)
