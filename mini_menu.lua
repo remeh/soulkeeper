@@ -7,7 +7,7 @@ Minimenu = {
 		{"Totem", 545, 68, 630, 90, {0, 0, 0}, function(self) self:trap2() end,1},
 		{"Smoke", 545, 118, 630, 150, {0, 0, 0}, function(self) self:trap3() end,1},
 		{"Cage", 545, 168, 630, 210, {0, 0, 0}, function(self) self:trap4() end,1},
-		{"    Pause", 510, 300, 615, 265, {0, 0, 0}, function(self) self:pause() end},
+		{"    Pause", 510, 300, 615, 320, {0, 0, 0}, function(self) self:pause() end},
 	},
 }
 
