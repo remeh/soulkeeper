@@ -1,16 +1,16 @@
 Menu = {
 	fonts = {
-		love.graphics.newFont(36),
-		love.graphics.newFont(24),
+		love.graphics.newFont("AtariSmall.ttf", 36),
+		love.graphics.newFont("AtariSmall.ttf", 24),
 	},
 
 	items = {
-		{"New game", 200, 140, 390, 269, 1, { 255, 255, 255}, function(self) end },
-		{"Easy", 240, 180, 300, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
-		{"Medium", 240, 210, 340, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
-		{"Hard", 240, 240, 300, 269, 2, { 255, 255, 255}, function(self) self:newGame(4) end },
-		{"About", 200, 270, 310, 309, 1, {255, 0, 255}, function(self) self:about() end },
-		{"Quit", 200, 310, 280, 349, 1, {255, 255, 0}, function(self) self:quit() end},
+		{"New game", 450, 140, 640, 269, 1, { 255, 255, 255}, function(self) end },
+		{"Easy", 490, 180, 550, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
+		{"Medium", 490, 210, 590, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
+		{"Hard", 490, 240, 550, 269, 2, { 255, 255, 255}, function(self) self:newGame(4) end },
+		{"About", 450, 270, 560, 309, 1, {255, 255, 255}, function(self) self:about() end },
+		{"Quit", 450, 310, 530, 349, 1, {255, 255, 255}, function(self) self:quit() end},
 	},
 }
 
@@ -34,8 +34,8 @@ function Menu:draw()
 	game.level:draw()
 
 	-- Draw the menu
-	love.graphics.setFont(self.fonts[2]);
-	love.graphics.print("Soul Keeper", 220, 10);
+	love.graphics.setFont(self.fonts[1]);
+	love.graphics.print("Soul Keeper", 220, 140);
 	for k,item in ipairs(self.items) do
 		love.graphics.setFont(self.fonts[item[6]])
 		love.graphics.setColor(item[7])

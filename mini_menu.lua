@@ -1,6 +1,6 @@
 Minimenu = {
 	ghostImage = love.graphics.newImage("sprites/ghost.png"),
-    font = love.graphics.newFont(18),
+	font = love.graphics.newFont("AtariSmall.ttf", 20),
 
 	traps = {
 		{"Repel", 545, 21, 630, 50, {230, 230, 230}, function(self) self:trap1() end,1},
