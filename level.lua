@@ -1,5 +1,7 @@
 
 Level = {
+	size_h = 480,
+	size_w = 640,
     -- Size in square
     height = nil,
     width = nil,
@@ -23,7 +25,7 @@ function Level:drawForest()
 	--local tree_sprite = love.graphics.newImage("sprites/tree.png")
 	local tree_sprite = love.graphics.newImage("sprites/forest.png")
 --	tree_sprite = love.Sprite.new("tree.png", 20, 20, VRAM)
-	for x = 0, (self.width-1), 1 do
+	for x = 0, (self.size_w/self.sprite_size), 1 do
 		for y = 0, (self.height-1), 1 do
 			love.graphics.draw(tree_sprite, x*self.sprite_size, y*self.sprite_size)
 --			tree_sprite:drawFrame(ecran, 0+x, 0+y, 1)
@@ -99,7 +101,7 @@ function Level:drawRoad()
 	end
 	--Road 2
 	if self.numEntrances >= 2 then
-		for x = (self.width-1-self.forestSize), (self.width-1), 1 do
+		for x = (self.width-1-self.forestSize), (self.size_w/self.sprite_size-1), 1 do
 			local tmp_size = math.floor((self.height-self.roadSize)/2)
 			for y = tmp_size, tmp_size+self.roadSize,1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
@@ -263,7 +265,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    if x < 1 or x > self.width-1 or y < 1 or x > self.height-1 then
+    if x < 1 or x > self.width-1 or y < 1 or y > self.height-1 then
         return true
     end
 
