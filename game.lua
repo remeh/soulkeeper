@@ -36,6 +36,9 @@ Game = {
 }
 
 function Game:createdLevel(difficult)
+	self.level.persons = {}
+	self.level.trap = {}
+	self.point = 0
 	self.level = Level.new(30,30,16,difficult)
 end
 
@@ -56,7 +59,7 @@ function Game:update(delta)
     -- call the switch
 	if self.paused == 0 then
 		switch[self.state](delta)
-		if self.started == 1 then
+		if self.started == 1 and self.state ~= GameState.GAME_OVER then
 			self.point = self.point + delta
 		end
 	end
@@ -139,6 +142,7 @@ function Game:updateGameScreen(delta)
 end
 
 function Game:updateGameOver(delta)
+	self.menuGameOver:update(delta)
 end
 
 function Game:mousereleasedMainMenu(x, y, button)
@@ -151,6 +155,7 @@ function Game:mousereleasedGameScreen(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
+	self.menuGameOver:mousereleased(x,y,button)
 end
 
 -- Constructor
