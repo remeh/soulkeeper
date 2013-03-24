@@ -36,6 +36,12 @@ Indian = {
         end
     end,
 
+	action = function(self, person)
+		if person.class == "Tourist" then
+			game.level:removePerson(self)
+		end
+	end,
+
     -- implementation of Actor
     update = function(self, delta)
         -- move in level

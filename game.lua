@@ -10,7 +10,6 @@ require "gameplay"
 -- The main game method which will contains
 -- the different states.
 Game = {
-    wave = 0,
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
@@ -19,8 +18,10 @@ Game = {
     minimenu = Minimenu.new(),
     menu = Menu.new(),
     -- background music
---    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
     gameplay = Gameplay.new(),
+    -- amount of souls collected to create a totem.
+    soulCollected = 20,
 
     actorDrawables = ActorDrawables,
     piegeDrawables = PiegeDrawables,
@@ -97,7 +98,7 @@ function Game:keypressedGameOver(key)
 end
 
 function Game:mousereleased(x, y, button)
-	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+	--print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
     local switch = {
         [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
         [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,
@@ -155,9 +156,9 @@ function Game.new()
     math.randomseed(os.time())
 
     -- Launches the music
---    game.backgroundMusic:setLooping(true)
---    game.backgroundMusic:setVolume(0.7)
---    game.backgroundMusic:play()
+    game.backgroundMusic:setLooping(true)
+    game.backgroundMusic:setVolume(1.0) 
+    game.backgroundMusic:play()
 
     return game
 end

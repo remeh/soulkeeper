@@ -33,6 +33,16 @@ function Level:drawForest()
 	end
 end
 
+function Level:getNumTypePerson(typeName)
+	local num = 0
+    for i, person in ipairs(self.persons) do
+		if person.class == typeName then
+			num = num + 1
+		end
+    end
+	return num
+end
+
 function Level:drawCamp()
 	local x = 0
 	local y = 0
@@ -79,7 +89,7 @@ function Level:findRoad()
             x = x + delta
         end
 
-        print("test on " .. x .. ":" .. y)
+        --print("test on " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }
@@ -212,23 +222,11 @@ function Level:addTrap(trap)
 			break
 		end
 
-		if person.class=="Soul" and trap:contains(person) then
+		if person.class=="Indian" and trap:contains(person) then
 			table.insert(selectedPersons,person)
 		end
 	end
-	if table.getn(selectedPersons) == trap.soulNeeded then
-		-- They have enouth person in the trap zone
-		for _,person in ipairs(selectedPersons) do
-			-- For all personn to remove
-			for k,v in ipairs(self.persons) do
-				if v == person then
-					print("delete")
-					-- delete the selected person of the game
-					table.remove(self.persons,k)
-					break -- TODO Check if break stop only once loop
-				end
-			end
-		end
+	if table.getn(selectedPersons) == 1 then
 		-- Add the trap
 		table.insert(self.traps,trap)
 		return true

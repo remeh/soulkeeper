@@ -3,7 +3,7 @@ require "utils"
 Repulse = {
     class = "repulse",
     strength = 4,
-    soulNeeded = 3,
+    soulNeeded = 4,
     area = 2,
     cooldown = 2,
     walk_on = true,

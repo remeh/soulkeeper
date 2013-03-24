@@ -4,11 +4,11 @@
 
 Soul = {
     class = "Soul",
-    health = 1000,
+    health = 20,
     CHANCE_TO_WALK = 8,
 
     update = function(self, delta)
-        self.health = self.health - 1
+        self.health = self.health - 1*delta
         if self.health <= 0 then
             game.level:removePerson(self)
         end

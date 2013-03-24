@@ -33,14 +33,17 @@ end
 function PiegeManager:mousereleased(x, y, button)
     if button == 'l' then
 		local caseX, caseY = Game.level:getCase(x), Game.level:getCase(y)
-		if (Game.level.zone[caseY+1][caseX+1] == 1 and self.currentPiege ~= nil) then
-			self.currentPiege.posX=caseX
-			self.currentPiege.posY=caseY
-			if	Game.level:addTrap(self.currentPiege) then
-				Game.level.zone[caseY+1][caseX+1] = 2
-				self.currentPiege = nil
-			end
-		end
+        if self.currentPiege ~= nil and game.soulCollected >= self.currentPiege.soulNeeded then
+            if (Game.level.zone[caseY+1][caseX+1] == 1 and self.currentPiege ~= nil) then
+                self.currentPiege.posX=caseX
+                self.currentPiege.posY=caseY
+                if	Game.level:addTrap(self.currentPiege) then
+                    game.soulCollected = game.soulCollected - self.currentPiege.soulNeeded
+                    Game.level.zone[caseY+1][caseX+1] = 2
+                    self.currentPiege = nil
+                end
+            end
+        end
     end
 end
 -- Draws a trap and its area
