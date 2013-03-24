@@ -22,5 +22,6 @@ Totem = {
 
         -- removes the tourist
         game.level:removePerson(actor)
+	game.wave = game.wave - 1
     end
 }
