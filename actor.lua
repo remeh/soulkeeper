@@ -8,7 +8,7 @@ require "utils"
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
     ["Soul"] = love.graphics.newImage("sprites/ghost.png"),
-    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png"),
+    ["Tourist"] = love.graphics.newImage("sprites/tourist.png"),
     ["Dead"] = love.graphics.newImage("sprites/dead.png"),
 }
 

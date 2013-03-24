@@ -78,7 +78,7 @@ function Minimenu:draw()
 	love.graphics.draw(self.ghostImage,610,100)
 	love.graphics.draw(self.ghostImage,610,137)
 	love.graphics.draw(self.ghostImage,508,304)
-	love.graphics.draw(self.touristImage,508,272)
+	love.graphics.draw(self.touristImage,508,275)
 end
 
 function Minimenu:update(delta)
