@@ -38,7 +38,6 @@ Indian = {
 
 	action = function(self, person)
 		if person.class == "Tourist" then
-			print("Je suis tuer !!")
 			game.level:removePerson(self)
 		end
 	end,
