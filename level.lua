@@ -264,7 +264,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    if x < 1 or x > self.width-1 or y < 1 or x > self.height-1 then
+    if x < 1 or x > self.width-1 or y < 1 or y > self.height-1 then
         return true
     end
 

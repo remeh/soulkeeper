@@ -13,7 +13,7 @@ Game = {
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 30, 16, 3),
+    level = Level.new(30, 30, 16, 1),
     -- the menu
     minimenu = Minimenu.new(),
     menu = Menu.new(),
@@ -30,6 +30,10 @@ Game = {
 
 	point = 0,
 }
+
+function Game:createdLevel(difficult)
+	self.level = Level.new(30,30,16,difficult)
+end
 
 function Game:switchPause()
 	if self.paused == 1 then
