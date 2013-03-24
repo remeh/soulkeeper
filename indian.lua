@@ -41,8 +41,6 @@ Indian = {
         -- move in level
         self:move(delta)
         -- 
-        self:forceTrapMovement()
-        -- 
         entityTouching = game.level.touches(self)
     end
 }
