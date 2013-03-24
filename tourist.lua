@@ -14,8 +14,11 @@ Tourist = {
 
         touchingObjects = game.level:whatIsTouching(self)
         for i, value in ipairs(touchingObjects) do
+			print(value.class .. " is touch by " .. self.class)
             if value.action ~= nil then
                 value:action(self)
+			else
+				print(value.class .. " has no action")
             end 
         end
     end,
