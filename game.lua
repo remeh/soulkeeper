@@ -10,7 +10,7 @@ require "gameplay"
 -- The main game method which will contains
 -- the different states.
 Game = {
-    wave = 1,
+    wave = 0,
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
