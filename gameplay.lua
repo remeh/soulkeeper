@@ -23,6 +23,7 @@ function Gameplay:update(delta)
 	if game.level:getNumTypePerson("Indian") == 0 then
 		--GAME OVER !!!
 		print("GAME OVER !!")
+		game.started = 0
 		game.state = GameState.GAME_OVER
 	end
 end
