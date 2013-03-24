@@ -196,12 +196,12 @@ function Level:draw()
 	end
 
 	for _,trap in ipairs(self.traps) do
-		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
+--		love.graphics.draw(PiegeDrawables[trap.class],trap.posX*self.sprite_size,trap.posY*self.sprite_size)
+		Game.piegeManager:drawArea(trap, trap.posX*self.sprite_size, trap.posY*self.sprite_size)
 	end
 end
 
 function Level:addTrap(trap)
-	-- TODO Verifier que le piege est dans la zone constructible
 	--
 	--
 	--

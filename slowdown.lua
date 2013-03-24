@@ -7,6 +7,6 @@ Slowdown = {
     walk_on = false,
 
     action = function(self, actor)
-    	self.speed = 1
+		actor.timeToUpdate = 1
     end
 }
