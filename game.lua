@@ -37,7 +37,7 @@ Game = {
 
 function Game:createdLevel(difficult)
 	self.level.persons = {}
-	self.level.trap = {}
+	self.level.traps = {}
 	self.point = 0
 	self.level = Level.new(30,30,16,difficult)
 end
@@ -73,7 +73,10 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
-
+    if self.paused == 1 then
+	love.graphics.setFont(Menu.fonts[3])
+	love.graphics.print("Pause", 150, 185)
+    end
 end
 
 function Game:keypressed(key, unicode)
