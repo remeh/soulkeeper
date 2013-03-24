@@ -52,6 +52,7 @@ function Minimenu:draw()
 			love.graphics.print(item[8], item[2]+80, item[3])
 		end
 	end
+	love.graphics.print("Nxt wave: " .. game.gameplay:timeToNextWave(), 506, 243)
 	love.graphics.print(game.wave, 590, 272)
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.setColor(255,255,255)
