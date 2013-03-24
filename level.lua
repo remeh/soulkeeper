@@ -245,15 +245,18 @@ function Level:removePerson(person)
     end
 end
 
-function Level:addPerson(person)
+function Level:addPerson(person, first)
 	-- Add person
-	table.insert(self.persons,person)
+    if first == nil then
+        table.insert(self.persons,person)
+    else
+        table.insert(self.persons, 1, person)
+    end
 end
 
 function Level:addPersonRandomly(person)
     local x = math.random(0,self.width-1)
     local y = math.random(0,self.height-1)
-
 
     if not self:isBlocking(x,y) then
         person.posX = x

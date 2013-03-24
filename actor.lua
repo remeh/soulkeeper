@@ -9,7 +9,8 @@ require "utils"
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
     ["Soul"] = love.graphics.newImage("sprites/ghost.png"),
-    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png")
+    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png"),
+    ["Dead"] = love.graphics.newImage("sprites/dead.png"),
 }
 
 -- ---
@@ -102,7 +103,7 @@ function Actor.new(actorType)
         -- special case for Tourists
         if actorType.class == "Tourist" then
             actor.afraid = deepcopy(actorType.afraid)
-        elseif actorType.class == "Soul" then
+        elseif actorType.class == "Soul" or actorType.class == "Dead" then
             actor.health = deepcopy(actorType.health)
         end
         actor.action = deepcopy(actorType.action)
