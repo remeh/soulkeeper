@@ -53,7 +53,7 @@ function Minimenu:draw()
 		end
 	end
 	love.graphics.print("Nxt wave: " .. game.gameplay:timeToNextWave(), 506, 243)
-	love.graphics.print(game.wave, 590, 272)
+	love.graphics.print(game.level:getNumTypePerson("Tourist"), 590, 272)
 	love.graphics.print(math.floor(game.point), 510, 328)
 	love.graphics.print("Souls: " ..game.soulCollected, 510, 300)
     

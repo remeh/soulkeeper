@@ -33,6 +33,16 @@ function Level:drawForest()
 	end
 end
 
+function Level:getNumTypePerson(typeName)
+	local num = 0
+    for i, person in ipairs(self.persons) do
+		if person.class == typeName then
+			num = num + 1
+		end
+    end
+	return num
+end
+
 function Level:drawCamp()
 	local x = 0
 	local y = 0
