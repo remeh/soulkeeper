@@ -210,10 +210,6 @@ function Level:addTrap(trap)
 			table.insert(selectedPersons,person)
 		end
 	end
-	print("SP "..table.getn(selectedPersons).." SN "..trap.soulNeeded)
-	for _,person in ipairs(selectedPersons) do
-		print("selected "..person.posX.." ,"..person.posY)
-	end
 	if table.getn(selectedPersons) == trap.soulNeeded then
 		-- They have enouth person in the trap zone
 		for _,person in ipairs(selectedPersons) do
@@ -254,7 +250,6 @@ function Level:addPersonRandomly(person)
     local x = math.random(0,self.width-1)
     local y = math.random(0,self.height-1)
 
-    print("x " .. x .. " y " .. y)
 
     if not self:isBlocking(x,y) then
         person.posX = x
