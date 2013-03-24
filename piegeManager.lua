@@ -18,8 +18,16 @@ PiegeManager = {
 
 	drawPiegeArea = function(self)
 		if self.currentPiege ~= nil then
-			local mouseX, mouseY = love.mouse.getX(), love.mouse.getY()
-			love.graphics.draw(game.piegeDrawables[self.currentPiege.class], mouseX,mouseY )
+			local mouseX, mouseY, sp = love.mouse.getX(), love.mouse.getY(),game.level.sprite_size
+			for i = (mouseX - self.currentPiege.area*sp + sp), (mouseX +self.currentPiege.area*sp -sp),sp do
+				for j = (mouseY - self.currentPiege.area*sp + sp), (mouseY +self.currentPiege.area*sp -sp),sp do
+					if (i == mouseX and j == mouseY) then
+						love.graphics.draw(game.piegeDrawables[self.currentPiege.class], i,j)
+					else
+						love.graphics.draw(game.piegeDrawables["zonepiege"], i,j)
+					end
+				end
+			end
 		end	
 	end
 }
