@@ -19,6 +19,12 @@ function Gameplay:update(delta)
 	for k,person in ipairs(game.level.persons) do
         person:update(delta)
 	end
+
+	if game.level:getNumTypePerson("Indian") == 0 then
+		--GAME OVER !!!
+		print("GAME OVER !!")
+		game.state = GameState.GAME_OVER
+	end
 end
 
 function Gameplay:timeToNextWave()

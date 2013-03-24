@@ -6,6 +6,7 @@ require "level"
 require "menu"
 require "consts"
 require "gameplay"
+require "menuGameOver"
 
 -- The main game method which will contains
 -- the different states.
@@ -17,6 +18,7 @@ Game = {
     -- the menu
     minimenu = Minimenu.new(),
     menu = Menu.new(),
+	menuGameOver = MenuGameOver.new(),
     -- background music
 --    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
     gameplay = Gameplay.new(),
@@ -118,7 +120,7 @@ function Game:levelDraw()
 end
 
 function Game:gameOverDraw()
-    -- TODO
+	self.menuGameOver:draw()
 end
 
 function Game:updateMainMenu(delta)
