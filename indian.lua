@@ -38,6 +38,10 @@ Indian = {
 
 	action = function(self, person)
 		if person.class == "Tourist" then
+            dead = Actor.new(Dead)
+            dead.posX = person.posX
+            dead.posY = person.posY
+            game.level:addPerson(dead, 1) 
 			game.level:removePerson(self)
 		end
 	end,

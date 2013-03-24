@@ -6,10 +6,12 @@ require "level"
 require "menu"
 require "consts"
 require "gameplay"
+require "menuGameOver"
 
 -- The main game method which will contains
 -- the different states.
 Game = {
+	alpha = love.graphics.newImage("sprites/screen_alpha.png"),
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
@@ -17,8 +19,9 @@ Game = {
     -- the menu
     minimenu = Minimenu.new(),
     menu = Menu.new(),
+	menuGameOver = MenuGameOver.new(),
     -- background music
-    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.ogg"),
     gameplay = Gameplay.new(),
     -- amount of souls collected to create a totem.
     soulCollected = 20,
@@ -34,6 +37,9 @@ Game = {
 }
 
 function Game:createdLevel(difficult)
+	self.level.persons = {}
+	self.level.traps = {}
+	self.point = 0
 	self.level = Level.new(30,30,16,difficult)
 end
 
@@ -54,7 +60,7 @@ function Game:update(delta)
     -- call the switch
 	if self.paused == 0 then
 		switch[self.state](delta)
-		if self.started == 1 then
+		if self.started == 1 and self.state ~= GameState.GAME_OVER then
 			self.point = self.point + delta
 		end
 	end
@@ -68,7 +74,11 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
-
+    if self.paused == 1 then
+		love.graphics.draw(self.alpha)
+		love.graphics.setFont(Menu.fonts[3])
+		love.graphics.print("Pause", 150, 185)
+    end
 end
 
 function Game:keypressed(key, unicode)
@@ -82,13 +92,17 @@ function Game:keypressed(key, unicode)
 end
 
 function Game:keypressedMainMenu(key)
-
+    if key == 'escape' then
+        love.event.quit()
+    end
 end
 
 function Game:keypressedGameScreen(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
+    elseif key == 'escape' then
+        game:switchPause()
 	elseif key == 't' then
 		piegeManager.changePiege(piegeManager, Totem)
     end
@@ -98,7 +112,7 @@ function Game:keypressedGameOver(key)
 end
 
 function Game:mousereleased(x, y, button)
-	--print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
     local switch = {
         [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
         [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,
@@ -118,7 +132,7 @@ function Game:levelDraw()
 end
 
 function Game:gameOverDraw()
-    -- TODO
+	self.menuGameOver:draw()
 end
 
 function Game:updateMainMenu(delta)
@@ -133,6 +147,7 @@ function Game:updateGameScreen(delta)
 end
 
 function Game:updateGameOver(delta)
+	self.menuGameOver:update(delta)
 end
 
 function Game:mousereleasedMainMenu(x, y, button)
@@ -145,6 +160,7 @@ function Game:mousereleasedGameScreen(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
+	self.menuGameOver:mousereleased(x,y,button)
 end
 
 -- Constructor
@@ -159,6 +175,6 @@ function Game.new()
     game.backgroundMusic:setLooping(true)
     game.backgroundMusic:setVolume(1.0) 
     game.backgroundMusic:play()
-
+    
     return game
 end

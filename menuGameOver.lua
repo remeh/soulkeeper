@@ -1,9 +1,11 @@
-Menu = {
+MenuGameOver = {
+	background = love.graphics.newImage("sprites/gameover.png"),
 	fonts = {
 		love.graphics.newFont("AtariSmall.ttf", 36),
 		love.graphics.newFont("AtariSmall.ttf", 24),
 		love.graphics.newFont("AtariSmall.ttf", 64),
 	},
+
 
 	menu_items = {
 		{"Easy", 490, 180, 550, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
@@ -15,29 +17,34 @@ Menu = {
 	static_items = {
 		{"Soul Keeper", 63, 185, 3, { 0, 0, 0}},
 		{"New game", 450, 140, 1, { 255, 255, 255}},
+		{"Game Over", 100, 50, 3, {0, 0, 0}},
+		{"You have lost your soul", 100, 120, 2, {0, 0, 0}},
+		{"Score : " , 100, 150, 1 , {255, 255, 255}},
 	},
 }
 
-function Menu:newGame(difficult)
+function MenuGameOver:newGame(difficult)
 --	print("NewGame")
 	game:createdLevel(difficult)
 	game.started = 1
 	game.state = GameState.GAME_SCREEN
 end
 
-function Menu:about()
+function MenuGameOver:about()
 	print("About")
 end
 
-function Menu:quit()
+function MenuGameOver:quit()
 	love.event.quit()
 end
 
-function Menu:draw()
+function MenuGameOver:draw()
 	-- Draw a background
 	game.level:draw()
 
-	-- Draw the menu
+	love.graphics.draw(self.background)
+
+	-- Draw the MenuGameOver
 	for k,item in ipairs(self.menu_items) do
 		love.graphics.setFont(self.fonts[item[6]])
 		love.graphics.setColor(item[7])
@@ -49,11 +56,15 @@ function Menu:draw()
 		love.graphics.setColor(item[5])
 		love.graphics.print(item[1], item[2], item[3])
 	end
+	-- Draw the score
+	love.graphics.setFont(self.fonts[1])
+	love.graphics.setColor(255,255,255)
+	love.graphics.print(math.floor(game.point), 230 , 150)
 
 	love.graphics.setColor(255,255,255)
 end
 
-function Menu:update(delta)
+function MenuGameOver:update(delta)
 	local x = love.mouse.getX()
 	local y = love.mouse.getY()
 	for k,item in ipairs(self.menu_items) do
@@ -65,7 +76,7 @@ function Menu:update(delta)
 	end
 end
 
-function Menu:mousereleased(x, y, button)
+function MenuGameOver:mousereleased(x, y, button)
 	if button == 'l' then
 		for k,item in ipairs(self.menu_items) do
 			if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
@@ -77,8 +88,8 @@ end
 
 -- Constructor
 
-function Menu.new(height, width)
+function MenuGameOver.new()
 	--Create a new level
-	menu = Menu	
-	return menu
+	menuGameOver = MenuGameOver	
+	return menuGameOver
 end

@@ -54,14 +54,18 @@ Tourist = {
         local dx = 0
         local dy = 0
 
-        if direction == Direction.UP then
-            dy = -1    
-        elseif direction == Direction.RIGHT then
-            dx = 1 
-        elseif direction == Direction.DOWN then
-            dy = 1
-        else 
-            dx = -1
+        if self.forceMoveX == 0 and self.forceMoveY == 0 then
+            if direction == Direction.UP then
+                dy = -1    
+            elseif direction == Direction.RIGHT then
+                dx = 1 
+            elseif direction == Direction.DOWN then
+                dy = 1
+            else 
+                dx = -1
+            end
+        else
+            self:forceTrapMovement()
         end
 
         if not game.level:isBlocking(self.posX+dx, self.posY+dy) then

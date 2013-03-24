@@ -10,6 +10,7 @@ function love.load()
 end
 
 function love.run()
+    love.graphics.setCaption("Soul Keeper - GDP #4")
     -- The main function
     while game.state ~= GameState.QUITTING do
         -- Process events.
@@ -60,8 +61,9 @@ end
 
 function love.keypressed(key, unicode)
     -- quit on escape
-	if key == 'escape' then
-        love.event.quit()
+    if key == 'f' then
+        -- FIXME Causes problem with the background
+        -- love.graphics.toggleFullscreen()
 	else
 		game:keypressed(key, unicode)
 	end

@@ -4,12 +4,12 @@ require "tourist"
 require "utils"
 
 --
---
 
 ActorDrawables = {
     ["Indian"] = love.graphics.newImage("sprites/indian.png"),
     ["Soul"] = love.graphics.newImage("sprites/ghost.png"),
-    ["Tourist"] = love.graphics.newImage("sprites/tourist/tourist1/Tourist1_face_immobile.png")
+    ["Tourist"] = love.graphics.newImage("sprites/tourist.png"),
+    ["Dead"] = love.graphics.newImage("sprites/dead.png"),
 }
 
 -- ---
@@ -49,6 +49,7 @@ Actor = {
         local dy = 0
         if self.forceMoveX ~= 0 then
             dx = self.forceMoveX/self.forceMoveX
+            self.forceMoveX = self.forceMoveX - dx
         end
         if not game.level:isBlocking(self.posX+dx, self.posY) then
             self.posX = self.posX + dx 
@@ -56,6 +57,7 @@ Actor = {
 
         if self.forceMoveY ~= 0 then
             dy = self.forceMoveY/self.forceMoveY
+            self.forceMoveY = self.forceMoveY - dy
         end
         if not game.level:isBlocking(self.posX, self.posY+dy) then
             self.posY = self.posY + dy
@@ -105,7 +107,7 @@ function Actor.new(actorType)
 			actor.timeCaged = deepcopy(actorType.timeCaged)
             actor.afraid = deepcopy(actorType.afraid)
 			actor.cage = actorType.cage
-        elseif actorType.class == "Soul" then
+        elseif actorType.class == "Soul" or actorType.class == "Dead" then
             actor.health = deepcopy(actorType.health)
         end
         actor.action = deepcopy(actorType.action)

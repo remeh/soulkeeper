@@ -1,7 +1,7 @@
 Cage = {
 	class = "cage",
 	strength = 100,
-	soulNeeded = 1,
+	soulNeeded = 5,
 	area = 1,
 	cooldown = 2,
 	walk_on = true,

@@ -13,8 +13,7 @@ PiegeDrawables ={
 	["cage"] = love.graphics.newImage("sprites/cage_empty.png"),
 	["cage_full"] = love.graphics.newImage("sprites/cage_full.png"),
 	["piege"] = love.graphics.newImage("sprites/NotHere.png"),
-	["zonepiege"] = love.graphics.newImage("sprites/OkHere.png")
-	
+	["zonepiege"] = love.graphics.newImage("sprites/OkHere.png"),
 }
 
 Piege = {

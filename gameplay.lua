@@ -19,6 +19,13 @@ function Gameplay:update(delta)
 	for k,person in ipairs(game.level.persons) do
         person:update(delta)
 	end
+
+	if game.level:getNumTypePerson("Indian") == 0 then
+		--GAME OVER !!!
+		print("GAME OVER !!")
+		game.started = 0
+		game.state = GameState.GAME_OVER
+	end
 end
 
 function Gameplay:timeToNextWave()
@@ -37,11 +44,9 @@ end
 function Gameplay:newWave()
     -- put tourists on the road
     local result = game.level:findRoad()
-    -- print("New tourist on : " .. result.findX .. ":" .. result.findY)
     tourist = Actor.new(Tourist)
     tourist.posX = result.findX
     tourist.posY = result.findY
-    -- print("x" .. tourist.posX .. " y " .. tourist.posY)
     game.level:addPerson(tourist)      
 end
 

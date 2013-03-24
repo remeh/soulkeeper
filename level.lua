@@ -254,15 +254,18 @@ function Level:removeTrap(trap)
     end
 end
 
-function Level:addPerson(person)
+function Level:addPerson(person, first)
 	-- Add person
-	table.insert(self.persons,person)
+    if first == nil then
+        table.insert(self.persons,person)
+    else
+        table.insert(self.persons, 1, person)
+    end
 end
 
 function Level:addPersonRandomly(person)
     local x = math.random(0,self.width-1)
     local y = math.random(0,self.height-1)
-
 
     if not self:isBlocking(x,y) then
         person.posX = x
@@ -356,9 +359,11 @@ function Level.new(height,width,sprite_size,numEntrances)
 	level:generateBackground()
 
     indiansPosition = {
-        { x = math.random(10,14), y = math.random(14,23) },
+        { x = 04, y = 20 },
         { x = 04, y = 07 },
-        { x = 20, y = 9 }
+        { x = 20, y = 09 },
+        { x = 24, y = 14 },
+        { x = 15, y = 09 },
     }
 
 	for i,value in ipairs(indiansPosition) do
