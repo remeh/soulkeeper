@@ -61,6 +61,8 @@ function Level:findRoad()
             x = math.random(0,1)
             if x == 1 then
                 x = self.width-1
+            else
+                x = 1
             end
 
             y = y + delta
@@ -69,11 +71,14 @@ function Level:findRoad()
             y = math.random(0,1)
             if y == 1 then
                 y = self.height-1
+            else
+                y = 1
             end
 
             x = x + delta
         end
 
+        print("test on " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }

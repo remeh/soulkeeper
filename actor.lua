@@ -100,6 +100,8 @@ function Actor.new(actorType)
         -- special case for Tourists
         if actorType.class == "Tourist" then
             actor.afraid = deepcopy(actorType.afraid)
+        elseif actorType.class == "Soul" then
+            actor.health = deepcopy(actorType.health)
         end
     end
 
