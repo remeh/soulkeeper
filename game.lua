@@ -139,6 +139,7 @@ function Game:updateGameScreen(delta)
 end
 
 function Game:updateGameOver(delta)
+	self.menuGameOver:update(delta)
 end
 
 function Game:mousereleasedMainMenu(x, y, button)
@@ -151,6 +152,7 @@ function Game:mousereleasedGameScreen(x, y, button)
 end
 
 function Game:mousereleasedGameOver(x, y, button)
+	self.menuGameOver:mousereleased(x,y,button)
 end
 
 -- Constructor
