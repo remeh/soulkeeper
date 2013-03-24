@@ -10,10 +10,11 @@ require "gameplay"
 -- The main game method which will contains
 -- the different states.
 Game = {
+    wave = 1,
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
-    level = Level.new(30, 30, 16, 3),
+    level = Level.new(30, 30, 16, 1),
     -- the menu
     minimenu = Minimenu.new(),
     menu = Menu.new(),
@@ -26,9 +27,14 @@ Game = {
 	--init piegeManager
 	piegeManager = PiegeManager.new(), 
 	paused = 0,
+	started = 0,
 
 	point = 0,
 }
+
+function Game:createdLevel(difficult)
+	self.level = Level.new(30,30,16,difficult)
+end
 
 function Game:switchPause()
 	if self.paused == 1 then
@@ -47,7 +53,9 @@ function Game:update(delta)
     -- call the switch
 	if self.paused == 0 then
 		switch[self.state](delta)
-		self.point = self.point + delta
+		if self.started == 1 then
+			self.point = self.point + delta
+		end
 	end
 end
 
@@ -141,7 +149,7 @@ end
 -- Constructor
 function Game.new()
     local game = Game
-    game.state = GameState.GAME_SCREEN
+    game.state = GameState.MAIN_MENU
 
     --
     math.randomseed(os.time())

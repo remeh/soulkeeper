@@ -1,5 +1,7 @@
 
 Level = {
+	size_h = 480,
+	size_w = 640,
     -- Size in square
     height = nil,
     width = nil,
@@ -8,10 +10,9 @@ Level = {
 	numEntrances = nil,
 	traps = {},
 	persons = {},
-
 	forestSize = 3,
 	roadSize = 4,
-
+	wave = 1,
 	canvas_Background = nil,
 
 	-- Walkable/buildable zone
@@ -24,7 +25,7 @@ function Level:drawForest()
 	--local tree_sprite = love.graphics.newImage("sprites/tree.png")
 	local tree_sprite = love.graphics.newImage("sprites/forest.png")
 --	tree_sprite = love.Sprite.new("tree.png", 20, 20, VRAM)
-	for x = 0, (self.width-1), 1 do
+	for x = 0, (self.size_w/self.sprite_size), 1 do
 		for y = 0, (self.height-1), 1 do
 			love.graphics.draw(tree_sprite, x*self.sprite_size, y*self.sprite_size)
 --			tree_sprite:drawFrame(ecran, 0+x, 0+y, 1)
@@ -61,6 +62,8 @@ function Level:findRoad()
             x = math.random(0,1)
             if x == 1 then
                 x = self.width-1
+            else
+                x = 1
             end
 
             y = y + delta
@@ -69,11 +72,14 @@ function Level:findRoad()
             y = math.random(0,1)
             if y == 1 then
                 y = self.height-1
+            else
+                y = 1
             end
 
             x = x + delta
         end
 
+        print("test on " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }
@@ -95,7 +101,7 @@ function Level:drawRoad()
 	end
 	--Road 2
 	if self.numEntrances >= 2 then
-		for x = (self.width-1-self.forestSize), (self.width-1), 1 do
+		for x = (self.width-1-self.forestSize), (self.size_w/self.sprite_size-1), 1 do
 			local tmp_size = math.floor((self.height-self.roadSize)/2)
 			for y = tmp_size, tmp_size+self.roadSize,1 do
 				love.graphics.draw(ground_sprite, x*self.sprite_size, y*self.sprite_size)
@@ -259,7 +265,7 @@ function Level:addPersonRandomly(person)
 end
 
 function Level:isBlocking(x, y)
-    if x < 1 or x > self.width-1 or y < 1 or x > self.height-1 then
+    if x < 1 or x > self.width-1 or y < 1 or y > self.height-1 then
         return true
     end
 

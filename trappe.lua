@@ -7,6 +7,9 @@ Trappe = {
     walk_on = true,
 
     action = function(self, actor)
-    	self.health = self.health - 100
+        -- TODO faire un truc montnrant qu'il est mort
+
+        -- removes the tourist
+        game.level:removePerson(actor)
     end
 }

@@ -1,17 +1,24 @@
 Menu = {
-    bigFont = love.graphics.newFont(36),
-    font = love.graphics.newFont(24),
+	fonts = {
+		love.graphics.newFont(36),
+		love.graphics.newFont(24),
+	},
 
 	items = {
-		{"New game", 200, 200, 390, 240, { 255, 255, 255}, function(self) self:newGame() end },
-		{"About", 230, 240, 340, 280, {255, 0, 255}, function(self) self:about() end },
-		{"Quit", 250, 280, 330, 320, {255, 255, 0}, function(self) self:quit() end},
+		{"New game", 200, 140, 390, 269, 1, { 255, 255, 255}, function(self) end },
+		{"Easy", 240, 180, 300, 209, 2, { 255, 255, 255}, function(self) self:newGame(1) end },
+		{"Medium", 240, 210, 340, 239, 2, { 255, 255, 255}, function(self) self:newGame(2) end },
+		{"Hard", 240, 240, 300, 269, 2, { 255, 255, 255}, function(self) self:newGame(4) end },
+		{"About", 200, 270, 340, 309, 1, {255, 0, 255}, function(self) self:about() end },
+		{"Quit", 200, 310, 330, 320, 1, {255, 255, 0}, function(self) self:quit() end},
 	},
 }
 
-function Menu:newGame()
-	print("NewGame")
-	game.state = GameState.GAME_SCREEN --TODO DEBUG
+function Menu:newGame(difficult)
+--	print("NewGame")
+	game:createdLevel(difficult)
+	game.started = 1
+	game.state = GameState.GAME_SCREEN
 end
 
 function Menu:about()
@@ -27,11 +34,11 @@ function Menu:draw()
 	game.level:draw()
 
 	-- Draw the menu
-	love.graphics.setFont(self.font);
+	love.graphics.setFont(self.fonts[2]);
 	love.graphics.print("Soul Keeper", 220, 10);
-	love.graphics.setFont(self.bigFont);
 	for k,item in ipairs(self.items) do
-		love.graphics.setColor(item[6])
+		love.graphics.setFont(self.fonts[item[6]])
+		love.graphics.setColor(item[7])
 		love.graphics.print(item[1], item[2], item[3])
 	end
 	love.graphics.setColor(255,255,255)
@@ -42,9 +49,9 @@ function Menu:update(delta)
 	local y = love.mouse.getY()
 	for k,item in ipairs(self.items) do
 		if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
-			self.items[k][6] = {0,0,0}
+			self.items[k][7] = {0,0,0}
 		else
-			self.items[k][6] = {255,255,255}
+			self.items[k][7] = {255,255,255}
 		end
 	end
 end
@@ -53,7 +60,7 @@ function Menu:mousereleased(x, y, button)
 	if button == 'l' then
 		for k,item in ipairs(self.items) do
 			if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
-				item[7](self)
+				item[8](self)
 			end
 		end
 	end
