@@ -84,13 +84,17 @@ function Game:keypressed(key, unicode)
 end
 
 function Game:keypressedMainMenu(key)
-
+    if key == 'escape' then
+        love.event.quit()
+    end
 end
 
 function Game:keypressedGameScreen(key)
     if key == 'a' then
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
+    elseif key == 'escape' then
+        game:switchPause()
 	elseif key == 't' then
 		piegeManager.changePiege(piegeManager, Totem)
     end
