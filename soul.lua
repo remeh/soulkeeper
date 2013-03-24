@@ -4,7 +4,7 @@
 
 Soul = {
     class = "Soul",
-    health = 20,
+    health = 15,
     CHANCE_TO_WALK = 8,
 
     update = function(self, delta)

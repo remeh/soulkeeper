@@ -1,3 +1,6 @@
+require "actor"
+require "dead"
+
 Trappe = {
     class = "trappe",
     strength = 100,
@@ -7,8 +10,6 @@ Trappe = {
     walk_on = true,
 
     action = function(self, actor)
-        -- TODO faire un truc montnrant qu'il est mort
-
         -- removes the tourist
         game.level:removePerson(actor)
     end

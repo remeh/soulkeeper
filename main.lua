@@ -61,7 +61,7 @@ end
 function love.keypressed(key, unicode)
     -- quit on escape
 	if key == 'escape' then
-        love.event.quit()
+        game:switchPause()
 	else
 		game:keypressed(key, unicode)
 	end
