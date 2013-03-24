@@ -210,10 +210,6 @@ function Level:addTrap(trap)
 			table.insert(selectedPersons,person)
 		end
 	end
-	print("SP "..table.getn(selectedPersons).." SN "..trap.soulNeeded)
-	for _,person in ipairs(selectedPersons) do
-		print("selected "..person.posX.." ,"..person.posY)
-	end
 	if table.getn(selectedPersons) == trap.soulNeeded then
 		-- They have enouth person in the trap zone
 		for _,person in ipairs(selectedPersons) do
@@ -236,6 +232,15 @@ function Level:addTrap(trap)
 	end
 end
 
+function Level:removePerson(person)
+    for i, value in ipairs(self.persons) do
+        if value == person then
+            table.remove(self.persons, i) 
+            break
+        end
+    end
+end
+
 function Level:addPerson(person)
 	-- Add person
 	table.insert(self.persons,person)
@@ -245,7 +250,6 @@ function Level:addPersonRandomly(person)
     local x = math.random(0,self.width-1)
     local y = math.random(0,self.height-1)
 
-    print("x " .. x .. " y " .. y)
 
     if not self:isBlocking(x,y) then
         person.posX = x
@@ -304,16 +308,23 @@ end
 -- Returns what is touches this actor. 
 function Level:whatIsTouching(actor)
     local results = {}
+
+    -- contacts between actors
     for i, value in ipairs(self.persons) do
-        if value:contains(actor) then
-            table.insert(results, value)
+        if value ~= actor and value.class ~= actor.class then
+            if value:contains(actor) then
+                table.insert(results, value)
+            end
         end
     end
+
+    -- contacts between actors and traps
     for i, value in ipairs(self.traps) do
-        if value:contains(actor) then
+        if value:contains(actor) and value.class ~= actor.class  then
             table.insert(results, value)
         end
     end
+
     return results
 end
 

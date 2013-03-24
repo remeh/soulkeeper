@@ -1,12 +1,12 @@
 Trappe = {
     class = "trappe",
     strength = 100,
-    soulNeeded = 1,
-    effect = 1,
+    soulNeeded = 2,
+    area = 2,
     couldown = 2,
     walk_on = true,
 
-    actorAction = function(self, actor)
+    action = function(self, actor)
     	self.health = self.health - 100
     end
 }
