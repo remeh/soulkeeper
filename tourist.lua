@@ -4,11 +4,16 @@ Tourist = {
     class = "Tourist",
 
     afraid = false,
+	
+	timeCaged = -1,
+	cage = nil,
 
     update = function(self, delta)
 		self.lastUpdate = self.lastUpdate + delta
 		if self.lastUpdate >= self.timeToUpdate then
-            self:move(delta)
+			if not self.isBlocked then
+	            self:move(delta)
+			end
             self.lastUpdate = self.lastUpdate - self.timeToUpdate
 		end
 
@@ -21,6 +26,24 @@ Tourist = {
 				--print(value.class .. " has no action")
             end 
         end
+		if self.timeCaged > 0 then
+			print("TC "..self.timeCaged)
+			self.timeCaged = self.timeCaged - 1*delta
+		elseif self.timeCaged <= 0 and self.timeCaged>-1 then
+			--creates the indian that will replace self
+			local indian = Actor.new(Indian)
+			indian.posX = self.posX
+			indian.posY = self.posY
+			-- adds it in the level
+
+			game.level:addPerson(indian)
+			game.point = game.point + 50
+			
+			-- resets cage
+			self.cage.class = "cage"
+			-- removes the tourist
+			game.level:removePerson(self)
+		end
     end,
 
     move = function(self, delta)

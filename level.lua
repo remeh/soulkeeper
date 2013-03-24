@@ -245,6 +245,15 @@ function Level:removePerson(person)
     end
 end
 
+function Level:removeTrap(trap)
+    for i, value in ipairs(self.traps) do
+        if value == trap then
+            table.remove(self.traps, i) 
+            break
+        end
+    end
+end
+
 function Level:addPerson(person)
 	-- Add person
 	table.insert(self.persons,person)
@@ -272,7 +281,9 @@ end
 
 function Level:update(delta_time)
 	for k,person in ipairs(self.persons) do
-		person:update(delta_time)
+		if person then
+			person:update(delta_time)
+		end
 	end
 end
 

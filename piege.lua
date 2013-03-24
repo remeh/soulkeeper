@@ -2,7 +2,7 @@ require "utils"
 require "totem"
 require "trappe"
 require "slowdown"
-
+require "cage"
 --
 
 PiegeDrawables ={
@@ -10,6 +10,8 @@ PiegeDrawables ={
 	["trappe"] = love.graphics.newImage("sprites/trappe.png"),
 	["slowdown"] = love.graphics.newImage("sprites/smoke.png"),
 	["totem"] = love.graphics.newImage("sprites/totem.png"),
+	["cage"] = love.graphics.newImage("sprites/cage_empty.png"),
+	["cage_full"] = love.graphics.newImage("sprites/cage_full.png"),
 	["piege"] = love.graphics.newImage("sprites/NotHere.png"),
 	["zonepiege"] = love.graphics.newImage("sprites/OkHere.png")
 	
@@ -65,6 +67,9 @@ function Piege.new(trappeType)
 		trappe.cooldown = deepcopy(trappeType.cooldown)
 		trappe.walk_on = deepcopy(trappeType.walk_on)
         trappe.action = deepcopy(trappeType.action)
+		if trappeType.class == "cage" then
+			trappe.actorCaged = trappeType.actorCaged --ref
+		end
 	end
 
 	return trappe

@@ -31,6 +31,7 @@ Actor = {
 	tourist_terror = 0, -- 	Know if the tourist is in terror
 
 	action = nil,
+	isBlocked = false,-- setting up wether the actor is able to move or not
 
     posX = 0,
     posY = 0,
@@ -101,7 +102,9 @@ function Actor.new(actorType)
         actor.move = deepcopy(actorType.move)
         -- special case for Tourists
         if actorType.class == "Tourist" then
+			actor.timeCaged = deepcopy(actorType.timeCaged)
             actor.afraid = deepcopy(actorType.afraid)
+			actor.cage = actorType.cage
         elseif actorType.class == "Soul" then
             actor.health = deepcopy(actorType.health)
         end

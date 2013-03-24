@@ -1,13 +1,13 @@
 Minimenu = {
 	ghostImage = love.graphics.newImage("sprites/ghost.png"),
     font = love.graphics.newFont(18),
-
+--TODO number on cage and kill
 	traps = {
-		{"Repel", 545, 21, 630, 50, {230, 230, 230}, function(self) self:trap1() end,1},
-		{"Totem", 545, 55, 630, 80, {230, 230, 230}, function(self) self:trap2() end,1},
-		{"Smoke", 545, 98, 630, 130, {230, 230, 230}, function(self) self:trap3() end,1},
+		{"Trap", 545, 21, 630, 50, {230, 230, 230}, function(self) self:trap1() end,Trappe.soulNeeded},
+		{"Totem", 545, 55, 630, 80, {230, 230, 230}, function(self) self:trap2() end,Totem.soulNeeded},
+		{"Smoke", 545, 98, 630, 130, {230, 230, 230}, function(self) self:trap3() end,Slowdown.soulNeeded},
 		{"Cage", 545, 136, 630, 160, {230, 230, 230}, function(self) self:trap4() end,1},
-		{"Kill", 545, 175, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
+		{"Repel", 545, 175, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
 		--{"    Pause", 510, 300, 615, 320, {230, 230, 230}, function(self) self:pause() end},
 		{"Tourists", 510, 272, 615, 280, {230, 230, 230}}
 	},
