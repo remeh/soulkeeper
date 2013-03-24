@@ -8,7 +8,7 @@ Level = {
 	numEntrances = nil,
 	traps = {},
 	persons = {},
-
+	wave = 1,
 	forestSize = 3,
 	roadSize = 4,
 
