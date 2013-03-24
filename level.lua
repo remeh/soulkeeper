@@ -79,7 +79,7 @@ function Level:findRoad()
             x = x + delta
         end
 
-        print("test on " .. x .. ":" .. y)
+        --print("test on " .. x .. ":" .. y)
         if not self:isBlocking(x,y) then
             find = true
             return { findX = x, findY = y }

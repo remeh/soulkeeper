@@ -30,6 +30,8 @@ Actor = {
 
 	tourist_terror = 0, -- 	Know if the tourist is in terror
 
+	action = nil,
+
     posX = 0,
     posY = 0,
 
@@ -103,6 +105,7 @@ function Actor.new(actorType)
         elseif actorType.class == "Soul" then
             actor.health = deepcopy(actorType.health)
         end
+        actor.action = deepcopy(actorType.action)
     end
 
     return actor
