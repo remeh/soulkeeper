@@ -18,16 +18,15 @@ Tourist = {
 		end
 
         touchingObjects = game.level:whatIsTouching(self)
-        for i, value in ipairs(touchingObjects) do
+		for i, value in ipairs(touchingObjects) do
 			--print(value.class .. " is touch by " .. self.class)
-            if value.action ~= nil then
-                value:action(self)
+			if value.action ~= nil then
+				value:action(self)
 			else
 				--print(value.class .. " has no action")
-            end 
-        end
+			end 
+		end
 		if self.timeCaged > 0 then
-			print("TC "..self.timeCaged)
 			self.timeCaged = self.timeCaged - 1*delta
 		elseif self.timeCaged <= 0 and self.timeCaged>-1 then
 			--creates the indian that will replace self

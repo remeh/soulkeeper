@@ -102,7 +102,12 @@ function Game:keypressedGameScreen(key)
         local soul = Actor.new(Soul)
         self.level:addPersonRandomly(soul)
     elseif key == 'escape' then
-        game:switchPause()
+        self:switchPause()
+	elseif key == 'q' and self.paused == 1 then
+		love.event.quit()
+	elseif key == 'o' and self.paused == 1 then
+		self:switchPause()
+		self.state = GameState.GAME_OVER
 	elseif key == 't' then
 		piegeManager.changePiege(piegeManager, Totem)
     end
@@ -112,7 +117,7 @@ function Game:keypressedGameOver(key)
 end
 
 function Game:mousereleased(x, y, button)
-	print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
+	--print("X : " .. x .. " Y : " .. y .. " BT : " .. button)
     local switch = {
         [GameState.MAIN_MENU] = function(x,y,button) self:mousereleasedMainMenu(x, y, button) end,
         [GameState.GAME_SCREEN] = function(x,y,button) self:mousereleasedGameScreen(x, y, button) end,

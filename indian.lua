@@ -37,7 +37,7 @@ Indian = {
     end,
 
 	action = function(self, person)
-		if person.class == "Tourist" then
+		if person.class == "Tourist" and not person.isBlocked then
             dead = Actor.new(Dead)
             dead.posX = person.posX
             dead.posY = person.posY

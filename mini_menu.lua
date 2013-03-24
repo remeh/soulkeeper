@@ -87,7 +87,9 @@ function Minimenu:mousereleased(x, y, button)
 	 if button == 'l' then
 	    	   for k, item in ipairs(self.traps) do
 		       if item[2] <= x and item[4] >= x and item[3] <= y and item[5] >= y then
+                if item[7] ~= nil then
 		       	  	  item[7](self)
+                end
 			end
 		end
 	end

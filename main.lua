@@ -63,7 +63,8 @@ function love.keypressed(key, unicode)
     -- quit on escape
     if key == 'f' then
         -- FIXME Causes problem with the background
-        -- love.graphics.toggleFullscreen()
+            love.graphics.toggleFullscreen()
+	    game.level:generateBackground()
 	else
 		game:keypressed(key, unicode)
 	end

@@ -16,6 +16,20 @@ Menu = {
 		{"Soul Keeper", 63, 185, 3, { 0, 0, 0}},
 		{"New game", 450, 140, 1, { 255, 255, 255}},
 	},
+
+	about_items = {
+		{"New game", 450, 140, 1, { 255, 255, 255}},
+		{"Soul Keeper", 63, 40, 3, { 0, 0, 0}},
+		{"Developed by :", 70, 100, 1, { 0, 0, 0}},
+		{"Emeric Caramanna", 90, 140, 2, { 255, 255, 255}},
+		{"Jean Coudon", 90, 160, 2, { 255, 255, 255}},
+		{"Youri Gicquel", 90, 180, 2, { 255, 255, 255}},
+		{"Thomas Martin", 90, 200, 2, { 255, 255, 255}},
+		{"Remy Mathieu", 90, 220, 2, { 255, 255, 255}},
+		{"Boris Sabatier", 90, 240, 2, { 255, 255, 255}},
+	},
+
+	about_enable = 0,
 }
 
 function Menu:newGame(difficult)
@@ -26,7 +40,7 @@ function Menu:newGame(difficult)
 end
 
 function Menu:about()
-	print("About")
+	self.about_enable = 1
 end
 
 function Menu:quit()
@@ -44,11 +58,20 @@ function Menu:draw()
 		love.graphics.print(item[1], item[2], item[3])
 	end
 
-	for k,item in ipairs(self.static_items) do
-		love.graphics.setFont(self.fonts[item[4]])
-		love.graphics.setColor(item[5])
-		love.graphics.print(item[1], item[2], item[3])
+	if self.about_enable == 1 then
+		for k,item in ipairs(self.about_items) do
+			love.graphics.setFont(self.fonts[item[4]])
+			love.graphics.setColor(item[5])
+			love.graphics.print(item[1], item[2], item[3])
+		end
+	else
+		for k,item in ipairs(self.static_items) do
+			love.graphics.setFont(self.fonts[item[4]])
+			love.graphics.setColor(item[5])
+			love.graphics.print(item[1], item[2], item[3])
+		end
 	end
+
 
 	love.graphics.setColor(255,255,255)
 end

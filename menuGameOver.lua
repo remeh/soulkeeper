@@ -21,6 +21,20 @@ MenuGameOver = {
 		{"You have lost your soul", 100, 120, 2, {0, 0, 0}},
 		{"Score : " , 100, 150, 1 , {255, 255, 255}},
 	},
+
+	about_items = {
+		{"New game", 450, 140, 1, { 255, 255, 255}},
+		{"Soul Keeper", 63, 40, 3, { 0, 0, 0}},
+		{"Developed by :", 70, 100, 1, { 0, 0, 0}},
+		{"Emeric Caramanna", 90, 140, 2, { 255, 255, 255}},
+		{"Jean Coudon", 90, 160, 2, { 255, 255, 255}},
+		{"Youri Gicquel", 90, 180, 2, { 255, 255, 255}},
+		{"Thomas Martin", 90, 200, 2, { 255, 255, 255}},
+		{"Remy Mathieu", 90, 220, 2, { 255, 255, 255}},
+		{"Boris Sabatier", 90, 240, 2, { 255, 255, 255}},
+	},
+
+	about_enable = 0,
 }
 
 function MenuGameOver:newGame(difficult)
@@ -31,7 +45,7 @@ function MenuGameOver:newGame(difficult)
 end
 
 function MenuGameOver:about()
-	print("About")
+	self.about_enable = 1
 end
 
 function MenuGameOver:quit()
@@ -51,15 +65,23 @@ function MenuGameOver:draw()
 		love.graphics.print(item[1], item[2], item[3])
 	end
 
-	for k,item in ipairs(self.static_items) do
-		love.graphics.setFont(self.fonts[item[4]])
-		love.graphics.setColor(item[5])
-		love.graphics.print(item[1], item[2], item[3])
+	if self.about_enable == 1 then
+		for k,item in ipairs(self.about_items) do
+			love.graphics.setFont(self.fonts[item[4]])
+			love.graphics.setColor(item[5])
+			love.graphics.print(item[1], item[2], item[3])
+		end
+	else
+		for k,item in ipairs(self.static_items) do
+			love.graphics.setFont(self.fonts[item[4]])
+			love.graphics.setColor(item[5])
+			love.graphics.print(item[1], item[2], item[3])
+		end
+		-- Draw the score
+		love.graphics.setFont(self.fonts[1])
+		love.graphics.setColor(255,255,255)
+		love.graphics.print(math.floor(game.point), 230 , 150)
 	end
-	-- Draw the score
-	love.graphics.setFont(self.fonts[1])
-	love.graphics.setColor(255,255,255)
-	love.graphics.print(math.floor(game.point), 230 , 150)
 
 	love.graphics.setColor(255,255,255)
 end
