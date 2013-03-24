@@ -6,7 +6,7 @@ Trappe = {
     couldown = 2,
     walk_on = true,
 
-    actorAction = function(self, actor)
+    action = function(self, actor)
     	self.health = self.health - 100
     end
 }
