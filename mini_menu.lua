@@ -4,16 +4,15 @@ Minimenu = {
 	font = love.graphics.newFont("AtariSmall.ttf", 14),
 
 	traps = {
-		{"Trap", 544, 22, 630, 50, {230, 230, 230}, function(self) self:trap1() end,3},
+		{"Trap", 544, 23, 630, 50, {230, 230, 230}, function(self) self:trap1() end,3},
 		{"Totem", 545, 60, 630, 80, {230, 230, 230}, function(self) self:trap2() end,5},
-		{"Smoke", 544, 99, 630, 130, {230, 230, 230}, function(self) self:trap3() end,4},
+		{"Smoke", 544, 100, 630, 130, {230, 230, 230}, function(self) self:trap3() end,4},
 		{"Cage", 544, 137, 630, 160, {230, 230, 230}, function(self) self:trap4() end,5},
---[[
         -- icons
-		{"", 495, 16, 527, 47, {230, 230, 230}, function(self) self:trap1() end,3},
-		{"", 495, 54, 527, 83, {230, 230, 230}, function(self) self:trap2() end,5},
-		{"", 495, 92, 527, 122, {230, 230, 230}, function(self) self:trap3() end,4},
-		{"", 495, 131, 527, 162, {230, 230, 230}, function(self) self:trap4() end,5},
+		{"", 495, 16, 527, 47, {230, 230, 230}, function(self) self:trap1() end},
+		{"", 495, 54, 527, 83, {230, 230, 230}, function(self) self:trap2() end},
+		{"", 495, 92, 527, 122, {230, 230, 230}, function(self) self:trap3() end},
+		{"", 495, 131, 527, 162, {230, 230, 230}, function(self) self:trap4() end},
 
 		--{"Kill", 544, 176, 630, 190, {230, 230, 230}, function(self) self:trap5() end,1},
 		--{"    Pause", 510, 300, 615, 320, {230, 230, 230}, function(self) self:pause() end}, ]]--
@@ -67,9 +66,9 @@ function Minimenu:draw()
 			love.graphics.print(item[8], item[2]+55, item[3])
 		end
 	end
-	love.graphics.print("Nxt wave " .. game.gameplay:timeToNextWave(), 506, 245)
+	love.graphics.print("Nxt wave " .. game.gameplay:timeToNextWave(), 507, 246)
 	love.graphics.print(game.level:getNumTypePerson("Tourist"), 591, 274)
-	love.graphics.print("Score: " .. math.floor(game.point), 505, 333)
+	love.graphics.print("Score: " .. math.floor(game.point), 506, 333)
 	love.graphics.print("Souls " ..game.soulCollected, 525, 304)
     
 	love.graphics.setColor(255,255,255)

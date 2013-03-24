@@ -21,7 +21,7 @@ Game = {
     menu = Menu.new(),
 	menuGameOver = MenuGameOver.new(),
     -- background music
---    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.mp3"),
+    backgroundMusic = love.audio.newSource("sounds/SoulKeeper.ogg"),
     gameplay = Gameplay.new(),
     -- amount of souls collected to create a totem.
     soulCollected = 20,
@@ -171,11 +171,10 @@ function Game.new()
     --
     math.randomseed(os.time())
 
---[[
     -- Launches the music
     game.backgroundMusic:setLooping(true)
     game.backgroundMusic:setVolume(1.0) 
     game.backgroundMusic:play()
-]]--
+    
     return game
 end
