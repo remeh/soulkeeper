@@ -11,8 +11,7 @@ PiegeDrawables ={
 	["slowdown"] = love.graphics.newImage("sprites/smoke.png"),
 	["totem"] = love.graphics.newImage("sprites/totem.png"),
 	["piege"] = love.graphics.newImage("sprites/NotHere.png"),
-	["zonepiege"] = love.graphics.newImage("sprites/OkHere.png")
-	
+	["zonepiege"] = love.graphics.newImage("sprites/OkHere.png"),
 }
 
 Piege = {

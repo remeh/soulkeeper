@@ -44,11 +44,9 @@ end
 function Gameplay:newWave()
     -- put tourists on the road
     local result = game.level:findRoad()
-    -- print("New tourist on : " .. result.findX .. ":" .. result.findY)
     tourist = Actor.new(Tourist)
     tourist.posX = result.findX
     tourist.posY = result.findY
-    -- print("x" .. tourist.posX .. " y " .. tourist.posY)
     game.level:addPerson(tourist)      
 end
 
