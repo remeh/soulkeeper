@@ -3,7 +3,7 @@ require "totem"
 require "repulse"
 require "trappe"
 require "slowdown"
-
+require "cage"
 
 PiegeManager = {
 	currentPiege = nil,
