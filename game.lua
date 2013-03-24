@@ -11,6 +11,7 @@ require "menuGameOver"
 -- The main game method which will contains
 -- the different states.
 Game = {
+	alpha = love.graphics.newImage("sprites/screen_alpha.png"),
     -- starting state
     state = GameState.MAIN_MENU,
     -- the level instance
@@ -74,8 +75,9 @@ function Game:draw()
     -- call the switch
     switch[self.state](delta)
     if self.paused == 1 then
-	love.graphics.setFont(Menu.fonts[3])
-	love.graphics.print("Pause", 150, 185)
+		love.graphics.draw(self.alpha)
+		love.graphics.setFont(Menu.fonts[3])
+		love.graphics.print("Pause", 150, 185)
     end
 end
 

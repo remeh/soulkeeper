@@ -1,5 +1,5 @@
 MenuGameOver = {
-	background = love.graphics.newImage("sprites/GameOver.png"),
+	background = love.graphics.newImage("sprites/gameover.png"),
 	fonts = {
 		love.graphics.newFont("AtariSmall.ttf", 36),
 		love.graphics.newFont("AtariSmall.ttf", 24),
@@ -42,7 +42,7 @@ function MenuGameOver:draw()
 	-- Draw a background
 	game.level:draw()
 
---	love.graphics.draw(self.background)
+	love.graphics.draw(self.background)
 
 	-- Draw the MenuGameOver
 	for k,item in ipairs(self.menu_items) do
