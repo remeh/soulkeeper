@@ -1,9 +1,9 @@
 Trappe = {
     class = "trappe",
     strength = 100,
-    soulNeeded = 2,
-    area = 3,
-    couldown = 2,
+    soulNeeded = 3,
+    area = 1,
+    cooldown = 2,
     walk_on = true,
 
     action = function(self, actor)

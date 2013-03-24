@@ -31,10 +31,12 @@ end
 
 function Minimenu:trap3()
 	 print("Smoke")
+	 piegeManager.changePiege(piegeManager, Slowdown)
 end
 
 function Minimenu:trap4()
 	 print("Cage")
+	 piegeManager.changePiege(piegeManager, Cage)
 end
 
 function Minimenu:trap5()
