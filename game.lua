@@ -73,7 +73,10 @@ function Game:draw()
     }
     -- call the switch
     switch[self.state](delta)
-
+    if self.paused == 1 then
+	love.graphics.setFont(Menu.fonts[3])
+	love.graphics.print("Pause", 150, 185)
+    end
 end
 
 function Game:keypressed(key, unicode)
