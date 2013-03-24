@@ -17,8 +17,9 @@ MenuGameOver = {
 	static_items = {
 		{"Soul Keeper", 63, 185, 3, { 0, 0, 0}},
 		{"New game", 450, 140, 1, { 255, 255, 255}},
-		{"Game Over", 200, 310, 1, {255, 255, 255}},
-		{"You have lost your soul", 200, 310, 1, {255, 255, 255}},
+		{"Game Over", 100, 50, 3, {0, 0, 0}},
+		{"You have lost your soul", 100, 120, 2, {0, 0, 0}},
+		{"Score : " , 100, 150, 1 , {255, 255, 255}},
 	},
 }
 
@@ -55,6 +56,10 @@ function MenuGameOver:draw()
 		love.graphics.setColor(item[5])
 		love.graphics.print(item[1], item[2], item[3])
 	end
+	-- Draw the score
+	love.graphics.setFont(self.fonts[1])
+	love.graphics.setColor(255,255,255)
+	love.graphics.print(math.floor(game.point), 230 , 150)
 
 	love.graphics.setColor(255,255,255)
 end
