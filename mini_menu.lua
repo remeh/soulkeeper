@@ -26,28 +26,20 @@ Minimenu = {
 MiniBack = love.graphics.newImage("sprites/menu_background.png")
 
 function Minimenu:trap1()
-	 print("Trappe")
 	 piegeManager.changePiege(piegeManager, Trappe)
 end
 
 function Minimenu:trap2()
-	 print("Totem")
 	 piegeManager.changePiege(piegeManager, Totem)
 
 end
 
 function Minimenu:trap3()
-	 print("Smoke")
 	 piegeManager.changePiege(piegeManager, Slowdown)
 end
 
 function Minimenu:trap4()
-	 print("Cage")
 	 piegeManager.changePiege(piegeManager, Cage)
-end
-
-function Minimenu:trap5()
-	 --print("Kill")
 end
 
 function Minimenu:pause()
